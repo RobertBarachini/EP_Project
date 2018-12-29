@@ -13,20 +13,18 @@
 
   $object = new Uporabnik($connection);
 
-  // get id of object to be edited
+  // get object id
   $data = json_decode(file_get_contents("php://input"));
-
-  // set ID property of object to be edited
+  // set object id to be deleted
   $object->iduporabnika = $data->iduporabnika;
-  $object->ime = $data->ime;
-  $object->priimek= $data->priimek;
 
-  if($object->update()){
+  // delete the object
+  if($object->delete()){
     http_response_code(200);
-    echo json_encode(array("message" => "Object was updated."));
+    echo json_encode(array("message" => "Object was deleted."));
   }
   else{
     http_response_code(503);
-    echo json_encode(array("message" => "Unable to update object."));
+    echo json_encode(array("message" => "Unable to delete object."));
   }
 ?>

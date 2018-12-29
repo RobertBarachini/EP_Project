@@ -56,7 +56,7 @@ class Uporabnik{
 
     // prepare query statement
     $statement = $this->connection->prepare( $query );
-    // bind id of product to be updated
+    // bind id of object to be updated
     $statement->bindParam(1, $this->iduporabnika);
     // execute query
     $statement->execute();
@@ -96,5 +96,19 @@ class Uporabnik{
   }
 
   public function delete(){
+    $query = "DELETE FROM " . $this->table_name . " WHERE iduporabnika = ?";
+
+    // prepare query
+    $statement = $this->connection->prepare($query);
+    // sanitize
+    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
+    // bind id of record to delete
+    $statement->bindParam(1, $this->iduporabnika);
+
+    // execute query
+    if($statement->execute()){
+      return true;
+    }
+    return false;
   }
 }
