@@ -43,6 +43,31 @@ class Uporabnik{
     return $statement;
   }
 
+  public function readOne(){
+    // query to read single record
+    $query = "SELECT
+                iduporabnika, ime, priimek
+            FROM
+                " . $this->table_name . "
+            WHERE 
+                iduporabnika = ?
+            LIMIT
+                0,1";
+
+    // prepare query statement
+    $statement = $this->connection->prepare( $query );
+    // bind id of product to be updated
+    $statement->bindParam(1, $this->iduporabnika);
+    // execute query
+    $statement->execute();
+    // get retrieved row
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    // set values to object properties
+    $this->iduporabnika = $row['iduporabnika'];
+    $this->ime = $row['ime'];
+    $this->priimek = $row['priimek'];
+  }
+
   public function update(){
   }
 
