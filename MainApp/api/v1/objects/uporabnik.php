@@ -16,6 +16,24 @@ class Uporabnik{
 
   // CRUD
   public function create(){
+    $query = "INSERT INTO
+                " . $this->table_name . "
+            SET
+                ime=:ime, 
+                priimek=:priimek";
+
+    $statement = $this->connection->prepare($query);
+
+    $this->ime=htmlspecialchars(strip_tags($this->ime));
+    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
+
+    $statement->bindParam(":ime", $this->ime);
+    $statement->bindParam(":priimek", $this->priimek);
+
+    if($statement->execute()){
+      return true;
+    }
+    return false;
   }
 
   public function read(){
