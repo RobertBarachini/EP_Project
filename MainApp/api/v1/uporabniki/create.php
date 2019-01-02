@@ -18,19 +18,39 @@
 
   // make sure data is not empty
   if(
+    true
+    /*!empty($data->email) &&
+    !empty($data->geslo) &&
     !empty($data->ime) &&
-    !empty($data->priimek)
+    !empty($data->priimek) &&
+    !empty($data->ulica) &&
+    !empty($data->posta) &&
+    !empty($data->kraj) &&
+    !empty($data->drzava)*/
   ){
-    $object->ime = $data->ime;
-    $object->priimek = $data->priimek;
+    $object->idvloge = (isset($data->idvloge) ? $data->idvloge : "X");
+    $object->idcert = (isset($data->idcert) ? $data->idcert : null);
+    $object->email = (isset($data->email) ? $data->email : null);
+    $object->indmailpotrjen = (isset($data->indmailpotrjen) ? $data->indmailpotrjen : 0);
+    $object->geslo = (isset($data->geslo) ? $data->geslo : null);
+    $object->piskotek = (isset($data->piskotek) ? $data->piskotek : null);
+    $object->ime = (isset($data->ime) ? $data->ime : null);
+    $object->priimek = (isset($data->priimek) ? $data->priimek : null);
+    $object->ulica = (isset($data->ulica) ? $data->ulica : null);
+    $object->posta = (isset($data->posta) ? $data->posta : null);
+    $object->kraj = (isset($data->kraj) ? $data->kraj : null);
+    $object->drzava = (isset($data->drzava) ? $data->drzava : null);
+    $object->status = (isset($data->status) ? $data->status : null);
+    $object->idspr = (isset($data->idspr) ? $data->idspr : null);
 
-    if($object->create()){
+    $ret = $object->create();
+    if($ret > -1){
       http_response_code(201);
-      echo json_encode(array("message" => "Object created."));
+      echo json_encode(array("id"=>$ret, "message" => "Object created"));
     }
     else{
       http_response_code(503);
-      echo json_encode(array("message" => "Unable to create object."));
+      echo json_encode(array("id"=>$ret, "message" => "Unable to create object."));
     }
   }
   else{

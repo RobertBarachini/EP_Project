@@ -17,9 +17,23 @@
   $data = json_decode(file_get_contents("php://input"));
 
   // set ID property of object to be edited
-  $object->iduporabnika = $data->iduporabnika;
-  $object->ime = $data->ime;
-  $object->priimek= $data->priimek;
+  $object->iduporabnika = (isset($data->iduporabnika) ? $data->iduporabnika : null);
+  $object->idvloge = (isset($data->idvloge) ? $data->idvloge : "X");
+  $object->idcert = (isset($data->idcert) ? $data->idcert : null);
+  $object->email = (isset($data->email) ? $data->email : null);
+  $object->indmailpotrjen = (isset($data->indmailpotrjen) ? $data->indmailpotrjen : 0);
+  $object->geslo = (isset($data->geslo) ? $data->geslo : null);
+  $object->sol = (isset($data->sol) ? $data->sol : null);
+  $object->piskotek = (isset($data->piskotek) ? $data->piskotek : null);
+  $object->ime = (isset($data->ime) ? $data->ime : null);
+  $object->priimek = (isset($data->priimek) ? $data->priimek : null);
+  $object->ulica = (isset($data->ulica) ? $data->ulica : null);
+  $object->posta = (isset($data->posta) ? $data->posta : null);
+  $object->kraj = (isset($data->kraj) ? $data->kraj : null);
+  $object->drzava = (isset($data->drzava) ? $data->drzava : null);
+  $object->datprijave = (isset($data->datprijave) ? $data->datprijave : null);
+  $object->status = (isset($data->status) ? $data->status : null);
+  $object->idspr = (isset($data->idspr) ? $data->idspr : -1);
 
   if($object->update()){
     http_response_code(200);

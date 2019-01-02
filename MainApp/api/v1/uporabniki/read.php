@@ -22,9 +22,24 @@
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
       extract($row);
       $p  = array(
-        "id" => $iduporabnika,
+        "iduporabnika" => $iduporabnika,
+        "idvloge" => $idvloge,
+        "idcert" => $idcert,
+        "email" => $email,
+        "indmailpotrjen" => $indmailpotrjen,
+        "geslo" => $geslo,
+        "sol" => $sol,
+        "piskotek" => $piskotek,
         "ime" => $ime,
         "priimek" => $priimek,
+        "ulica" => $ulica,
+        "posta" => $posta,
+        "kraj" => $kraj,
+        "drzava" => $drzava,
+        "datprijave" => $datprijave,
+        "status" => $status,
+        "datspr" => $datspr,
+        "idspr" => $idspr,
       );
       array_push($objects["body"], $p);
     }

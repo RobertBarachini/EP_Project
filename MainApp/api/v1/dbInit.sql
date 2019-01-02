@@ -1,16 +1,16 @@
 SET sql_mode = '';
 
-DROP SCHEMA IF EXISTS trgovina; 
+DROP SCHEMA IF EXISTS trgovina;
 
 CREATE SCHEMA IF NOT EXISTS trgovina; 
 
 DROP TABLE IF EXISTS trgovina.vloge;
 	
 CREATE TABLE IF NOT EXISTS trgovina.vloge (
-    idvloge VARCHAR(1),
-    naziv VARCHAR(255) NOT NULL,
+  idvloge VARCHAR(1),
+  naziv VARCHAR(255) NOT NULL,
 	status TINYINT NOT NULL DEFAULT 0,
-    datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
+  datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
 	 PRIMARY KEY (idvloge)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
@@ -23,12 +23,13 @@ INSERT INTO `trgovina`.`vloge` (`idvloge`, `naziv`) VALUES ('X', 'Anonimni odjem
 DROP TABLE IF EXISTS trgovina.uporabniki;
 
 CREATE TABLE IF NOT EXISTS trgovina.uporabniki (
-    iduporabnika INT AUTO_INCREMENT  COMMENT 'id uporabnika',
-    idvloge VARCHAR(1) COMMENT 'id vloge (sifrant v tabeli vloge) administrator, prodajalec, stranka, anonimni odjemalec',
+  iduporabnika INT AUTO_INCREMENT  COMMENT 'id uporabnika',
+  idvloge VARCHAR(1) COMMENT 'id vloge (sifrant v tabeli vloge) administrator, prodajalec, stranka, anonimni odjemalec',
 	idcert VARCHAR(50)   COMMENT 'id certifikata',
 	email VARCHAR(254)   COMMENT 'email/uporabnisko ime',
 	indmailpotrjen TINYINT COMMENT '0 - ne, 1 -da optimizacija, da vodimo stanje, da ni potrebno iskati po tabeli uporabniki_potrditve',
 	geslo VARCHAR(50)   COMMENT 'geslo',
+	sol VARCHAR(50)   COMMENT 'sol za geslo',
 	piskotek VARCHAR(300)   COMMENT 'oznaka piskoteka/seje za anonimnega uporabnika ali uporabnika, ki se se ni prijavil',
 	ime VARCHAR(50)   COMMENT 'ime',
 	priimek VARCHAR(50)   COMMENT 'priimek',
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS trgovina.uporabniki (
 	posta VARCHAR(20)   COMMENT 'stevilka oziroma oznaka poste',
 	kraj VARCHAR(50)   COMMENT 'kraj',
 	drzava VARCHAR(50)   COMMENT 'naziv države - sicer iddrzava in sifrant drzav',
-	datprijave timestamp  COMMENT 'datum zadnje prijave uporabnika v aplikacijo',
+	datprijave timestamp DEFAULT 0 COMMENT 'datum zadnje prijave uporabnika v aplikacijo',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
@@ -58,15 +59,16 @@ CREATE INDEX uporabniki_ix_piskotek ON trgovina.uporabniki(piskotek);
 DROP TABLE IF EXISTS trgovina.uporabniki_arh;
 
 CREATE TABLE IF NOT EXISTS trgovina.uporabniki_arh (
-    arh_akcija VARCHAR(8), 
-    arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
-    arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    iduporabnika INT COMMENT 'id uporabnika',
-    idvloge VARCHAR(1) COMMENT 'id vloge (sirant v tabeli vloge) administrator, prodajalec, stranka, anonimni odjemalec',
+  arh_akcija VARCHAR(8),
+  arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
+  arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  iduporabnika INT COMMENT 'id uporabnika',
+  idvloge VARCHAR(1) COMMENT 'id vloge (sirant v tabeli vloge) administrator, prodajalec, stranka, anonimni odjemalec',
 	idcert VARCHAR(50)   COMMENT 'id certifikata',
 	email VARCHAR(254)   COMMENT 'email/uporabnisko ime',
 	indmailpotrjen TINYINT COMMENT '0 - ne, 1 -da optimizacija, da vodimo stanje, da ni potrebno iskati po tabeli uporabniki_potrditve',
 	geslo VARCHAR(50)   COMMENT 'geslo',
+  sol VARCHAR(50)   COMMENT 'sol za geslo',
 	piskotek VARCHAR(300)   COMMENT 'oznaka piskoteka/seje za anonimnega uporabnika ali uporabnika, ki se se ni prijavil',
 	ime VARCHAR(50)   COMMENT 'ime',
 	priimek VARCHAR(50)   COMMENT 'priimek',
@@ -74,7 +76,7 @@ CREATE TABLE IF NOT EXISTS trgovina.uporabniki_arh (
 	posta VARCHAR(20)   COMMENT 'stevilka oziroma oznaka poste',
 	kraj VARCHAR(50)   COMMENT 'kraj',
 	drzava VARCHAR(50)   COMMENT 'naziv države - sicer iddrzava in sifrant drzav',
-	datprijave timestamp  COMMENT 'datum zadnje prijave uporabnika v aplikacijo',
+	datprijave timestamp DEFAULT 0 COMMENT 'datum zadnje prijave uporabnika v aplikacijo',
 	status TINYINT COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
@@ -106,14 +108,14 @@ CREATE TRIGGER trgovina.uporabniki__bd BEFORE DELETE ON trgovina.uporabniki FOR 
 DROP TABLE IF EXISTS trgovina.uporabniki_potrditve;
 
 CREATE TABLE IF NOT EXISTS trgovina.uporabniki_potrditve (
-    idpotrditve INT AUTO_INCREMENT  COMMENT 'id uporabnika',
+  idpotrditve INT AUTO_INCREMENT  COMMENT 'id uporabnika',
 	iduporabnika INT COMMENT 'id uporabnika',
-	datposiljanja timestamp  COMMENT 'datum posiljanja maila',
-	datpotrditve timestamp  COMMENT 'datum potrditve uporabnika',
+	datposiljanja timestamp DEFAULT 0 COMMENT 'datum posiljanja maila',
+	datpotrditve timestamp DEFAULT 0 COMMENT 'datum potrditve uporabnika',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
-	 PRIMARY KEY (idpotrditve)
+  PRIMARY KEY (idpotrditve)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	 
 
 CREATE INDEX uporabniki_potrditve_ix_iduporabnika ON trgovina.uporabniki_potrditve(iduporabnika);
@@ -132,10 +134,10 @@ INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `ime`, `priimek`, `u
 DROP TABLE IF EXISTS trgovina.artikli;
 
 CREATE TABLE IF NOT EXISTS trgovina.artikli (
-    idartikla INT AUTO_INCREMENT  COMMENT 'id artikla',
-    naziv VARCHAR(100) COMMENT 'naziv ',
-    opis VARCHAR(2000) COMMENT 'daljsi opis ',
-    cena decimal(20,2) COMMENT 'cena v EUR',
+  idartikla INT AUTO_INCREMENT  COMMENT 'id artikla',
+  naziv VARCHAR(100) COMMENT 'naziv ',
+  opis VARCHAR(2000) COMMENT 'daljsi opis ',
+  cena decimal(20,2) COMMENT 'cena v EUR',
 	st_ocen INT DEFAULT 0 COMMENT 'stevilo oddanih ocen za artikel - optimizacija, da ni potrebno sproti sestevati po prometni tabeli',
 	povprecna_ocena DECIMAL(5,2) DEFAULT 0 COMMENT 'povprečna ocena - optimizacija, da ni potrebno sproti racunati. Nova ocena=(povprecna_ocena*st_ocen+nova_ocena)/(st_ocen+1); st_ocen=st_ocen+1',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
@@ -147,17 +149,17 @@ CREATE TABLE IF NOT EXISTS trgovina.artikli (
 DROP TABLE IF EXISTS trgovina.artikli_arh;
 
 CREATE TABLE IF NOT EXISTS trgovina.artikli_arh (
-    arh_akcija VARCHAR(8), 
-    arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
-    arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  arh_akcija VARCHAR(8),
+  arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
+  arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	idartikla INT COMMENT 'id artikla',
-    naziv VARCHAR(100) COMMENT 'naziv ',
-    opis VARCHAR(2000) COMMENT 'daljsi opis ',
-    cena decimal(20,2) COMMENT 'cena v EUR',
+  naziv VARCHAR(100) COMMENT 'naziv ',
+  opis VARCHAR(2000) COMMENT 'daljsi opis ',
+  cena decimal(20,2) COMMENT 'cena v EUR',
 	st_ocen INT DEFAULT 0 COMMENT 'stevilo oddanih ocen za artikel - optimizacija, da ni potrebno sproti sestevati po prometni tabeli',
 	povprecna_ocena DECIMAL(5,2)  COMMENT 'povprečna ocena - optimizacija, da ni potrebno sproti racunati. Nova ocena=(povprecna_ocena*st_ocen+nova_ocena)/(st_ocen+1); st_ocen=st_ocen+1',
 	status TINYINT COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
-	datspr timestamp  COMMENT 'datum in ura zadnje spremembe  zapisa',
+	datspr timestamp DEFAULT 0 COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',	
  PRIMARY KEY (idartikla, arh_revizija)
 )  ENGINE=MyISAM  DEFAULT CHARSET=utf8;	
@@ -187,10 +189,10 @@ CREATE TRIGGER trgovina.artikli__bd BEFORE DELETE ON trgovina.artikli FOR EACH R
 DROP TABLE IF EXISTS trgovina.artikli_slike;
 
 CREATE TABLE IF NOT EXISTS trgovina.artikli_slike (
-    idslike INT AUTO_INCREMENT  COMMENT 'id slike',
+  idslike INT AUTO_INCREMENT  COMMENT 'id slike',
 	idartikla INT COMMENT 'id artikla ( za artikel lahko imamo več slik)',
-    naziv VARCHAR(100) COMMENT 'naziv',
-    link VARCHAR(500) COMMENT 'http link do slike',
+  naziv VARCHAR(100) COMMENT 'naziv',
+  link VARCHAR(500) COMMENT 'http link do slike',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
@@ -208,12 +210,12 @@ CREATE INDEX artikli_slike_ix_idslike ON trgovina.artikli_slike(idslike);
 DROP TABLE IF EXISTS trgovina.narocila_faza;
 
 CREATE TABLE IF NOT EXISTS trgovina.narocila_faza (
-    faza VARCHAR(1)  COMMENT 'faza',
+  faza VARCHAR(1)  COMMENT 'faza',
 	naziv VARCHAR(100) COMMENT 'naziv',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
-	 PRIMARY KEY (faza)
+  PRIMARY KEY (faza)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
 
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('K', 'Košarica0');
@@ -224,7 +226,7 @@ INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('S', 'Storniran
 DROP TABLE IF EXISTS trgovina.narocila;
 
 CREATE TABLE IF NOT EXISTS trgovina.narocila (
-    idnarocila INT AUTO_INCREMENT  COMMENT 'id narocila',
+  idnarocila INT AUTO_INCREMENT  COMMENT 'id narocila',
 	iduporabnika INT COMMENT 'id uporabnika',
 	datzac_kosarice timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'datum in ura začetka kosarice,',
 	datnarocila timestamp COMMENT 'datum in ura oddaje narocila s strani uporabnika',
@@ -233,7 +235,7 @@ CREATE TABLE IF NOT EXISTS trgovina.narocila (
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
-	 PRIMARY KEY (idnarocila)
+  PRIMARY KEY (idnarocila)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
 
 ALTER table trgovina.narocila
@@ -253,10 +255,10 @@ CREATE INDEX narocila_ix_iduporabnika ON trgovina.narocila(iduporabnika, datzac_
 DROP TABLE IF EXISTS trgovina.narocila_arh;
 
 CREATE TABLE IF NOT EXISTS trgovina.narocila_arh (
-    arh_akcija VARCHAR(8),
-    arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
-    arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    idnarocila INT COMMENT 'id narocila',
+  arh_akcija VARCHAR(8),
+  arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
+  arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  idnarocila INT COMMENT 'id narocila',
 	iduporabnika INT COMMENT 'id uporabnika',
 	datzac_kosarice timestamp COMMENT 'datum in ura začetka kosarice,',
 	datnarocila timestamp COMMENT 'datum in ura oddaje narocila s strani uporabnika',
@@ -265,7 +267,7 @@ CREATE TABLE IF NOT EXISTS trgovina.narocila_arh (
 	status TINYINT COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
-	 PRIMARY KEY (idnarocila, arh_revizija)
+  PRIMARY KEY (idnarocila, arh_revizija)
 )  ENGINE=MyISAM  DEFAULT CHARSET=utf8;		
 
 ALTER table trgovina.narocila_arh
@@ -295,14 +297,14 @@ CREATE TRIGGER trgovina.narocila__bd BEFORE DELETE ON trgovina.narocila FOR EACH
 DROP TABLE IF EXISTS trgovina.narocila_artikli;
 
 CREATE TABLE IF NOT EXISTS trgovina.narocila_artikli (
-    idnarocila_artikli INT AUTO_INCREMENT  COMMENT 'id ',
+  idnarocila_artikli INT AUTO_INCREMENT  COMMENT 'id ',
 	idnarocila INT COMMENT 'id narocila',
 	idartikla INT COMMENT 'id artikla',
 	kolicina INT COMMENT 'kolicina artiklov',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
-	 PRIMARY KEY (idnarocila_artikli)
+  PRIMARY KEY (idnarocila_artikli)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
 
 ALTER table trgovina.narocila_artikli
@@ -325,9 +327,8 @@ CREATE INDEX narocila_artikli_idartikla ON trgovina.narocila_artikli(idartikla);
 DROP TABLE IF EXISTS trgovina.artikli_ocene;
 
 CREATE TABLE IF NOT EXISTS trgovina.artikli_ocene (
-    idocene  INT AUTO_INCREMENT  COMMENT 'id
-	ocene',
-    idartikla INT COMMENT 'id artikla',
+  idocene  INT AUTO_INCREMENT  COMMENT 'id ocene',
+  idartikla INT COMMENT 'id artikla',
 	iduporabnika INT COMMENT 'id uporabnika',
 	ocena DECIMAL(5,2) DEFAULT 0 COMMENT 'povprečna ocena - optimizacija, da ni potrebno sproti racunati. Nova ocena=(povprecna_ocena*st_ocen+nova_ocena)/(st_ocen+1); st_ocen=st_ocen+1',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
