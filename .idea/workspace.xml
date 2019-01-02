@@ -4,8 +4,6 @@
     <list default="true" id="bc96f7f4-0ced-4048-b91a-88a8f0456690" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainApp/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/MainApp/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainApp/core/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainApp/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/MainApp/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MainApp/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+            <state relative-caret-position="435">
+              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -287,12 +285,12 @@
       <workItem from="1545845366583" duration="599000" />
       <workItem from="1546367889361" duration="4730000" />
       <workItem from="1546370178380" duration="35416000" />
-      <workItem from="1546408778349" duration="19261000" />
+      <workItem from="1546408778349" duration="19600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60006000" />
+    <option name="totallyTimeSpent" value="60345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="960" y="25" width="960" height="990" extended-state="4" />
@@ -494,8 +492,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MainApp/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+        <state relative-caret-position="435">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
         </state>
       </provider>
     </entry>
