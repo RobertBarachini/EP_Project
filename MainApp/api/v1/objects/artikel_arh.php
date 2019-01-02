@@ -2,12 +2,22 @@
 class Artikel_arh{
   // database connection and table name
   private $connection;
-  private $table_name = "uporabniki";
+  private $table_name = "artikli_arh";
 
   // object properties
-  public $iduporabnika;
-  public $ime;
-  public $priimek;
+  public $idartikla;
+  public $naziv;
+  public $opis;
+  public $cena;
+  public $st_ocen;
+  public $povprecna_ocena;
+  public $status;
+  public $datspr;
+  public $idspr;
+
+  public $arh_akcija;
+  public $arh_revizija;
+  public $arh_datum;
 
   // constructor with $db as database connection
   public function __construct($db){
@@ -15,29 +25,11 @@ class Artikel_arh{
   }
 
   // CRUD
-  public function create(){
-    $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-                ime=:ime, 
-                priimek=:priimek";
-
-    $statement = $this->connection->prepare($query);
-
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
-
-    $statement->bindParam(":ime", $this->ime);
-    $statement->bindParam(":priimek", $this->priimek);
-
-    if($statement->execute()){
-      return true;
-    }
-    return false;
-  }
-
   public function read(){
-    $query = "SELECT iduporabnika, ime, priimek FROM " . $this->table_name;
+    $query = "SELECT 
+                arh_akcija, arh_revizija, arh_datum, idartikla, naziv, opis, cena, st_ocen, 
+                povprecna_ocena, status, datspr, idspr
+              FROM " . $this->table_name;
     $statement = $this->connection->prepare($query);
     $statement->execute();
     return $statement;
@@ -46,69 +38,35 @@ class Artikel_arh{
   public function readOne(){
     // query to read single record
     $query = "SELECT
-                iduporabnika, ime, priimek
+                arh_akcija, arh_revizija, arh_datum, idartikla, naziv, opis, cena, st_ocen, 
+                povprecna_ocena, status, datspr, idspr
               FROM
                   " . $this->table_name . "
               WHERE 
-                  iduporabnika = ?
+                  idartikla = ?
               LIMIT
                   0,1";
 
     // prepare query statement
     $statement = $this->connection->prepare( $query );
     // bind id of object to be updated
-    $statement->bindParam(1, $this->iduporabnika);
+    $statement->bindParam(1, $this->idartikla);
     // execute query
     $statement->execute();
     // get retrieved row
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     // set values to object properties
-    $this->iduporabnika = $row['iduporabnika'];
-    $this->ime = $row['ime'];
-    $this->priimek = $row['priimek'];
-  }
-
-  public function update(){
-    $query = "UPDATE
-                " . $this->table_name . "
-              SET
-                  ime = :ime,
-                  priimek = :priimek
-              WHERE
-                  iduporabnika = :iduporabnika";
-
-    $statement = $this->connection->prepare($query);
-    // sanitize
-    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
-
-    // bind new values
-    $statement->bindParam(':iduporabnika', $this->iduporabnika);
-    $statement->bindParam(':ime', $this->ime);
-    $statement->bindParam(':priimek', $this->priimek);
-
-    // execute the query
-    if($statement->execute()){
-      return true;
-    }
-    return false;
-  }
-
-  public function delete(){
-    $query = "DELETE FROM " . $this->table_name . " WHERE iduporabnika = ?";
-
-    // prepare query
-    $statement = $this->connection->prepare($query);
-    // sanitize
-    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
-    // bind id of record to delete
-    $statement->bindParam(1, $this->iduporabnika);
-
-    // execute query
-    if($statement->execute()){
-      return true;
-    }
-    return false;
+    $this->arh_akcija = $row['arh_akcija'];
+    $this->arh_revizija = $row['arh_revizija'];
+    $this->arh_datum = $row['arh_datum'];
+    $this->idartikla = $row['idartikla'];
+    $this->naziv = $row['naziv'];
+    $this->opis = $row['opis'];
+    $this->cena = $row['cena'];
+    $this->st_ocen = $row['st_ocen'];
+    $this->povprecna_ocena = $row['povprecna_ocena'];
+    $this->status = $row['status'];
+    $this->datspr = $row['datspr'];
+    $this->idspr = $row['idspr'];
   }
 }

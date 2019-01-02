@@ -6,23 +6,32 @@
   header('Content-Type: application/json');
 
   include_once '../config/database.php';
-  include_once '../objects/uporabnik.php';
+  include_once '../objects/artikel_arh.php';
 
   $database = new Database();
   $connection = $database->getConnection();
 
-  $object = new Uporabnik($connection);
+  $object = new Artikel_arh($connection);
 
   // set property of record to read
-  $object->iduporabnika = isset($_GET['id']) ? $_GET['id'] : die();
+  $object->idartikla = isset($_GET['id']) ? $_GET['id'] : die();
 
   $object->readOne();
 
-  if($object->ime!=null){
+  if($object->idartikla!=null){
     $object_arr = array(
-      "iduporabnika" =>  $object->iduporabnika,
-      "ime" => $object->ime,
-      "priimek" => $object->priimek,
+      "arh_akcija" => $object->arh_akcija,
+      "arh_revizija" => $object->arh_revizija,
+      "arh_datum" => $object->arh_datum,
+      "idartikla" => $object->idartikla,
+      "naziv" => $object->naziv,
+      "opis" => $object->opis,
+      "cena" => $object->cena,
+      "st_ocen" => $object->st_ocen,
+      "povprecna_ocena" => $object->povprecna_ocena,
+      "status" => $object->status,
+      "datspr" => $object->datspr,
+      "idspr" => $object->idspr
     );
 
     http_response_code(200);
