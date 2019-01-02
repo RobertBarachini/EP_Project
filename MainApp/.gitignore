@@ -36,10 +36,10 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-
 # CMake
 cmake-build-*/
-
+.idea/**
+.idea/
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
