@@ -6,7 +6,7 @@
   header('Content-Type: application/json');
 
   include_once '../config/database.php';
-  include_once '../objects/uporabnik.php';
+  include_once '../objects/uporabnik_arh.php';
 
   $database = new Database();
   $connection = $database->getConnection();
@@ -20,9 +20,27 @@
 
   if($object->ime!=null){
     $object_arr = array(
-      "iduporabnika" =>  $object->iduporabnika,
+      "arh_akcija" => $object->arh_akcija,
+      "arh_revizija" => $object->arh_revizija,
+      "arh_datum" => $object->arh_datum,
+      "iduporabnika" => $object->iduporabnika,
+      "idvloge" => $object->idvloge,
+      "idcert" => $object->idcert,
+      "email" => $object->email,
+      "indmailpotrjen" => $object->indmailpotrjen,
+      "geslo" => $object->geslo,
+      "sol" => $object->sol,
+      "piskotek" => $object->piskotek,
       "ime" => $object->ime,
       "priimek" => $object->priimek,
+      "ulica" => $object->ulica,
+      "posta" => $object->posta,
+      "kraj" => $object->kraj,
+      "drzava" => $object->drzava,
+      "datprijave" => $object->datprijave,
+      "status" => $object->status,
+      "datspr" => $object->datspr,
+      "idspr" => $object->idspr
     );
 
     http_response_code(200);

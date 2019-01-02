@@ -4,7 +4,7 @@
   header("Content-Type: application/json; charset=UTF-8");
 
   include_once '../config/database.php';
-  include_once '../objects/uporabnik.php';
+  include_once '../objects/uporabnik_arh.php';
 
   $database = new Database();
   $connection = $database->getConnection();
@@ -22,9 +22,27 @@
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
       extract($row);
       $p  = array(
-        "id" => $iduporabnika,
+        "arh_akcija" => $arh_akcija,
+        "arh_revizija" => $arh_revizija,
+        "arh_datum" => $arh_datum,
+        "iduporabnika" => $iduporabnika,
+        "idvloge" => $idvloge,
+        "idcert" => $idcert,
+        "email" => $email,
+        "indmailpotrjen" => $indmailpotrjen,
+        "geslo" => $geslo,
+        "sol" => $sol,
+        "piskotek" => $piskotek,
         "ime" => $ime,
         "priimek" => $priimek,
+        "ulica" => $ulica,
+        "posta" => $posta,
+        "kraj" => $kraj,
+        "drzava" => $drzava,
+        "datprijave" => $datprijave,
+        "status" => $status,
+        "datspr" => $datspr,
+        "idspr" => $idspr,
       );
       array_push($objects["body"], $p);
     }

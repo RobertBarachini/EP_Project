@@ -1,13 +1,32 @@
 <?php
-class Uporabnik_arh{
+class Uporabnik{
   // database connection and table name
   private $connection;
-  private $table_name = "uporabniki";
+  private $table_name = "uporabniki_arh";
 
   // object properties
+  public $arh_akcija;
+  public $arh_revizija;
+  public $arh_datum;
+
   public $iduporabnika;
+  public $idvloge;
+  public $idcert;
+  public $email;
+  public $indmailpotrjen;
+  public $geslo;
+  public $sol;
+  public $piskotek;
   public $ime;
   public $priimek;
+  public $ulica;
+  public $posta;
+  public $kraj;
+  public $drzava;
+  public $datprijave;
+  public $status;
+  public $datspr;
+  public $idspr;
 
   // constructor with $db as database connection
   public function __construct($db){
@@ -15,29 +34,12 @@ class Uporabnik_arh{
   }
 
   // CRUD
-  public function create(){
-    $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-                ime=:ime, 
-                priimek=:priimek";
-
-    $statement = $this->connection->prepare($query);
-
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
-
-    $statement->bindParam(":ime", $this->ime);
-    $statement->bindParam(":priimek", $this->priimek);
-
-    if($statement->execute()){
-      return true;
-    }
-    return false;
-  }
-
   public function read(){
-    $query = "SELECT iduporabnika, ime, priimek FROM " . $this->table_name;
+    $query = "SELECT 
+                arh_akcija, arh_revizija, arh_datum,
+                iduporabnika, idvloge, idcert, email, indmailpotrjen, geslo, sol, piskotek, ime, priimek, 
+                ulica, posta, kraj, drzava, datprijave, status, datspr, idspr
+              FROM " . $this->table_name;
     $statement = $this->connection->prepare($query);
     $statement->execute();
     return $statement;
@@ -46,7 +48,9 @@ class Uporabnik_arh{
   public function readOne(){
     // query to read single record
     $query = "SELECT
-                iduporabnika, ime, priimek
+                arh_akcija, arh_revizija, arh_datum,
+                iduporabnika, idvloge, idcert, email, indmailpotrjen, geslo, sol, piskotek, ime, priimek, 
+                ulica, posta, kraj, drzava, datprijave, status, datspr, idspr
               FROM
                   " . $this->table_name . "
               WHERE 
@@ -63,52 +67,31 @@ class Uporabnik_arh{
     // get retrieved row
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     // set values to object properties
+    $this->arh_akcija = $row['arh_akcija'];
+    $this->arh_revizija = $row['arh_revizija'];
+    $this->arh_datum = $row['arh_datum'];
+
+    $this->arh_akcija = $row['arh_akcija'];
+    $this->arh_revizija = $row['arh_revizija'];
+    $this->arh_datum = $row['arh_datum'];
+
     $this->iduporabnika = $row['iduporabnika'];
+    $this->idvloge = $row['idvloge'];
+    $this->idcert = $row['idcert'];
+    $this->email = $row['email'];
+    $this->indmailpotrjen = $row['indmailpotrjen'];
+    $this->geslo = $row['geslo'];
+    $this->sol = $row['sol'];
+    $this->piskotek = $row['piskotek'];
     $this->ime = $row['ime'];
     $this->priimek = $row['priimek'];
-  }
-
-  public function update(){
-    $query = "UPDATE
-                " . $this->table_name . "
-              SET
-                  ime = :ime,
-                  priimek = :priimek
-              WHERE
-                  iduporabnika = :iduporabnika";
-
-    $statement = $this->connection->prepare($query);
-    // sanitize
-    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
-
-    // bind new values
-    $statement->bindParam(':iduporabnika', $this->iduporabnika);
-    $statement->bindParam(':ime', $this->ime);
-    $statement->bindParam(':priimek', $this->priimek);
-
-    // execute the query
-    if($statement->execute()){
-      return true;
-    }
-    return false;
-  }
-
-  public function delete(){
-    $query = "DELETE FROM " . $this->table_name . " WHERE iduporabnika = ?";
-
-    // prepare query
-    $statement = $this->connection->prepare($query);
-    // sanitize
-    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
-    // bind id of record to delete
-    $statement->bindParam(1, $this->iduporabnika);
-
-    // execute query
-    if($statement->execute()){
-      return true;
-    }
-    return false;
+    $this->ulica = $row['ulica'];
+    $this->posta = $row['posta'];
+    $this->kraj = $row['kraj'];
+    $this->drzava = $row['drzava'];
+    $this->datprijave = $row['datprijave'];
+    $this->status = $row['status'];
+    $this->datspr = $row['datspr'];
+    $this->idspr = $row['idspr'];
   }
 }
