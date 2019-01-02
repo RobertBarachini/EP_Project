@@ -4,12 +4,12 @@
   header("Content-Type: application/json; charset=UTF-8");
 
   include_once '../config/database.php';
-  include_once '../objects/uporabnik.php';
+  include_once '../objects/uporabnik_potrditev.php';
 
   $database = new Database();
   $connection = $database->getConnection();
 
-  $object = new Uporabnik($connection);
+  $object = new Uporabnik_potrditev($connection);
 
   $statement = $object->read();
   $count = $statement->rowCount();
@@ -22,9 +22,13 @@
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
       extract($row);
       $p  = array(
-        "id" => $iduporabnika,
-        "ime" => $ime,
-        "priimek" => $priimek,
+        "idpotrditve" => $idpotrditve,
+        "iduporabnika" => $iduporabnika,
+        "datposiljanja" => $datposiljanja,
+        "datpotrditve" => $datpotrditve,
+        "status" => $status,
+        "datspr" => $datspr,
+        "idspr" => $idspr,
       );
       array_push($objects["body"], $p);
     }
