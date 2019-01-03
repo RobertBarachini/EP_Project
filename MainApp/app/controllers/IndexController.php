@@ -13,7 +13,14 @@ class IndexController
   public static function indexPage() {
 
     $artikli = requestUtil::sendRequest("http://localhost/storm/MainApp/api/v1/artikli/read.php","GET","");
-    var_dump($artikli);
-    //echo ViewHelper::render("app/views/index-page.php",["varA"=>"LakaLaka"]);
+    $berljiviPodatki = json_encode($artikli);
+    $decodiraniPodatki = json_decode($berljiviPodatki,true);
+    $podatki = $decodiraniPodatki['body'];
+    /* var_dump($podatki[1]);
+    foreach($podatki as $key => $art) {
+      echo ($art['naziv']);
+    } */
+
+    echo ViewHelper::render("app/views/index-page.php",["artikli"=>$podatki,"varA" =>'lolek']);
   }
 }
