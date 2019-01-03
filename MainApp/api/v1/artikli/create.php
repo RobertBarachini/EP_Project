@@ -6,31 +6,41 @@
   header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
   include_once '../config/database.php';
-  include_once '../objects/uporabnik.php';
+  include_once '../objects/artikel.php';
 
   $database = new Database();
   $connection = $database->getConnection();
 
-  $object = new Uporabnik($connection);
+  $object = new Artikel($connection);
 
   // get posted data
   $data = json_decode(file_get_contents("php://input"));
 
   // make sure data is not empty
   if(
+  true
+    /*!empty($data->email) &&
+    !empty($data->geslo) &&
     !empty($data->ime) &&
-    !empty($data->priimek)
+    !empty($data->priimek) &&
+    !empty($data->ulica) &&
+    !empty($data->posta) &&
+    !empty($data->kraj) &&
+    !empty($data->drzava)*/
   ){
-    $object->ime = $data->ime;
-    $object->priimek = $data->priimek;
+    $object->naziv = (isset($data->naziv) ? $data->naziv : null);
+    $object->opis = (isset($data->opis) ? $data->opis : null);
+    $object->cena = (isset($data->cena) ? $data->cena : null);
+    $object->idspr = (isset($data->idspr) ? $data->idspr : -1);
 
-    if($object->create()){
+    $ret = $object->create();
+    if($ret > -1){
       http_response_code(201);
-      echo json_encode(array("message" => "Object created."));
+      echo json_encode(array("id"=>$ret, "message" => "Object created"));
     }
     else{
       http_response_code(503);
-      echo json_encode(array("message" => "Unable to create object."));
+      echo json_encode(array("id"=>$ret, "message" => "Unable to create object."));
     }
   }
   else{
