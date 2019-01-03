@@ -1,26 +1,12 @@
 <?php
-  define('DS', DIRECTORY_SEPARATOR);
-  define('ROOT',dirname(__FILE__));
-  //razdelimo Url na stringe po slashih
+require_once "Router.php";
 
-  require_once (ROOT . DS . 'config' . DS . 'config.php');
-  require_once (ROOT . DS . 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', dirname(__FILE__));
+//razdelimo Url na stringe po slashih
 
-  // autoloading razredov
-  function autoload($className) {
-    if(file_exists(ROOT . DS . 'core' . DS . $className . '.php')) {
-      require_once(ROOT . DS . 'core' . DS . $className . '.php');
-    } elseif (ROOT . DS . 'app' . DS . 'controllers' . DS . $className . '.php') {
-      require_once (ROOT . DS . 'app' . DS . 'controllers' . DS . $className . '.php');
-    } elseif (ROOT . DS . 'app' . DS . 'models' . DS . $className . '.php') {
-      require_once (ROOT . DS . 'app' . DS . 'models' . DS . $className . '.php');
-    }
-  }
+session_start();
+$_SESSION["lala"] = "neki";
+$path = isset($_SERVER["PATH_INFO"]) ? trim($_SERVER["PATH_INFO"], "/") : "";
 
-
-  spl_autoload_register('autoload');
-  session_start();
-
-  $url = isset($_SERVER['PATH_INFO']) ? explode('/',ltrim($_SERVER['PATH_INFO'],'/')):[];
-
-  Router::route($url);
+Router::handleRouters($path);
