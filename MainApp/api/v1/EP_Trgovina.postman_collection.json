@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "9ffadb54-cea7-4ad8-a4a2-32927ab2f920",
+		"name": "EP_Trgovina",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Uporabnik",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"notafake@gmail.com\",\n\t\"geslo\": \"12345\",\n\t\"ime\": \"Novoime\",\n\t\"priimek\": \"Novpriimek\",\n\t\"ulica\": \"Novodobna 15\",\n\t\"posta\": \"3000\",\n\t\"kraj\": \"Celje\",\n\t\"drzava\": \"Slovenija\",\n\t\"idvloge\": null,\n\t\"idcert\": null,\n\t\"indmailpotrjen\": 0,\n\t\"piskotek\": null,\n\t\"status\": \"0\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"iduporabnika\": \"1\",\n    \"idvloge\": \"A\",\n    \"idcert\": \"\",\n    \"email\": \"robert@gmail.com\",\n    \"indmailpotrjen\": \"0\",\n    \"geslo\": \"robert\",\n    \"sol\": \"\",\n    \"piskotek\": \"\",\n    \"ime\": \"RobertNEWNEW\",\n    \"priimek\": \"Študent\",\n    \"ulica\": \"Travniška 9\",\n    \"posta\": \"1433\",\n    \"kraj\": \"Radeče\",\n    \"drzava\": \"Slovenija\",\n    \"datprijave\": \"2018-12-30 16:15:46\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 10:05:14\",\n    \"idspr\": \"-1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"iduporabnika\": \"2\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Uporabnik_arh",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_arh/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_arh",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_arh/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_arh",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Uporabnik_potrditev",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_potrditve/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_potrditve",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_potrditve/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_potrditve",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"iduporabnika\": \"1\",\n\t\"idspr\": null\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_potrditve/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_potrditve",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idpotrditve\": \"1\",\n    \"iduporabnika\": \"1\",\n    \"datposiljanja\": \"2019-01-02 12:14:32\",\n    \"datpotrditve\": \"2019-01-01 10:00:00\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 13:14:32\",\n    \"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_potrditve/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_potrditve",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idpotrditve\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/uporabniki_potrditve/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"uporabniki_potrditve",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Artikel",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"naziv\": \"Lesena omara\",\n\t\"opis\": \"Malo stara, ampak zelo dobra\",\n\t\"cena\": \"350\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idartikla\": \"1\",\n    \"naziv\": \"Lesena omara\",\n    \"opis\": \"Malo stara, ampak zelo dobra\",\n    \"cena\": \"700.00\",\n    \"st_ocen\": \"0\",\n    \"povprecna_ocena\": \"0.00\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 19:20:29\",\n    \"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idartikla\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Artikel_arh",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_arh/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_arh",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_arh/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_arh",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Artikel_slika",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_slike/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_slike",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_slike/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_slike",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idartikla\": \"1\",\n\t\"naziv\": \"Slika omare\",\n\t\"link\": \"/nekirandompath/slika.jpg\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_slike/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_slike",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idslike\": \"1\",\n    \"idartikla\": \"1\",\n    \"naziv\": \"Slika omare NEWNEW\",\n    \"link\": \"/nekirandompath/slika.jpg\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-03 13:05:32\",\n    \"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_slike/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_slike",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idslike\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_slike/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_slike",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
