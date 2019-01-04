@@ -18,7 +18,7 @@ $object->idartikla = isset($_GET['id']) ? $_GET['id'] : die();
 
 $object->readOne();
 
-if($object->idartikla!=null){
+if($object->naziv!=null){
   $object_arr = array(
     "idartikla" => $object->idartikla,
     "naziv" => $object->naziv,
