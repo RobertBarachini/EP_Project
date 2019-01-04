@@ -2,6 +2,9 @@
 
 require_once "app/controllers/IndexController.php";
 require_once "app/controllers/ArtikelController.php";
+require_once "app/controllers/RegisterController.php";
+require_once "app/controllers/LoginController.php";
+
 
 class Router
 {
@@ -32,6 +35,12 @@ class Router
       "/^artikli\/(\d+)$/" => function($method, $id) {
         ArtikelController::artikelPage($id);
 
+      },
+      "/^register/" => function() {
+        RegisterController::registerUser();
+      },
+      "/^login/" => function() {
+        LoginController::loginUser();
       },
       "/^druga$/" => function() {
         echo "druga";

@@ -125,3 +125,51 @@ footer p {
 .modal-backdrop.in {
     opacity: 0.5;
 }
+
+.registrationHeader {
+    text-align: center;
+    margin-left: -115px;
+}
+
+.loginHeader {
+    text-align: center;
+    margin-left: -100px;
+}
+
+
+.registrationAndLoginForm {
+    width: 600px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.registrationAndLoginForm input {
+    width: 90%;
+    height: 45px;
+    padding: 0px 5%;
+    margin-bottom: 4px;
+    border: none;
+    background-color: rgb(33, 37, 41);
+    font-family: Arial;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 40px;
+}
+
+.registrationAndLoginForm button {
+    display: block;
+    width: 90%;
+    height: 40px;
+    border: none;
+    margin-top: 10px;
+    background-color: #32383e;
+    font-family: Arial;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.registrationAndLoginForm button:hover {
+    background-color: rgb(33, 37, 41);
+}
+

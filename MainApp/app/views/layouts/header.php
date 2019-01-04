@@ -27,11 +27,8 @@
             </form>
         </ul>
         <div>
-            <a class='navbar-brand' , href=''>
-                Login
-                <img src='' style='height: 50px; width: 50px; margin-left: 5px; border-radius: 50%;'>
-            </a>
+            <a class='navbar-brand' , href='/login'>Prijava</a>
+            <a class='navbar-brand' , href='/register'>Registracija</a>
         </div>
-
     </div>
 </nav>
