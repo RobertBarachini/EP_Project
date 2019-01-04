@@ -36,10 +36,10 @@ class Router
         ArtikelController::artikelPage($id);
 
       },
-      "/^register/" => function() {
+      "/^register$/" => function() {
         RegisterController::registerUser();
       },
-      "/^login/" => function() {
+      "/^login$/" => function() {
         LoginController::loginUser();
       },
       "/^druga$/" => function() {

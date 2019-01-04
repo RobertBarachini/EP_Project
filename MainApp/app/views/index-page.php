@@ -14,6 +14,7 @@
                           <div class="card-body">
                               <a href="<?= ROOT_URL . 'artikli'. DS . $art['idartikla'] ?>" class="card-user"> <h5> <?= $art['naziv'] ?> </h5> </a>
                               <p class="card-text"> <?= $art['opis'] ?> </p>
+                              <p class="card-text"> <?= $art['cena'] ?> €</p>
                           </div>
                       </a>
                   </div>

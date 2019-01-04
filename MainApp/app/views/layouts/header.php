@@ -6,7 +6,10 @@
     <title>TopShop</title>
     <link href="/statics/css/bootstrap.min.css" rel="stylesheet">
     <link href="/statics/css/style.css" rel="stylesheet">
+    <link href="/statics/js/bootstrap.min.js" rel="stylesheet">
+    <link href="/statics/js/jquery-3.3.1.min.js" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="/statics/ajaxJs/ratingupdate.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
