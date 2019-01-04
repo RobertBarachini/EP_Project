@@ -10,7 +10,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="<?= ROOT_URL ?>">
-        <img src="" class="img-icon-top" height="50px">
+        <img src="/MainApp/statics/logo.png" class="img-icon-top" height="50px">
         TOP SHOP
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"

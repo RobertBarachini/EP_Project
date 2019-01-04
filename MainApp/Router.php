@@ -1,6 +1,7 @@
 <?php
 
 require_once "app/controllers/IndexController.php";
+require_once "app/controllers/ArtikelController.php";
 
 class Router
 {
@@ -27,6 +28,10 @@ class Router
     return [
       "/^$/" => function() {
         IndexController::indexPage();
+      },
+      "/^artikli\/(\d+)$/" => function($method, $id) {
+        ArtikelController::artikelPage($id);
+
       },
       "/^druga$/" => function() {
         echo "druga";
