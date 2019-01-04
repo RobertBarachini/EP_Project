@@ -4,6 +4,7 @@ require_once "app/controllers/IndexController.php";
 require_once "app/controllers/ArtikelController.php";
 require_once "app/controllers/RegisterController.php";
 require_once "app/controllers/LoginController.php";
+require_once "app/controllers/KosaricaController.php";
 
 
 class Router
@@ -41,6 +42,9 @@ class Router
       },
       "/^login$/" => function() {
         LoginController::loginUser();
+      },
+      "/^uporabniki\/(\d+)\/kosarica$/" => function($method, $id) {
+        KosaricaController::kosaricaPage($id);
       },
       "/^druga$/" => function() {
         echo "druga";
