@@ -4,13 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TopShop</title>
-    <link href="/MainApp/statics/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/MainApp/statics/css/style.css" rel="stylesheet">
+    <link href="/statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/statics/css/style.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="<?= ROOT_URL ?>">
-        <img src="/MainApp/statics/logo.png" class="img-icon-top" height="50px">
+        <img src="/statics/logo.png" class="img-icon-top" height="50px">
         TOP SHOP
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"

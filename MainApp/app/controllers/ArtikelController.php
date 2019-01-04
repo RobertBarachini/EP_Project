@@ -12,7 +12,7 @@ class ArtikelController
 {
   public static function artikelPage($id) {
 
-    $artikli = requestUtil::sendRequest('http://localhost/storm/MainApp/api/v1/artikli/read_one.php' . '?id=' . $id, "GET","");
+    $artikli = requestUtil::sendRequest('http://localhost/trgovina/api/v1/artikli/read_one.php' . '?id=' . $id, "GET","");
     $berljiviPodatki = json_encode($artikli);
     $decodiraniPodatki = json_decode($berljiviPodatki,true);
 

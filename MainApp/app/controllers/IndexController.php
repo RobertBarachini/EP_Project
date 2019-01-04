@@ -12,7 +12,7 @@ class IndexController
 {
   public static function indexPage() {
 
-    $artikli = requestUtil::sendRequest("http://localhost/storm/MainApp/api/v1/artikli/read.php","GET","");
+    $artikli = requestUtil::sendRequest("http://localhost/trgovina/api/v1/artikli/read.php","GET","");
     $berljiviPodatki = json_encode($artikli);
     $decodiraniPodatki = json_decode($berljiviPodatki,true);
     $podatki = $decodiraniPodatki['body'];
