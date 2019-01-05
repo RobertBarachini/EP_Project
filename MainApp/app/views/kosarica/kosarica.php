@@ -11,22 +11,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <?php foreach ($artikli as $key => $art): ?>
+                <tr id="<?= $art["idartikla"]?>">
                     <td>
                         <figure class="media">
                             <div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg"
                                                        class="img-thumbnail img-sm"></div>
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">Lesena omara </h6>
+                                <h6 class="title text-truncate"><?= $art['naziv'] ?> </h6>
                                 <dl class="param param-inline small">
                                     <dt>Opis:</dt>
-                                    <dd>Malo stara ma dwbra!</dd>
+                                    <dd><?= $art['opis'] ?></dd>
                                 </dl>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
-                        <select class="form-control">
+                        <select name="selectCena" onchange="updatePrice()" class="form-control">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -35,14 +36,15 @@
                     </td>
                     <td>
                         <div class="price-wrap">
-                            <var class="price">145 EUR</var>
-                            <small class="text-muted">(145 EUR each)</small>
+                            <var name="cenaSkupna" class="price"><?= $art['cena'] ?> EUR</var>
+                            <small name="cena" class="text-muted">(<?= $art['cena'] ?> EUR each)</small>
                         </div> <!-- price-wrap .// -->
                     </td>
                     <td class="text-right">
-                        <a href="" class="btn btn-outline-danger"> × Remove</a>
+                        <button onclick="removeKebab(<?= $art["idartikla"]?>)" class="btn btn-outline-danger"> × Remove</button>
                     </td>
                 </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div> <!-- card.// -->

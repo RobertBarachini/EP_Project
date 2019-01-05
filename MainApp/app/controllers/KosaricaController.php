@@ -17,6 +17,6 @@ class KosaricaController {
     $decodiraniPodatki = json_decode($berljiviPodatki,true);
     $podatki = $decodiraniPodatki['body'];
 
-    echo ViewHelper::render("app/views/kosarica/kosarica.php", ["artikli"=>$podatki,"varA" =>'lolek']);
+    echo ViewHelper::render("app/views/kosarica/kosarica.php", ["artikli"=>$podatki]);
   }
 }

@@ -43,7 +43,8 @@ class RegisterController {
                         "drzava" => $drzava
                     );
 
-                    requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
+                    $njeki = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
+                    var_dump($njeki);
                 }
             }
         }
