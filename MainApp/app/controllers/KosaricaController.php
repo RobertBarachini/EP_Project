@@ -11,6 +11,12 @@ require_once "requestUtil.php";
 class KosaricaController {
 
   public static function kosaricaPage($id) {
-    echo ViewHelper::render("app/views/kosarica/kosarica.php", []);
+
+    $artikli = requestUtil::sendRequest("http://localhost/trgovina/api/v1/artikli/read.php","GET","");
+    $berljiviPodatki = json_encode($artikli);
+    $decodiraniPodatki = json_decode($berljiviPodatki,true);
+    $podatki = $decodiraniPodatki['body'];
+
+    echo ViewHelper::render("app/views/kosarica/kosarica.php", ["artikli"=>$podatki,"varA" =>'lolek']);
   }
 }

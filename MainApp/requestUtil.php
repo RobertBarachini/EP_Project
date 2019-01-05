@@ -23,19 +23,27 @@ class requestUtil
     $result = json_decode($result);
     return $result;
   }
-  public static function sendRequestByID($url, $method, $id, $body)
+
+  public static function sendRequestPOST($url, $method, $body)
   {
-    $options = array(
-      'http' => array(
-        'header' => "Content-Type: application/json\r\n",
-        'method' => $method
-        //'content' => http_build_query($body)
-      )
-    );
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $result = json_decode($result);
-    return $result;
+    $ch = curl_init();
+
+    $body= json_encode($body);
+
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json; charset=UTF-8'
+    ));
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $server_output = curl_exec($ch);
+
+    curl_close ($ch);
+
+    return($server_output);
   }
 
 }

@@ -12,6 +12,18 @@ class IndexController
 {
   public static function indexPage() {
 
+
+      /* $body = array(
+        "naziv" => "Test",
+        "opis" => "test",
+        "cena" => 2,
+        "idspr" => -1
+      );
+
+
+      $temp = requestUtil::sendRequestPOST("http://localhost/api/v1/artikli/create.php","POST", $body);
+      */
+
     $artikli = requestUtil::sendRequest("http://localhost/trgovina/api/v1/artikli/read.php","GET","");
     $berljiviPodatki = json_encode($artikli);
     $decodiraniPodatki = json_decode($berljiviPodatki,true);
