@@ -624,6 +624,73 @@
 			]
 		},
 		{
+			"name": "Artikel_arh",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_arh/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_arh",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_arh/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_arh",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
 			"name": "Artikel_ocena",
 			"item": [
 				{
@@ -787,73 +854,6 @@
 			]
 		},
 		{
-			"name": "Artikel_arh",
-			"item": [
-				{
-					"name": "CRUD",
-					"item": [
-						{
-							"name": "GET all",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost/api/v1/artikli_arh/read.php",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"path": [
-										"api",
-										"v1",
-										"artikli_arh",
-										"read.php"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET one",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost/api/v1/artikli_arh/read_one.php?id=1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"path": [
-										"api",
-										"v1",
-										"artikli_arh",
-										"read_one.php"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				}
-			]
-		},
-		{
 			"name": "Artikel_slika",
 			"item": [
 				{
@@ -1005,6 +1005,332 @@
 										"api",
 										"v1",
 										"artikli_slike",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Narocilo",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"iduporabnika\": \"1\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idnarocila\": \"1\",\n\t\"iduporabnika\": \"1\",\n\t\"datzac_kosarice\": \"2019-01-06 17:12:04\",\n\t\"datnarocila\": \"2019-01-06 17:12:04\",\n\t\"datposiljanja\": \"2019-01-06 17:12:04\",\n\t\"faza\": \"N\",\n\t\"status\": \"0\",\n\t\"datspr\": \"2019-01-06 16:12:04\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idnarocila\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Narocilo_artikel",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila_artikli/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila_artikli",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila_artikli/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila_artikli",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idnarocila\": \"1\",\n\t\"idartikla\": \"1\",\n\t\"kolicina\": \"5\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila_artikli/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila_artikli",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idnarocila_artikli\": \"1\",\n    \"idnarocila\": \"1\",\n    \"idartikla\": \"1\",\n    \"kolicina\": \"42\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-06 17:16:55\",\n    \"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila_artikli/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila_artikli",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idnarocila_artikli\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/narocila_artikli/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"narocila_artikli",
 										"delete.php"
 									]
 								}
