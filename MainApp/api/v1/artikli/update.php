@@ -26,7 +26,7 @@
   $object->status = (isset($data->status) ? $data->status : null);
   $object->idspr = (isset($data->idspr) ? $data->idspr : -1);
 
-if($object->update()){
+  if($object->update()){
     http_response_code(200);
     echo json_encode(array("message" => "Object was updated."));
   }

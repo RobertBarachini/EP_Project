@@ -126,10 +126,10 @@ REFERENCES trgovina.uporabniki(iduporabnika)
 ON DELETE RESTRICT
 ON UPDATE CASCADE; 
 
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`,  `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('A', 'robert@gmail.com', '$2y$10$xPIAB2kirt0bmOsnYEk1ieFH90YL602TZON.5ZN1AiJNbemRH7LuW', 'xPIAB2kirt0bmOsnYEk1ipfjK2UIMvZyEtYIMp8Qf1U7dHIpU6jHFCcNHakz', 'Robert', 'Študent', 'Travniška 9', '1433', 'Radeče', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('P', 'uros@gmail.com', '$2y$10$HMMwcMGK0k0fXtMN1T56xe5pw.kKKKPuAoiNGfcUYBZbFM5ZXcjKK', 'HMMwcMGK0k0fXtMN1T56xoBnJYS4n6tToUU4xIrhEPVicoH0vBKt1WBm54Xi', 'Uros', 'Študent', 'Vilharjeva 23', '3000', 'Celje', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('S', 'stranka@gmail.com', '$2y$10$fs7KrWbSnMcQBbs0peDzTeoM.ntH55GCz2hdxB1EYlRhuP6OMzwTe', 'fs7KrWbSnMcQBbs0peDzToQhTYufvB6XBPAjQdPb7T6dVSqkGz23GNceewNv', 'Stranka', 'Resna', 'Pikasta 23', '1000', 'Ljubljana', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('X', 'idpiskotka', 'Filip', 'Anonimni', 'Kriva 45', '4000', 'Kranj', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `email`, `geslo`, `sol`,  `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('A', 'piskotekRobert', 'robert@gmail.com', '$2y$10$xPIAB2kirt0bmOsnYEk1ieFH90YL602TZON.5ZN1AiJNbemRH7LuW', 'xPIAB2kirt0bmOsnYEk1ipfjK2UIMvZyEtYIMp8Qf1U7dHIpU6jHFCcNHakz', 'Robert', 'Študent', 'Travniška 9', '1433', 'Radeče', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('P', 'piskotekUros', 'uros@gmail.com', '$2y$10$HMMwcMGK0k0fXtMN1T56xe5pw.kKKKPuAoiNGfcUYBZbFM5ZXcjKK', 'HMMwcMGK0k0fXtMN1T56xoBnJYS4n6tToUU4xIrhEPVicoH0vBKt1WBm54Xi', 'Uros', 'Študent', 'Vilharjeva 23', '3000', 'Celje', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('S', 'piskotekStranka', 'stranka@gmail.com', '$2y$10$fs7KrWbSnMcQBbs0peDzTeoM.ntH55GCz2hdxB1EYlRhuP6OMzwTe', 'fs7KrWbSnMcQBbs0peDzToQhTYufvB6XBPAjQdPb7T6dVSqkGz23GNceewNv', 'Stranka', 'Resna', 'Pikasta 23', '1000', 'Ljubljana', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('X', 'piskotekRandom', 'Filip', 'Anonimni', 'Kriva 45', '4000', 'Kranj', 'Slovenija');
 
 DROP TABLE IF EXISTS trgovina.artikli;
 

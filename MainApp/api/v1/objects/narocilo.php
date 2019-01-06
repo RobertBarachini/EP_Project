@@ -2,12 +2,18 @@
 class Narocilo{
   // database connection and table name
   private $connection;
-  private $table_name = "uporabniki";
+  private $table_name = "narocila";
 
   // object properties
+  public $idnarocila;
   public $iduporabnika;
-  public $ime;
-  public $priimek;
+  public $datzac_kosarice;
+  public $datnarocila;
+  public $datposiljanja;
+  public $faza;
+  public $status;
+  public $datspr;
+  public $idspr;
 
   // constructor with $db as database connection
   public function __construct($db){
@@ -18,26 +24,36 @@ class Narocilo{
   public function create(){
     $query = "INSERT INTO
                 " . $this->table_name . "
-            SET
-                ime=:ime, 
-                priimek=:priimek";
+            (iduporabnika, faza, status, datspr, idspr) 
+             VALUES
+            (:iduporabnika, 'K', 0, UTC_TIMESTAMP(), :idspr)";
 
     $statement = $this->connection->prepare($query);
 
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
+    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
+    $this->idspr=htmlspecialchars(strip_tags($this->idspr));
 
-    $statement->bindParam(":ime", $this->ime);
-    $statement->bindParam(":priimek", $this->priimek);
+    $cas = time();
+    $statement->bindParam(":iduporabnika", $this->iduporabnika);
+    $statement->bindParam(":idspr", $this->idspr);
 
-    if($statement->execute()){
-      return true;
+    $rez = $statement->execute();
+    //$neki = $statement->debugDumpParams();
+    //echo $neki;
+    if($rez){
+      $query = "SELECT LAST_INSERT_ID() id";
+      $statement2 = $this->connection->prepare($query);
+      $statement2->execute();
+      $row = $statement2->fetch(PDO::FETCH_ASSOC);
+      return $row['id'];
     }
-    return false;
+    return -1;
   }
 
   public function read(){
-    $query = "SELECT iduporabnika, ime, priimek FROM " . $this->table_name;
+    $query = "SELECT 
+                idnarocila, iduporabnika, datzac_kosarice, datnarocila, datposiljanja, faza, status, datspr, idspr 
+              FROM " . $this->table_name;
     $statement = $this->connection->prepare($query);
     $statement->execute();
     return $statement;
@@ -46,64 +62,89 @@ class Narocilo{
   public function readOne(){
     // query to read single record
     $query = "SELECT
-                iduporabnika, ime, priimek
+                idnarocila, iduporabnika, datzac_kosarice, datnarocila, datposiljanja, faza, status, datspr, idspr
               FROM
                   " . $this->table_name . "
               WHERE 
-                  iduporabnika = ?
+                  idnarocila = ?
               LIMIT
                   0,1";
 
     // prepare query statement
     $statement = $this->connection->prepare( $query );
     // bind id of object to be updated
-    $statement->bindParam(1, $this->iduporabnika);
+    $statement->bindParam(1, $this->idnarocila);
     // execute query
     $statement->execute();
     // get retrieved row
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     // set values to object properties
+    $this->idnarocila = $row['idnarocila'];
     $this->iduporabnika = $row['iduporabnika'];
-    $this->ime = $row['ime'];
-    $this->priimek = $row['priimek'];
+    $this->datzac_kosarice = $row['datzac_kosarice'];
+    $this->datnarocila = $row['datnarocila'];
+    $this->datposiljanja = $row['datposiljanja'];
+    $this->faza = $row['faza'];
+    $this->status = $row['status'];
+    $this->datspr = $row['datspr'];
+    $this->idspr = $row['idspr'];
   }
 
   public function update(){
     $query = "UPDATE
                 " . $this->table_name . "
               SET
-                  ime = :ime,
-                  priimek = :priimek
+                idnarocila = :idnarocila,
+                iduporabnika = :iduporabnika,
+                datnarocila = :datnarocila,
+                datposiljanja = :datposiljanja,
+                faza = :faza,
+                status = :status,
+                idspr = :idspr
               WHERE
-                  iduporabnika = :iduporabnika";
+                  idnarocila = :idnarocila";
 
     $statement = $this->connection->prepare($query);
     // sanitize
+    $this->idnarocila=htmlspecialchars(strip_tags($this->idnarocila));
     $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
+    $this->datnarocila=htmlspecialchars(strip_tags($this->datnarocila));
+    $this->datposiljanja=htmlspecialchars(strip_tags($this->datposiljanja));
+    $this->faza=htmlspecialchars(strip_tags($this->faza));
+    $this->status=htmlspecialchars(strip_tags($this->status));
+    $this->idspr=htmlspecialchars(strip_tags($this->idspr));
 
     // bind new values
+    $statement->bindParam(':idnarocila', $this->idnarocila);
+    //$statement->bindParam(':idvloge', $this->idvloge);
+    //$statement->bindParam(':ime', $this->ime);
+    //$statement->bindParam(':priimek', $this->priimek);
     $statement->bindParam(':iduporabnika', $this->iduporabnika);
-    $statement->bindParam(':ime', $this->ime);
-    $statement->bindParam(':priimek', $this->priimek);
+    $statement->bindParam(':datnarocila', $this->datnarocila);
+    $statement->bindParam(':datposiljanja', $this->datposiljanja);
+    $statement->bindParam(':faza', $this->faza);
+    $statement->bindParam(":status", $this->status);
+    $statement->bindParam(":idspr", $this->idspr);
 
     // execute the query
-    if($statement->execute()){
+    $rez = $statement->execute();
+    //$neki = $statement->debugDumpParams();
+    //echo $neki;
+    if($rez){
       return true;
     }
     return false;
   }
 
   public function delete(){
-    $query = "DELETE FROM " . $this->table_name . " WHERE iduporabnika = ?";
+    $query = "DELETE FROM " . $this->table_name . " WHERE idnarocila = ?";
 
     // prepare query
     $statement = $this->connection->prepare($query);
     // sanitize
-    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
+    $this->idnarocila=htmlspecialchars(strip_tags($this->idnarocila));
     // bind id of record to delete
-    $statement->bindParam(1, $this->iduporabnika);
+    $statement->bindParam(1, $this->idnarocila);
 
     // execute query
     if($statement->execute()){
