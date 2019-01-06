@@ -10,7 +10,7 @@
         $email = $_POST['email'];
         $geslo = $_POST['geslo'];
         
-        RegisterController::preveriVnose($ime, $priimek, $ulica,
+        RegisterController::preveriVnoseInIzvediRegistracijo($ime, $priimek, $ulica,
             $kraj, $posta, $drzava, $email, $geslo);
     }
 ?>

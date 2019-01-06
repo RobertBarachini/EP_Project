@@ -14,7 +14,7 @@ class RegisterController {
         echo ViewHelper::render("app/views/register/register.php", []);
     }
 
-    public static function preveriVnose($ime, $priimek, $ulica,
+    public static function preveriVnoseInIzvediRegistracijo($ime, $priimek, $ulica,
                                         $kraj, $posta, $drzava,
                                         $email, $geslo) {
 
@@ -31,31 +31,40 @@ class RegisterController {
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     ViewHelper::redirect('/register?register=email');
                 } else {
-                    $hashedPassword = password_hash($geslo, PASSWORD_DEFAULT);
+                    $salt = RegisterController::generateRandomString();
+                    $hpwd = password_hash($geslo, PASSWORD_DEFAULT, ['salt' => $salt]);
+                    $hashedPassword = password_hash($hpwd . $salt, PASSWORD_DEFAULT, ['salt' => $salt]);
 
                     $uporabnik_arr = array(
-                        "idvloge" => "",
-                        "idcert" => "",
+                        "idvloge" => null,
+                        "idcert" => null,
                         "email" => "$email",
-                        "indmailpotrjen" => "",
+                        "indmailpotrjen" => 0,
                         "geslo" => "$hashedPassword",
-                        "piskotek" => "",
+                        "sol" => "$salt",
+                        "piskotek" => null,
                         "ime" => "$ime",
                         "priimek" => "$priimek",
                         "ulica" => "$ulica",
                         "posta" => "$posta",
                         "kraj" => "$kraj",
                         "drzava" => "$drzava",
-                        "idspr" => "",
-                        "datprijave" => "",
-                        "status" => "",
-                        "datspr" => ""
+                        "idspr" => 1,
+                        "status" => 0,
                     );
-
-                    $temp = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
-                    //var_dump($temp);
+                    requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
                 }
             }
         }
+    }
+
+    public static function generateRandomString($length = 60) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }
