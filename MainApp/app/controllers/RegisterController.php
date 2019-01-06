@@ -32,19 +32,28 @@ class RegisterController {
                     ViewHelper::redirect('/register?register=email');
                 } else {
                     $hashedPassword = password_hash($geslo, PASSWORD_DEFAULT);
+
                     $uporabnik_arr = array(
-                        "email" => $email,
-                        "geslo" => $hashedPassword,
-                        "ime" => $ime,
-                        "priimek" => $priimek,
-                        "ulica" => $ulica,
-                        "posta" => $posta,
-                        "kraj" => $kraj,
-                        "drzava" => $drzava
+                        "idvloge" => "",
+                        "idcert" => "",
+                        "email" => "$email",
+                        "indmailpotrjen" => "",
+                        "geslo" => "$hashedPassword",
+                        "piskotek" => "",
+                        "ime" => "$ime",
+                        "priimek" => "$priimek",
+                        "ulica" => "$ulica",
+                        "posta" => "$posta",
+                        "kraj" => "$kraj",
+                        "drzava" => "$drzava",
+                        "idspr" => "",
+                        "datprijave" => "",
+                        "status" => "",
+                        "datspr" => ""
                     );
 
-                    $njeki = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
-                    var_dump($njeki);
+                    $temp = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
+                    //var_dump($temp);
                 }
             }
         }
