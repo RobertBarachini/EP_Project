@@ -113,7 +113,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"iduporabnika\": \"1\",\n    \"idvloge\": \"A\",\n    \"idcert\": \"\",\n    \"email\": \"robert@gmail.com\",\n    \"indmailpotrjen\": \"0\",\n    \"geslo\": \"robert\",\n    \"sol\": \"\",\n    \"piskotek\": \"\",\n    \"ime\": \"RobertNEWNEW\",\n    \"priimek\": \"Študent\",\n    \"ulica\": \"Travniška 9\",\n    \"posta\": \"1433\",\n    \"kraj\": \"Radeče\",\n    \"drzava\": \"Slovenija\",\n    \"datprijave\": \"2018-12-30 16:15:46\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 10:05:14\",\n    \"idspr\": \"-1\"\n}"
+									"raw": "{\n    \"iduporabnika\": \"1\",\n    \"idvloge\": \"A\",\n    \"idcert\": \"\",\n    \"email\": \"robert@gmail.com\",\n    \"indmailpotrjen\": \"0\",\n    \"geslo\": \"robert\",\n    \"sol\": \"\",\n    \"piskotek\": \"neki\",\n    \"ime\": \"RobertNEWNEW\",\n    \"priimek\": \"Študent\",\n    \"ulica\": \"Travniška 9\",\n    \"posta\": \"1433\",\n    \"kraj\": \"Radeče\",\n    \"drzava\": \"Slovenija\",\n    \"datprijave\": \"2018-12-30 16:15:46\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 10:05:14\",\n    \"idspr\": \"-1\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost/api/v1/uporabniki/update.php",
@@ -168,6 +168,37 @@
 				},
 				{
 					"name": "GET by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/uporabniki/read_one_email.php?email=robert@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"uporabniki",
+								"read_one_email.php"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "robert@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by piskotek",
 					"request": {
 						"method": "GET",
 						"header": [],
