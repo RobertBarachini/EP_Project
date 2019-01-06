@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS trgovina.narocila_faza (
   PRIMARY KEY (faza)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
 
-INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('K', 'Košarica0');
+INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('K', 'Košarica');
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('N', 'Naročilo');
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('P', 'Poslano naročilo');
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('S', 'Stornirano naročilo');
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS trgovina.narocila_artikli (
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
   PRIMARY KEY (idnarocila_artikli)
-)  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
+)  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 ALTER table trgovina.narocila_artikli
 ADD FOREIGN KEY narocila_artikli_nar_fk(idnarocila)
