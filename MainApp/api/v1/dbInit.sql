@@ -126,9 +126,9 @@ REFERENCES trgovina.uporabniki(iduporabnika)
 ON DELETE RESTRICT
 ON UPDATE CASCADE; 
 
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('A', 'robert@gmail.com', 'robert', 'Robert', 'Študent', 'Travniška 9', '1433', 'Radeče', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('P', 'uros@gmail.com', 'uros', 'Uros', 'Študent', 'Vilharjeva 23', '3000', 'Celje', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('S', 'stranka@gmail.com', 'stranka', 'Stranka', 'Resna', 'Pikasta 23', '1000', 'Ljubljana', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`,  `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('A', 'robert@gmail.com', 'robert', 'sol' 'Robert', 'Študent', 'Travniška 9', '1433', 'Radeče', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('P', 'uros@gmail.com', 'uros', 'sol' 'Uros', 'Študent', 'Vilharjeva 23', '3000', 'Celje', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('S', 'stranka@gmail.com', 'stranka', 'sol' 'Stranka', 'Resna', 'Pikasta 23', '1000', 'Ljubljana', 'Slovenija');
 INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('X', 'idpiskotka', 'Filip', 'Anonimni', 'Kriva 45', '4000', 'Kranj', 'Slovenija');
 
 DROP TABLE IF EXISTS trgovina.artikli;
@@ -336,6 +336,3 @@ CREATE TABLE IF NOT EXISTS trgovina.artikli_ocene (
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
 	 PRIMARY KEY (idocene)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
-
-
-

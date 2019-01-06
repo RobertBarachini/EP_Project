@@ -2,12 +2,16 @@
 class Artikel_ocena{
   // database connection and table name
   private $connection;
-  private $table_name = "uporabniki";
+  private $table_name = "artikli_ocene";
 
   // object properties
+  public $idocene;
+  public $idartikla;
   public $iduporabnika;
-  public $ime;
-  public $priimek;
+  public $ocena;
+  public $status;
+  public $datspr;
+  public $idspr;
 
   // constructor with $db as database connection
   public function __construct($db){
@@ -18,26 +22,40 @@ class Artikel_ocena{
   public function create(){
     $query = "INSERT INTO
                 " . $this->table_name . "
-            SET
-                ime=:ime, 
-                priimek=:priimek";
+            (idartikla, iduporabnika, ocena, status, datspr, idspr) 
+             VALUES
+            (:idartikla, :iduporabnika, :ocena, 0, UTC_TIMESTAMP(), :idspr)";
 
     $statement = $this->connection->prepare($query);
 
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
+    $this->idartikla=htmlspecialchars(strip_tags($this->idartikla));
+    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
+    $this->ocena=htmlspecialchars(strip_tags($this->ocena));
+    $this->idspr=htmlspecialchars(strip_tags($this->idspr));
 
-    $statement->bindParam(":ime", $this->ime);
-    $statement->bindParam(":priimek", $this->priimek);
+    $cas = time();
+    $statement->bindParam(":idartikla", $this->idartikla);
+    $statement->bindParam(":iduporabnika", $this->iduporabnika);
+    $statement->bindParam(":ocena", $this->ocena);
+    $statement->bindParam(":idspr", $this->idspr);
 
-    if($statement->execute()){
-      return true;
+    $rez = $statement->execute();
+    //$neki = $statement->debugDumpParams();
+    //echo $neki;
+    if($rez){
+      $query = "SELECT LAST_INSERT_ID() id";
+      $statement2 = $this->connection->prepare($query);
+      $statement2->execute();
+      $row = $statement2->fetch(PDO::FETCH_ASSOC);
+      return $row['id'];
     }
-    return false;
+    return -1;
   }
 
   public function read(){
-    $query = "SELECT iduporabnika, ime, priimek FROM " . $this->table_name;
+    $query = "SELECT 
+                idocene, idartikla, iduporabnika, ocena, status, datspr, idspr 
+              FROM " . $this->table_name;
     $statement = $this->connection->prepare($query);
     $statement->execute();
     return $statement;
@@ -46,64 +64,84 @@ class Artikel_ocena{
   public function readOne(){
     // query to read single record
     $query = "SELECT
-                iduporabnika, ime, priimek
+                idocene, idartikla, iduporabnika, ocena, status, datspr, idspr 
               FROM
                   " . $this->table_name . "
               WHERE 
-                  iduporabnika = ?
+                  idocene = ?
               LIMIT
                   0,1";
 
     // prepare query statement
     $statement = $this->connection->prepare( $query );
     // bind id of object to be updated
-    $statement->bindParam(1, $this->iduporabnika);
+    $statement->bindParam(1, $this->idocene);
     // execute query
     $statement->execute();
     // get retrieved row
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     // set values to object properties
+    $this->idocene = $row['idocene'];
+    $this->idartikla = $row['idartikla'];
     $this->iduporabnika = $row['iduporabnika'];
-    $this->ime = $row['ime'];
-    $this->priimek = $row['priimek'];
+    $this->ocena = $row['ocena'];
+    $this->status = $row['status'];
+    $this->datspr = $row['datspr'];
+    $this->idspr = $row['idspr'];
   }
 
   public function update(){
     $query = "UPDATE
                 " . $this->table_name . "
               SET
-                  ime = :ime,
-                  priimek = :priimek
+                idocene = :idocene,
+                idartikla = :idartikla,
+                iduporabnika = :iduporabnika,
+                ocena = :ocena,
+                status = :status,
+                idspr = :idspr
               WHERE
-                  iduporabnika = :iduporabnika";
+                  idocene = :idocene";
 
     $statement = $this->connection->prepare($query);
     // sanitize
+    $this->idocene=htmlspecialchars(strip_tags($this->idocene));
+    $this->idartikla=htmlspecialchars(strip_tags($this->idartikla));
     $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
-    $this->ime=htmlspecialchars(strip_tags($this->ime));
-    $this->priimek=htmlspecialchars(strip_tags($this->priimek));
+    $this->ocena=htmlspecialchars(strip_tags($this->ocena));
+    $this->status=htmlspecialchars(strip_tags($this->status));
+    $this->idspr=htmlspecialchars(strip_tags($this->idspr));
 
     // bind new values
+    $statement->bindParam(':idocene', $this->idocene);
+    //$statement->bindParam(':idvloge', $this->idvloge);
+    //$statement->bindParam(':ime', $this->ime);
+    //$statement->bindParam(':priimek', $this->priimek);
+    $statement->bindParam(':idartikla', $this->idartikla);
     $statement->bindParam(':iduporabnika', $this->iduporabnika);
-    $statement->bindParam(':ime', $this->ime);
-    $statement->bindParam(':priimek', $this->priimek);
+    $statement->bindParam(':ocena', $this->ocena);
+    $statement->bindParam(":status", $this->status);
+    $statement->bindParam(":idspr", $this->idspr);
 
     // execute the query
-    if($statement->execute()){
+    $rez = $statement->execute();
+    //$neki = $statement->debugDumpParams();
+    //echo $neki;
+    if($rez){
       return true;
     }
     return false;
   }
 
   public function delete(){
-    $query = "DELETE FROM " . $this->table_name . " WHERE iduporabnika = ?";
+    $query = "DELETE FROM " . $this->table_name . " WHERE idocene = ?";
 
     // prepare query
     $statement = $this->connection->prepare($query);
     // sanitize
-    $this->iduporabnika=htmlspecialchars(strip_tags($this->iduporabnika));
+    $this->idocene=htmlspecialchars(strip_tags($this->idocene));
     // bind id of record to delete
-    $statement->bindParam(1, $this->iduporabnika);
+    $statement->bindParam(1, $this->idocene);
 
     // execute query
     if($statement->execute()){

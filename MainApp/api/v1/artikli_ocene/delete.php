@@ -6,17 +6,17 @@
   header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
   include_once '../config/database.php';
-  include_once '../objects/uporabnik.php';
+  include_once '../objects/artikel_ocena.php';
 
   $database = new Database();
   $connection = $database->getConnection();
 
-  $object = new Uporabnik($connection);
+  $object = new Artikel_ocena($connection);
 
   // get object id
   $data = json_decode(file_get_contents("php://input"));
   // set object id to be deleted
-  $object->iduporabnika = $data->iduporabnika;
+  $object->idocene = $data->idocene;
 
   // delete the object
   if($object->delete()){
