@@ -167,7 +167,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "GET by email",
+					"name": "GET by piskotek",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -176,7 +176,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost/api/v1/uporabniki/read_one_email.php?email=robert@gmail.com",
+							"raw": "http://localhost/api/v1/uporabniki/read_one_piskotek.php?piskotek=neki",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -185,12 +185,12 @@
 								"api",
 								"v1",
 								"uporabniki",
-								"read_one_email.php"
+								"read_one_piskotek.php"
 							],
 							"query": [
 								{
-									"key": "email",
-									"value": "robert@gmail.com"
+									"key": "piskotek",
+									"value": "neki"
 								}
 							]
 						}
@@ -198,7 +198,7 @@
 					"response": []
 				},
 				{
-					"name": "GET by piskotek",
+					"name": "GET by email",
 					"request": {
 						"method": "GET",
 						"header": [],
