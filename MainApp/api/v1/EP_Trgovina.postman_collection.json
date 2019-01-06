@@ -562,6 +562,169 @@
 			]
 		},
 		{
+			"name": "Artikel_ocena",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "GET all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli/read.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli",
+										"read.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_ocene/read_one.php?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_ocene",
+										"read_one.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST new",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idartikla\": \"1\",\n\t\"iduporabnika\": \"1\",\n\t\"ocena\": \"5\",\n\t\"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_ocene/create.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_ocene",
+										"create.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE one",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idocene\": \"1\",\n    \"idartikla\": \"1\",\n    \"iduporabnika\": \"1\",\n    \"ocena\": \"4.00\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-06 12:04:19\",\n    \"idspr\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_ocene/update.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_ocene",
+										"update.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE one",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"idocene\": \"1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost/api/v1/artikli_ocene/delete.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"v1",
+										"artikli_ocene",
+										"delete.php"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
 			"name": "Artikel_arh",
 			"item": [
 				{
