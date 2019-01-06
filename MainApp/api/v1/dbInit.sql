@@ -126,9 +126,9 @@ REFERENCES trgovina.uporabniki(iduporabnika)
 ON DELETE RESTRICT
 ON UPDATE CASCADE; 
 
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`,  `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('A', 'robert@gmail.com', 'robert', 'sol' 'Robert', 'Študent', 'Travniška 9', '1433', 'Radeče', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('P', 'uros@gmail.com', 'uros', 'sol' 'Uros', 'Študent', 'Vilharjeva 23', '3000', 'Celje', 'Slovenija');
-INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('S', 'stranka@gmail.com', 'stranka', 'sol' 'Stranka', 'Resna', 'Pikasta 23', '1000', 'Ljubljana', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`,  `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('A', 'robert@gmail.com', '$2y$10$Z9TAmj9afOQgVljIRbPiYeZtyvjy8g2K1JbjmFAllmL6rBoyGwYV2', 'xPIAB2kirt0bmOsnYEk1ipfjK2UIMvZyEtYIMp8Qf1U7dHIpU6jHFCcNHakz', 'Robert', 'Študent', 'Travniška 9', '1433', 'Radeče', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('P', 'uros@gmail.com', '$2y$10$Gow90TwMbzxSgQe5V.XvC.wkUgYGMOhj.jDkw/YQ3hyGAd.KbzxWG', 'HMMwcMGK0k0fXtMN1T56xoBnJYS4n6tToUU4xIrhEPVicoH0vBKt1WBm54Xi', 'Uros', 'Študent', 'Vilharjeva 23', '3000', 'Celje', 'Slovenija');
+INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `email`, `geslo`, `sol`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('S', 'stranka@gmail.com', '$2y$10$5CpDbAdQ6qYjdV1af14rW.nfibOS7T90b6A./Nfht1RIaNF5L026e', 'fs7KrWbSnMcQBbs0peDzToQhTYufvB6XBPAjQdPb7T6dVSqkGz23GNceewNv', 'Stranka', 'Resna', 'Pikasta 23', '1000', 'Ljubljana', 'Slovenija');
 INSERT INTO `trgovina`.`uporabniki` (`idvloge`, `piskotek`, `ime`, `priimek`, `ulica`, `posta`, `kraj`, `drzava`) VALUES ('X', 'idpiskotka', 'Filip', 'Anonimni', 'Kriva 45', '4000', 'Kranj', 'Slovenija');
 
 DROP TABLE IF EXISTS trgovina.artikli;
