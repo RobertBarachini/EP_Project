@@ -6,6 +6,7 @@ require_once "app/controllers/RegisterController.php";
 require_once "app/controllers/LoginController.php";
 require_once "app/controllers/KosaricaController.php";
 require_once "app/controllers/CheckoutController.php";
+require_once "app/controllers/ProdajalecController.php";
 
 
 class Router
@@ -49,6 +50,9 @@ class Router
       },
       "/^uporabniki\/(\d+)\/checkout\/(\d+)$/" => function($method, $id1,$id2) {
         CheckoutController::checkoutPage($id1,$id2);
+      },
+      "/^PRODAJALEC$/" => function() {
+        ProdajalecController::prodajalec();
       },
       "/^druga$/" => function() {
         echo "druga";

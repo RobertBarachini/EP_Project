@@ -28,11 +28,17 @@ class IndexController
     $berljiviPodatki = json_encode($artikli);
     $decodiraniPodatki = json_decode($berljiviPodatki,true);
     $podatki = $decodiraniPodatki['body'];
+
+    $artikli_slike = requestUtil::sendRequest("http://localhost/trgovina/api/v1/artikli_slike/read.php","GET","");
+    $berljiviPodatki_slike = json_encode($artikli_slike);
+    $decodiraniPodatki_slike = json_decode($berljiviPodatki_slike,true);
+    $podatki_slike = $decodiraniPodatki_slike['body'];
+
     /* var_dump($podatki[1]);
     foreach($podatki as $key => $art) {
       echo ($art['naziv']);
     } */
 
-    echo ViewHelper::render("app/views/index-page.php",["artikli"=>$podatki,"varA" =>'lolek']);
+    echo ViewHelper::render("app/views/index-page.php",["artikli"=>$podatki,"artikli_slike"=>$podatki_slike]);
   }
 }
