@@ -179,6 +179,47 @@ class Uporabnik{
     $this->idspr = $row['idspr'];
   }
 
+  public function readOnePiskotek(){
+    // query to read single record
+    $query = "SELECT
+                iduporabnika, idvloge, idcert, email, indmailpotrjen, geslo, sol, piskotek, ime, priimek, 
+                ulica, posta, kraj, drzava, datprijave, status, datspr, idspr
+              FROM
+                  " . $this->table_name . "
+              WHERE 
+                  piskotek = ?
+              LIMIT
+                  0,1";
+
+    // prepare query statement
+    $statement = $this->connection->prepare( $query );
+    // bind id of object to be updated
+    $statement->bindParam(1, $this->piskotek);
+    // execute query
+    $statement->execute();
+    // get retrieved row
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    // set values to object properties
+    $this->iduporabnika = $row['iduporabnika'];
+    $this->idvloge = $row['idvloge'];
+    $this->idcert = $row['idcert'];
+    $this->email = $row['email'];
+    $this->indmailpotrjen = $row['indmailpotrjen'];
+    $this->geslo = $row['geslo'];
+    $this->sol = $row['sol'];
+    $this->piskotek = $row['piskotek'];
+    $this->ime = $row['ime'];
+    $this->priimek = $row['priimek'];
+    $this->ulica = $row['ulica'];
+    $this->posta = $row['posta'];
+    $this->kraj = $row['kraj'];
+    $this->drzava = $row['drzava'];
+    $this->datprijave = $row['datprijave'];
+    $this->status = $row['status'];
+    $this->datspr = $row['datspr'];
+    $this->idspr = $row['idspr'];
+  }
+
   public function update(){
     $query = "UPDATE
                 " . $this->table_name . "
