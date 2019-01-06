@@ -48,7 +48,10 @@
                 </tbody>
             </table>
         </div> <!-- card.// -->
-        <a href="/uporabniki/1/checkout/1" class="btn btn-outline-success pull-right" style="margin-top: 2%"> Checkout</a>
+        <div class="pull-right">
+            <a href="/uporabniki/1/checkout/1" class="btn btn-outline-success " style="margin-top: 2%"> Checkout</a>
+        </div>
+
     </div>
 
 

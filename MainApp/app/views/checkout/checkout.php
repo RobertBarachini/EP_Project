@@ -1,59 +1,31 @@
 <?php include_once('app/views/layouts/header.php'); ?>
-<?php include_once('app/views/layouts/header.php'); ?>
-<div class="container">
-  <div class="card">
-    <table class="table table-hover shopping-cart-wrap">
-      <thead class="text-muted">
-      <tr>
-        <th scope="col">Artikel</th>
-        <th scope="col" width="120">Količina</th>
-        <th scope="col" width="120">Cena</th>
-        <th scope="col" width="200" class="text-right">Akcija</th>
-      </tr>
-      </thead>
-      <tbody>
-      <?php foreach ($artikli as $key => $art): ?>
-        <tr id="<?= $art["idartikla"]?>">
-          <td>
-            <figure class="media">
-              <div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg"
-                                         class="img-thumbnail img-sm"></div>
-              <figcaption class="media-body">
-                <h6 class="title text-truncate"><?= $art['naziv'] ?> </h6>
-                <dl class="param param-inline small">
-                  <dt>Opis:</dt>
-                  <dd><?= $art['opis'] ?></dd>
-                </dl>
-              </figcaption>
-            </figure>
-          </td>
-          <td>
-            <select name="selectCena" onchange="updatePrice()" class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </td>
-          <td>
-            <div class="price-wrap">
-              <var name="cenaSkupna" class="price"><?= $art['cena'] ?> EUR</var>
-              <small name="cena" class="text-muted">(<?= $art['cena'] ?> EUR each)</small>
-            </div> <!-- price-wrap .// -->
-          </td>
-          <td class="text-right">
-            <button onclick="removeKebab(<?= $art["idartikla"]?>)" class="btn btn-outline-danger"> × Remove</button>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div> <!-- card.// -->
-  <a href="/uporabniki/1/checkout/1" class="btn btn-outline-success pull-right" style="margin-top: 2%"> Checkout</a>
-</div>
 
+<main class="page payment-page">
+    <section class="payment-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Plačilo</h2>
+                <p>Na črnem trgu ni davka, hvala za razumevanje.</p>
+            </div>
+            <form>
+                <div class="products">
+                    <h3 class="title">Checkout</h3>
+                  <?php foreach ($artikli as $key => $art): ?>
+                      <div class="item">
+                          <span class="price">3 x <?= $art['cena'] ?>€</span>
+                          <p class="item-name"><?= $art['naziv'] ?></p>
+                          <p class="item-description"><?= $art['opis'] ?></p>
+                      </div>
+                  <?php endforeach; ?>
+                    <div class="total">Skupno <span class="price">69€</span></div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <button type="button" class="btn btn-primary btn-block">Checkout</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
 
-
-<?php include_once('app/views/layouts/footer.php'); ?>
 
 <?php include_once('app/views/layouts/footer.php'); ?>
