@@ -46,7 +46,7 @@ class Uporabnik{
     $this->email=htmlspecialchars(strip_tags($this->email));
     $this->indmailpotrjen=htmlspecialchars(strip_tags($this->indmailpotrjen));
     $this->geslo=htmlspecialchars(strip_tags($this->geslo));
-    $this->geslo=htmlspecialchars(strip_tags($this->sol));
+    $this->sol=htmlspecialchars(strip_tags($this->sol));
     $this->piskotek=htmlspecialchars(strip_tags($this->piskotek));
     $this->ime=htmlspecialchars(strip_tags($this->ime));
     $this->priimek=htmlspecialchars(strip_tags($this->priimek));
@@ -64,7 +64,7 @@ class Uporabnik{
     $statement->bindParam(":email", $this->email);
     $statement->bindParam(":indmailpotrjen", $this->indmailpotrjen);
     $statement->bindParam(":geslo", $this->geslo);
-    $statement->bindParam(":geslo", $this->sol);
+    $statement->bindParam(":sol", $this->sol);
     $statement->bindParam(":piskotek", $this->piskotek);
     $statement->bindParam(":ime", $this->ime);
     $statement->bindParam(":priimek", $this->priimek);

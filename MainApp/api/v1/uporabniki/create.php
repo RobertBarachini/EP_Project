@@ -33,6 +33,7 @@
     $object->email = (isset($data->email) ? $data->email : null);
     $object->indmailpotrjen = (isset($data->indmailpotrjen) ? $data->indmailpotrjen : 0);
     $object->geslo = (isset($data->geslo) ? $data->geslo : null);
+    $object->sol = (isset($data->sol) ? $data->sol : null);
     $object->piskotek = (isset($data->piskotek) ? $data->piskotek : null);
     $object->ime = (isset($data->ime) ? $data->ime : null);
     $object->priimek = (isset($data->priimek) ? $data->priimek : null);
