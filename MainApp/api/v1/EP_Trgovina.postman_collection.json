@@ -165,6 +165,37 @@
 						}
 					],
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "GET by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/uporabniki/read_one_email.php?email=robert@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"uporabniki",
+								"read_one_email.php"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "robert@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -577,7 +608,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost/api/v1/artikli/read.php",
+									"raw": "http://localhost/api/v1/artikli_ocene/read.php",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -585,7 +616,7 @@
 									"path": [
 										"api",
 										"v1",
-										"artikli",
+										"artikli_ocene",
 										"read.php"
 									]
 								}
