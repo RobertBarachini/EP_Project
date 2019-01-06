@@ -81,7 +81,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"email\": \"notafake@gmail.com\",\n\t\"geslo\": \"12345\",\n\t\"ime\": \"Novoime\",\n\t\"priimek\": \"Novpriimek\",\n\t\"ulica\": \"Novodobna 15\",\n\t\"posta\": \"3000\",\n\t\"kraj\": \"Celje\",\n\t\"drzava\": \"Slovenija\",\n\t\"idvloge\": null,\n\t\"idcert\": null,\n\t\"indmailpotrjen\": 0,\n\t\"piskotek\": null,\n\t\"status\": \"0\",\n\t\"idspr\": \"1\"\n}"
+									"raw": "{\n\t\"email\": \"notafake@gmail.com\",\n\t\"geslo\": \"12345\",\n\t\"sol\": \"54321\",\n\t\"ime\": \"Novoime\",\n\t\"priimek\": \"Novpriimek\",\n\t\"ulica\": \"Novodobna 15\",\n\t\"posta\": \"3000\",\n\t\"kraj\": \"Celje\",\n\t\"drzava\": \"Slovenija\",\n\t\"idvloge\": null,\n\t\"idcert\": null,\n\t\"indmailpotrjen\": 0,\n\t\"piskotek\": null,\n\t\"status\": \"0\",\n\t\"idspr\": \"1\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost/api/v1/uporabniki/create.php",
@@ -506,7 +506,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"idartikla\": \"1\",\n    \"naziv\": \"Lesena omara\",\n    \"opis\": \"Malo stara, ampak zelo dobra\",\n    \"cena\": \"700.00\",\n    \"st_ocen\": \"0\",\n    \"povprecna_ocena\": \"0.00\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 19:20:29\",\n    \"idspr\": \"1\"\n}"
+									"raw": "{\n    \"idartikla\": \"1\",\n    \"naziv\": \"Lesena omara\",\n    \"opis\": \"Malo stara, ampak zelo dobra\",\n    \"cena\": \"700.00\",\n    \"st_ocen\": \"1\",\n    \"povprecna_ocena\": \"2.00\",\n    \"status\": \"0\",\n    \"datspr\": \"2019-01-02 19:20:29\",\n    \"idspr\": \"1\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost/api/v1/artikli/update.php",
