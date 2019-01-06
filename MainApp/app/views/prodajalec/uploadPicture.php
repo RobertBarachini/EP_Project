@@ -1,6 +1,6 @@
 <?php
 // Create database connection
-$db = mysqli_connect("localhost", "root", "new-password", "trgovina");
+$db = mysqli_connect("localhost", "root", "ep", "trgovina");
 
 // Initialize message variable
 $msg = "";
@@ -40,6 +40,7 @@ $result = mysqli_query($db, "SELECT * FROM trgovina.artikli_slike");
     }
     form{
       width: 50%;
+
       margin: 20px auto;
     }
     form div{
