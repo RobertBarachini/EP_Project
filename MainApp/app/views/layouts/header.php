@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TopShop</title>
     <link href="/statics/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link href="/statics/css/style.css" rel="stylesheet">
     <link href="/statics/js/bootstrap.min.js" rel="stylesheet">
-    <link href="/statics/js/jquery-3.3.1.min.js" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="/statics/ajaxJs/ratingupdate.js"></script>
     <script src="/statics/ajaxJs/kosaricaUpdate.js"></script>
 </head>
@@ -34,35 +36,39 @@
         </ul>
 
         <div>
-            <button id="myButton" class=" btn btn-large btn-warning" href="/uporabniki/ajDi/kosarica">
-                <i class=" fa fa-shopping-cart"></i>
-            </button>
-
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/uporabniki/22323/kosarica";
-                };
-            </script>
-
             <?php
                 if(!isset($_COOKIE['cookie'])) {
                     echo "<a class='navbar-brand' style=\"margin-left: 25px\" , href='/login'>Prijava</a>";
                     echo "<a class='navbar-brand' , href='/register'>Registracija</a>";
-                } else {
-                    $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php'  . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
-                    $berljiviPodatki = json_encode($uporabnik);
-                    $decodiraniPodatki = json_decode($berljiviPodatki,true);
+                    } else {
+                        $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php'  . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
+                        $berljiviPodatki = json_encode($uporabnik);
+                        $decodiraniPodatki = json_decode($berljiviPodatki,true);
 
-                    echo "<div class=\"dropdown\">
-                            <button class=\"dropbtn\">";
-                    echo $decodiraniPodatki['ime'];
-                    echo"</button>
-                            <div class=\"dropdown-content\">
-                                <a href=\"/profil\">Profil</a>
-                                <a href=\"/logout\">Odjava</a>
-                            </div>
-                        </div>";
-                }
+
+                        echo "
+                            <button id=\"myButton\" class=\" btn btn-large btn-warning\" href=\"/uporabniki/ajDi/kosarica\">
+                                <i class=\" fa fa-shopping-cart\"></i>
+                            </button>               
+                            <script type=\"text/javascript\">
+                                document.getElementById(\"myButton\").onclick = function () {
+                                    location.href = \"/uporabniki/{$decodiraniPodatki['iduporabnika']}/kosarica\";
+                                };
+                            </script>
+                        ";
+
+
+
+                        echo "<div class=\"dropdown\">
+                                <button class=\"dropbtn\">";
+                        echo $decodiraniPodatki['ime'];
+                        echo"</button>
+                                <div class=\"dropdown-content\">
+                                    <a href=\"/profil\">Profil</a>
+                                    <a href=\"/logout\">Odjava</a>
+                                </div>
+                            </div>";
+                    }
             ?>
         </div>
     </div>

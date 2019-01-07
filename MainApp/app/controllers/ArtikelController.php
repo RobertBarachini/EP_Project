@@ -12,8 +12,10 @@ class ArtikelController
 {
   public static function artikelPage($id) {
 
-    $artikli = requestUtil::sendRequest('http://localhost/trgovina/api/v1/artikli/read_one.php' . '?id=' . $id, "GET","");
-    $artikli_slike = requestUtil::sendRequest('http://localhost/trgovina/api/v1/artikli_slike/read_one.php' . '?id=' . $id, "GET","");
+    $artikli = requestUtil::sendRequest('http://localhost/api/v1/artikli/read_one.php' . '?id=' . $id, "GET","");
+    $artikli_slike = requestUtil::sendRequest('http://localhost/api/v1/artikli_slike/read.php', "GET","");
+
+    $taPraveSlike = array();
 
     #$artikli = requestUtil::sendRequest('http://localhost/trgovina/api/v1/artikli/read_one.php' . '?id=' . $id, "PUT","");
 
@@ -22,8 +24,15 @@ class ArtikelController
 
     $berljiviPodatki_slike = json_encode($artikli_slike);
     $decodiraniPodatki_slike = json_decode($berljiviPodatki_slike,true);
+    $podatki = $decodiraniPodatki_slike['body'];
 
 
-    echo ViewHelper::render("app/views/artikel/artikel.php", ["artikel"=>$decodiraniPodatki,"artikel_slike"=>$decodiraniPodatki_slike]);
+    foreach($podatki as $key => $value ) {
+      if($value['idartikla'] == $decodiraniPodatki['idartikla']) {
+        array_push($taPraveSlike,$value);
+      }
+    }
+
+    echo ViewHelper::render("app/views/artikel/artikel.php", ["artikel"=>$decodiraniPodatki,"artikel_slike"=>$taPraveSlike]);
   }
 }
