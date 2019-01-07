@@ -44,8 +44,26 @@
                 };
             </script>
 
-            <a class='navbar-brand' style="margin-left: 25px" , href='/login'>Prijava</a>
-            <a class='navbar-brand' , href='/register'>Registracija</a>
+            <?php
+                if(!isset($_COOKIE['cookie'])) {
+                    echo "<a class='navbar-brand' style=\"margin-left: 25px\" , href='/login'>Prijava</a>";
+                    echo "<a class='navbar-brand' , href='/register'>Registracija</a>";
+                } else {
+                    $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php'  . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
+                    $berljiviPodatki = json_encode($uporabnik);
+                    $decodiraniPodatki = json_decode($berljiviPodatki,true);
+
+                    echo "<div class=\"dropdown\">
+                            <button class=\"dropbtn\">";
+                    echo $decodiraniPodatki['ime'];
+                    echo"</button>
+                            <div class=\"dropdown-content\">
+                                <a href=\"/profil\">Profil</a>
+                                <a href=\"/logout\">Odjava</a>
+                            </div>
+                        </div>";
+                }
+            ?>
         </div>
     </div>
 </nav>

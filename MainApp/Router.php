@@ -7,6 +7,8 @@ require_once "app/controllers/LoginController.php";
 require_once "app/controllers/KosaricaController.php";
 require_once "app/controllers/CheckoutController.php";
 require_once "app/controllers/ProdajalecController.php";
+require_once "app/controllers/ProfilController.php";
+require_once "app/controllers/LogoutController.php";
 
 
 class Router
@@ -53,6 +55,12 @@ class Router
       },
       "/^PRODAJALEC$/" => function() {
         ProdajalecController::prodajalec();
+      },
+      "/^profil$/" => function() {
+        ProfilController::showProfil();
+      },
+      "/^logout$/" => function() {
+        LogoutController::logout();
       },
       "/^druga$/" => function() {
         echo "druga";
