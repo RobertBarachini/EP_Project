@@ -37,7 +37,7 @@
     echo json_encode($objects);
   }
   else {
-    http_response_code(404);
+    http_response_code(204);
     echo json_encode(
       array("message" => "No objects found.")
     );

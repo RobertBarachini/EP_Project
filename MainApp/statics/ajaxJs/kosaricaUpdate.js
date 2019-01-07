@@ -16,8 +16,3 @@ function removeKebab(idArticla) {
     document.getElementById(idArticla).innerHTML = "";
 }
 
-function slikaGor() {
-
-}
-
-window.onload = slikaGor();

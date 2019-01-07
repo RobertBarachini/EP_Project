@@ -1,5 +1,6 @@
+var zeOcenu= false;
 function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, stOcen) {
-
+    console.log()
     var novoStOcen = stOcen+1;
     var novaPovprecnaOcnea= (stOcen * povprecnaOcena + novaOcena)/novoStOcen;
     novaPovprecnaOcnea = novaPovprecnaOcnea.toFixed(2);
@@ -30,6 +31,36 @@ function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, st
         console.log(response)
         document.getElementById("povpOcena").innerHTML = "<span>Povprečna ocena: </span>" + novaPovprecnaOcnea;
         document.getElementById("stOc").innerHTML = "<span>Stevilo ocen: </span>" + novoStOcen;
+        if(!zeOcenu) {
+            var req = new XMLHttpRequest();
+            var telo = {
+                "idartikla": idartikla + '',
+                "iduporabnika":1 + '',
+                "ocena": novaOcena + '',
+                "idspr": 1 + ''
+            }
+
+            var telo = JSON.stringify(telo);
+            req.open('POST',"http://localhost/api/v1/artikli_ocene/create.php",true)
+            req.setRequestHeader('Content-Type', 'application/json');
+            req.send(telo);
+
+            req.addEventListener("load", function () {
+                var resp = JSON.parse(req.responseText);
+                zeOcenu = true;
+                document.getElementById("star-5").disabled = true;
+                document.getElementById("star-4").disabled = true;
+                document.getElementById("star-3").disabled = true;
+                document.getElementById("star-2").disabled = true;
+                document.getElementById("star-1").disabled = true;
+                document.getElementById("tekst").innerHTML= "<span style='color: red'> Hvala za oceno! </span>";
+
+            });
+            req.addEventListener("error", function() {
+                console.log("NAPAKA!");
+            });
+        }
+
 
     });
     request.addEventListener("error", function() {

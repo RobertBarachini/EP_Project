@@ -19,18 +19,22 @@ class requestUtil
       )
     );
     $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $result = json_decode($result);
-    return $result;
+    try {
+      $result = file_get_contents($url, false, $context);
+      $result = json_decode($result);
+      return $result;
+    } catch (Exception $e) {
+       var_dump($e);
+    }
   }
 
   public static function sendRequestPOST($url, $method, $body)
   {
     $ch = curl_init();
 
-    $body= json_encode($body);
+    $body = json_encode($body);
 
-    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -41,9 +45,9 @@ class requestUtil
 
     $server_output = curl_exec($ch);
 
-    curl_close ($ch);
+    curl_close($ch);
 
-    return($server_output);
+    return ($server_output);
   }
 
 }
