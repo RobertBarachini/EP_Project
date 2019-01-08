@@ -135,7 +135,7 @@ DROP TABLE IF EXISTS trgovina.artikli;
 
 CREATE TABLE IF NOT EXISTS trgovina.artikli (
   idartikla INT AUTO_INCREMENT  COMMENT 'id artikla',
-  naziv VARCHAR(100) COMMENT 'naziv ',
+  naziv VARCHAR(255) COMMENT 'naziv ',
   opis VARCHAR(2000) COMMENT 'daljsi opis ',
   cena decimal(20,2) COMMENT 'cena v EUR',
 	st_ocen INT DEFAULT 0 COMMENT 'stevilo oddanih ocen za artikel - optimizacija, da ni potrebno sproti sestevati po prometni tabeli',
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS trgovina.artikli_arh (
   arh_revizija INT(6) NOT NULL AUTO_INCREMENT ,
   arh_datum DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	idartikla INT COMMENT 'id artikla',
-  naziv VARCHAR(100) COMMENT 'naziv ',
+  naziv VARCHAR(255) COMMENT 'naziv ',
   opis VARCHAR(2000) COMMENT 'daljsi opis ',
   cena decimal(20,2) COMMENT 'cena v EUR',
 	st_ocen INT DEFAULT 0 COMMENT 'stevilo oddanih ocen za artikel - optimizacija, da ni potrebno sproti sestevati po prometni tabeli',
@@ -191,8 +191,8 @@ DROP TABLE IF EXISTS trgovina.artikli_slike;
 CREATE TABLE IF NOT EXISTS trgovina.artikli_slike (
   idslike INT AUTO_INCREMENT  COMMENT 'id slike',
 	idartikla INT COMMENT 'id artikla ( za artikel lahko imamo več slik)',
-  naziv VARCHAR(100) COMMENT 'naziv',
-  link VARCHAR(500) COMMENT 'http link do slike',
+  naziv VARCHAR(255) COMMENT 'naziv',
+  link VARCHAR(512) COMMENT 'http link do slike',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
 	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
@@ -206,6 +206,59 @@ ON DELETE RESTRICT
 ON UPDATE CASCADE; 
 
 CREATE INDEX artikli_slike_ix_idslike ON trgovina.artikli_slike(idslike);
+
+INSERT INTO `trgovina`.`artikli`
+(naziv, opis, cena, st_ocen, povprecna_ocena, status, datspr, idspr)
+VALUES
+('AirMAX Nike', 'Najnovejsi Par!', 230, 0, 0, 0, UTC_TIMESTAMP(), 2);
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(1, 'Air Nike', '../../images_init/nice_airs1.jpeg', 0, 2, UTC_TIMESTAMP());
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(1, 'Air Nike 2', '../../images_init/nice_airs2.jpeg', 0, 2, UTC_TIMESTAMP());
+
+INSERT INTO `trgovina`.`artikli`
+(naziv, opis, cena, st_ocen, povprecna_ocena, status, datspr, idspr)
+VALUES
+('HP Zbook15 G1', 'Eden izmed najboljsih racunalnikov na svetu', 1500, 0, 0, 0, UTC_TIMESTAMP(), 2);
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(2, 'HP Prenosnik', '../../images_init/laptop1.png', 0, 2, UTC_TIMESTAMP());
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(2, 'HP Prenosnik 2', '../../images_init/laptop2.png', 0, 2, UTC_TIMESTAMP());
+
+INSERT INTO `trgovina`.`artikli`
+(naziv, opis, cena, st_ocen, povprecna_ocena, status, datspr, idspr)
+VALUES
+('DJI Mavic Pro', 'Najbolj kompakten dron v svojem rangu.', 999.99, 0, 0, 0, UTC_TIMESTAMP(), 2);
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(3, 'DJI Mavic Pro 1', '../../images_init/mavic_pro_1.jpeg', 0, 2, UTC_TIMESTAMP());
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(3, 'DJI Mavic Pro 2', '../../images_init/mavic_pro_2.jpeg', 0, 2, UTC_TIMESTAMP());
+
+INSERT INTO `trgovina`.`artikli`
+(naziv, opis, cena, st_ocen, povprecna_ocena, status, datspr, idspr)
+VALUES
+('Zimske pnevmatike', 'Top kakovost za to ceno!', 249.99, 0, 0, 0, UTC_TIMESTAMP(), 2);
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(4, 'Zimske pnevmatike 1', '../../images_init/tires1.jpg', 0, 2, UTC_TIMESTAMP());
+INSERT INTO `trgovina`.`artikli_slike`
+(idartikla, naziv, link, status, idspr, datspr)
+VALUES
+(4, 'Zimske pnevmatike 2', '../../images_init/tires2.png', 0, 2, UTC_TIMESTAMP());
+
 
 DROP TABLE IF EXISTS trgovina.narocila_faza;
 
