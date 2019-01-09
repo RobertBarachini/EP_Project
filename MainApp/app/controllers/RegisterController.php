@@ -36,7 +36,7 @@ class RegisterController {
                     $hashedPassword = password_hash($hpwd . $salt, PASSWORD_DEFAULT, ['salt' => $salt]);
 
                     $uporabnik_arr = array(
-                        "idvloge" => null,
+                        "idvloge" => "S",
                         "idcert" => null,
                         "email" => "$email",
                         "indmailpotrjen" => 0,
@@ -49,10 +49,11 @@ class RegisterController {
                         "posta" => "$posta",
                         "kraj" => "$kraj",
                         "drzava" => "$drzava",
-                        "idspr" => 1,
+                        "idspr" => 0,
                         "status" => 0,
                     );
                     requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
+                    ViewHelper::redirect('/login');
                 }
             }
         }

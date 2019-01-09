@@ -50,30 +50,47 @@ class LoginController {
                         $value = LoginController::generateRandomString();
                         setcookie($name, $value, time() + 3200, "/");
 
-                        // TO-DO Update to get user cookie in database
-                        /*
+                        $id = $decodiraniPodatki['iduporabnika'];
+                        $idvloge = $decodiraniPodatki['idvloge'];
+                        $idcert = $decodiraniPodatki['idcert'];
+                        $email = $decodiraniPodatki['email'];
+                        $indmailpotrjen = $decodiraniPodatki['indmailpotrjen'];
+                        $geslo = $decodiraniPodatki['geslo'];
+                        $sol = $decodiraniPodatki['sol'];
+                        $ime = $decodiraniPodatki['ime'];
+                        $priimek = $decodiraniPodatki['priimek'];
+                        $ulica = $decodiraniPodatki['ulica'];
+                        $posta = $decodiraniPodatki['posta'];
+                        $kraj = $decodiraniPodatki['kraj'];
+                        $drzava = $decodiraniPodatki['drzava'];
+                        $idspr = $decodiraniPodatki['idspr'];
+                        $status = $decodiraniPodatki['status'];
+                        $datprijave = $decodiraniPodatki['datprijave'];
+                        $datspr = $decodiraniPodatki['datspr'];
+
+                        // Update user to get user cookie in database
                         $uporabnik_arr = array(
-                            "iduporabnika" => '$decodiraniPodatki[\'iduporabnika\']',
-                            "idvloge" => null,
-                            "idcert" => null,
-                            "email" => '$decodiraniPodatki[\'email\']',
-                            "indmailpotrjen" => 123,
-                            "geslo" => '$decodiraniPodatki[\'geslo\']',
-                            "sol" => '$decodiraniPodatki[\'sol\']',
+                            "iduporabnika" => $id,
+                            "idvloge" => "$idvloge",
+                            "idcert" => "$idcert",
+                            "email" => "$email",
+                            "indmailpotrjen" => "$indmailpotrjen",
+                            "geslo" => "$geslo",
+                            "sol" => "$sol",
                             "piskotek" => "$value",
-                            "ime" => '$decodiraniPodatki[\'ime\']',
-                            "priimek" => '$decodiraniPodatki[\'priimek\']',
-                            "ulica" => '$decodiraniPodatki[\'ulica\']',
-                            "posta" => '$decodiraniPodatki[\'posta\']',
-                            "kraj" => '$decodiraniPodatki[\'kraj\']',
-                            "drzava" => '$decodiraniPodatki[\'drzava\']',
-                            "datprijave" => date("Y/m/d"),
-                            "idspr" => 1,
-                            "datspr" => date("Y/m/d"),
-                            "status" => 1,
+                            "ime" => "$ime",
+                            "priimek" => "$priimek",
+                            "ulica" => "$ulica",
+                            "posta" => "$posta",
+                            "kraj" => "$kraj",
+                            "drzava" => "$drzava",
+                            "datprijave" => "$datprijave",
+                            "idspr" => "$idspr",
+                            "datspr" => "$datspr",
+                            "status" => "$status",
                         );
-                        requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/update.php', "UPDATE", $uporabnik_arr);
-                        */
+                        requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/uporabniki/update.php', "PUT", $uporabnik_arr);
+
                     } else {
 
                         # Use users cookie
@@ -84,7 +101,6 @@ class LoginController {
 
                     # Logged in
                     ViewHelper::redirect('/');
-
                 }
             }
         }

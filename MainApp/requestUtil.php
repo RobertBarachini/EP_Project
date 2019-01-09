@@ -50,4 +50,21 @@ class requestUtil
     return ($server_output);
   }
 
+    public static function sendRequestPUT($url, $method, $body)
+    {
+        $ch = curl_init();
+        $body = json_encode($body);
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=UTF-8'
+        ));
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return ($server_output);
+    }
 }
