@@ -35,13 +35,13 @@ class ProfilController {
         $id = $uporabnik['iduporabnika'];
         $idvloge = $uporabnik['idvloge'];
         $idcert = $uporabnik['idcert'];
-        $indmailpotrjen = $uporabnik['indmailpotrjen'];
+        $indmailpotrjen = $uporabnik['indmailpotrjen'] == null ? "0" : $uporabnik['indmailpotrjen'];
         $geslo = $uporabnik['geslo'];
         $sol = $uporabnik['sol'];
         $piskotek = $uporabnik['piskotek'];
         $datprijave = $uporabnik['datprijave'];
-        $idspr = $uporabnik['idspr'];
-        $datspr = $uporabnik['datspr'];
+        $idspr = $uporabnik['idspr'] == null ? "1" : $uporabnik['idspr'];
+        $datspr = date("Y-m-d H:i:s");
         $status = $uporabnik['status'];
 
         # For body of request
@@ -132,7 +132,7 @@ class ProfilController {
         $idvloge = $decodiraniPodatki['idvloge'];
         $idcert = $decodiraniPodatki['idcert'];
         $email = $decodiraniPodatki['email'];
-        $indmailpotrjen = $decodiraniPodatki['indmailpotrjen'];
+        $indmailpotrjen = $decodiraniPodatki['indmailpotrjen'] == null ? "0" : $decodiraniPodatki['indmailpotrjen'];
         $geslo = $hashedPassword;
         $sol = $decodiraniPodatki['sol'];
         $piskotek = $decodiraniPodatki['piskotek'];
@@ -142,10 +142,10 @@ class ProfilController {
         $posta = $decodiraniPodatki['posta'];
         $kraj = $decodiraniPodatki['kraj'];
         $drzava = $decodiraniPodatki['drzava'];
-        $idspr = $decodiraniPodatki['idspr'];
+        $idspr = $decodiraniPodatki['idspr'] == null ? "1" : $decodiraniPodatki['idspr'];
         $status = $decodiraniPodatki['status'];
         $datprijave = $decodiraniPodatki['datprijave'];
-        $datspr = $decodiraniPodatki['datspr'];
+        $datspr = date("Y-m-d H:i:s");
 
         // Update user to get user cookie in database
         $uporabnik_arr = array(
@@ -169,5 +169,6 @@ class ProfilController {
             "status" => "$status",
         );
         requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/uporabniki/update.php', "PUT", $uporabnik_arr);
+        ViewHelper::redirect('/profil');
     }
 }
