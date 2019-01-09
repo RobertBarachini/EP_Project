@@ -10,11 +10,17 @@
     <div class="album py-5 bg-light">
         <div class="artikelPage-padd">
             <h1>Profil uporabnika</h1>
+            <form action="/profil/edit">
+                <button class="editProfil">Spremeni podatke</button>
+            </form>
+            <form action="/profil/edit/password">
+                <button class="editProfil">Spremeni geslo</button>
+            </form>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card mb-6 shadow-sm">
                         <img class="card-img-top"
-                             src="https://avatars2.githubusercontent.com/u/13259803?s=460&v=4"
+                             src="https://www.sioug.si/images/SIOUG/2016_SIOUG/Java_si_predavatelji/unknown-user.png"
                              alt="Alt for picture">
                     </div>
                 </div>

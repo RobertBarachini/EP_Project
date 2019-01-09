@@ -59,6 +59,12 @@ class Router
       "/^profil$/" => function() {
         ProfilController::showProfil();
       },
+      "/^profil\/edit$/" => function() {
+        ProfilController::showEdit();
+      },
+      "/^profil\/edit\/password$/" => function() {
+        ProfilController::showEditPassword();
+      },
       "/^logout$/" => function() {
         LogoutController::logout();
       },

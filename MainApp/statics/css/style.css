@@ -483,3 +483,36 @@ var {
     padding:5px;
     background-color:#DDDDDD;
 }
+
+.editProfil {
+    float: right;
+    margin-right: 50px;
+    height: 60px;
+    width: 110px;
+    border-radius: 5px;
+    background-color: #212529;
+    color: white;
+    cursor: pointer;
+    font-family: Ariel;
+}
+
+.editProfil:hover {
+    background-color: #4e555b;
+}
+
+.editButtonShrani {
+    margin-right: 60px;
+    float: right !important;
+    width: 44% !important;
+}
+
+.editButtonNazaj {
+    margin-left: 0px;
+    float: left !important;
+    width: 44% !important;
+}
+
+.editHeader {
+    text-align: center;
+    margin-left: -80px;
+}
