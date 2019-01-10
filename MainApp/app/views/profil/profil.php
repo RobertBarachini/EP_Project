@@ -1,4 +1,4 @@
-<?php include_once('app/views/layouts/header.php'); ?>
+<?php include_once('app/views/layouts/he/profil/edit/passwordader.php'); ?>
 <?php
     if(isset($_COOKIE['cookie'])) {
         $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php'  . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
@@ -14,10 +14,10 @@
                 <div class=\"album py-5 bg-light\">
                     <div class=\"artikelPage-padd\">
                         <h1>Profil uporabnika</h1>
-                        <form action=\"/profil/edit\">
+                        <form action=\"";echo ROOT_URL . 'profil' . DS . 'edit'; echo "\">
                             <button class=\"editProfil\">Spremeni podatke</button>
                         </form>
-                        <form action=\"/profil/edit/password\">
+                        <form action=\""; echo ROOT_URL . 'profil' . DS . 'edit' . DS . 'password'; echo "\">
                             <button class=\"editProfil\">Spremeni geslo</button>
                         </form>
                         <div class=\"row\">

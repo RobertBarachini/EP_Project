@@ -13,16 +13,16 @@
                                 foreach ($uporabniki as $key => $uporabnik):
                                     if($uporabnik['idvloge'] == 'P') {
                                         echo "<a href=\""; echo ROOT_URL . 'admin' . DS . 'seller' . DS . $uporabnik['iduporabnika']; echo "\" class=\"btnP\">
-                                            <div class=\"prodajalecCard\">
-                                                <p>Prodajalec: "; echo $uporabnik['ime']; echo " "; echo $uporabnik['priimek'];
-                                                if($uporabnik['status'] == '0') {
-                                                    echo " (Aktiviran)";
-                                                } else {
-                                                    echo " (Deaktiviran)";
-                                                } echo "</p>
-                                            </div>
-                                        </a>
-                                      "; }
+                                                <div class=\"prodajalecCard\">
+                                                    <p>Prodajalec: "; echo $uporabnik['ime']; echo " "; echo $uporabnik['priimek']; echo " - ";
+                                                    if($uporabnik['status'] == '0') {
+                                                        echo "<a class='deactivate' href=\""; echo ROOT_URL . 'deactivate'. DS . $uporabnik['iduporabnika']; echo"\">Aktiviran</a>";
+                                                    } else if($uporabnik['status'] == '5') {
+                                                        echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . $uporabnik['iduporabnika']; echo"\">Deaktiviran</a>";
+                                                    } echo "</p>
+                                                </div>
+                                            </a>
+                                      ";}
                                  endforeach;
                             echo "</div>
                             <a href=\"/admin/seller/add\" class=\"btnP\">
@@ -43,4 +43,12 @@
     }
 
 ?>
+<a href="">
+    <div>
+        <a>
+
+        </a>
+    </div>
+</a>l
+
 <?php include_once('app/views/layouts/footer.php'); ?>
