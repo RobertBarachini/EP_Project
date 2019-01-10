@@ -9,6 +9,7 @@ require_once "app/controllers/CheckoutController.php";
 require_once "app/controllers/ProdajalecController.php";
 require_once "app/controllers/ProfilController.php";
 require_once "app/controllers/LogoutController.php";
+require_once "app/controllers/AdminController.php";
 
 
 class Router
@@ -39,13 +40,15 @@ class Router
       },
       "/^artikli\/(\d+)$/" => function($method, $id) {
         ArtikelController::artikelPage($id);
-
       },
       "/^register$/" => function() {
         RegisterController::registerUser();
       },
       "/^login$/" => function() {
         LoginController::loginUser();
+      },
+      "/^logout$/" => function() {
+        LogoutController::logout();
       },
       "/^uporabniki\/(\d+)\/kosarica$/" => function($method, $id) {
         KosaricaController::kosaricaPage($id);
@@ -65,8 +68,8 @@ class Router
       "/^profil\/edit\/password$/" => function() {
         ProfilController::showEditPassword();
       },
-      "/^logout$/" => function() {
-        LogoutController::logout();
+      "/^admin$/" => function() {
+        AdminController::showAdminConsole();
       },
       "/^druga$/" => function() {
         echo "druga";

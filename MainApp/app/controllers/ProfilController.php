@@ -39,7 +39,7 @@ class ProfilController {
         $geslo = $uporabnik['geslo'];
         $sol = $uporabnik['sol'];
         $piskotek = $uporabnik['piskotek'];
-        $datprijave = $uporabnik['datprijave'];
+        $datprijave = date("Y-m-d H:i:s");
         $idspr = $uporabnik['idspr'] == null ? "1" : $uporabnik['idspr'];
         $datspr = date("Y-m-d H:i:s");
         $status = $uporabnik['status'];
@@ -66,10 +66,13 @@ class ProfilController {
             "status" => "$status",
         );
 
+        var_dump($uporabnik);
+
+        var_dump($uporabnik_arr);
+
         # Update user
         requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/uporabniki/update.php', "PUT", $uporabnik_arr);
         ViewHelper::redirect('/profil');
-
     }
 
     public static function changePassword($POST) {
@@ -144,7 +147,7 @@ class ProfilController {
         $drzava = $decodiraniPodatki['drzava'];
         $idspr = $decodiraniPodatki['idspr'] == null ? "1" : $decodiraniPodatki['idspr'];
         $status = $decodiraniPodatki['status'];
-        $datprijave = $decodiraniPodatki['datprijave'];
+        $datprijave = date("Y-m-d H:i:s");
         $datspr = date("Y-m-d H:i:s");
 
         // Update user to get user cookie in database

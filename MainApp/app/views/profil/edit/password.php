@@ -30,7 +30,7 @@
             ViewHelper::redirect('/profil');
         }
     } else {
-        echo "<h1>Niste prijavljeni! Prijavite se <a href='/login'>tukaj</a>!</h1>";
+        echo "<h3 style='margin-left: 20px'>Za dostop do spreminjanja gesla uporabnika, je potrebna <a href='/login'>prijava</a>!</h3>";
     }
 ?>
 <?php include_once('app/views/layouts/footer.php'); ?>

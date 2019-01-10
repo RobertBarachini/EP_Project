@@ -45,7 +45,6 @@
                         $berljiviPodatki = json_encode($uporabnik);
                         $decodiraniPodatki = json_decode($berljiviPodatki,true);
 
-
                         echo "
                             <button id=\"myButton\" class=\" btn btn-large btn-warning\" href=\"/uporabniki/ajDi/kosarica\">
                                 <i class=\" fa fa-shopping-cart\"></i>
@@ -57,15 +56,18 @@
                             </script>
                         ";
 
-
-
                         echo "<div class=\"dropdown\">
                                 <button class=\"dropbtn\">";
                         echo $decodiraniPodatki['ime'];
                         echo"</button>
                                 <div class=\"dropdown-content\">
-                                    <a href=\"/profil\">Profil</a>
-                                    <a href=\"/logout\">Odjava</a>
+                                    <a href=\"/profil\">Profil</a>";
+
+                        if($decodiraniPodatki['idvloge'] == 'A') {
+                            echo "<a href='/admin'>Admin</a>";
+                        }
+
+                        echo "      <a href=\"/logout\">Odjava</a>
                                 </div>
                             </div>";
                     }
