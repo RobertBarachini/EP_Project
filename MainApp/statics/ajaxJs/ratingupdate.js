@@ -1,5 +1,5 @@
 var zeOcenu= false;
-function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, stOcen) {
+function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, stOcen, iduporabnika) {
     console.log()
     var novoStOcen = stOcen+1;
     var novaPovprecnaOcnea= (stOcen * povprecnaOcena + novaOcena)/novoStOcen;
@@ -35,7 +35,7 @@ function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, st
             var req = new XMLHttpRequest();
             var telo = {
                 "idartikla": idartikla + '',
-                "iduporabnika":1 + '',
+                "iduporabnika":iduporabnika + '',
                 "ocena": novaOcena + '',
                 "idspr": 1 + ''
             }

@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="/statics/ajaxJs/ratingupdate.js"></script>
     <script src="/statics/ajaxJs/kosaricaUpdate.js"></script>
+    <script src="/statics/ajaxJs/dodajVKosarico.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">

@@ -20,11 +20,11 @@ class ArtikelController
 
     $taPraveSlike = array();
     $jeUporabnikZeOcenil = false;
+    $idUporabnika = 1;
     $ocena = 0;
 
     $berljiviPodatki = json_encode($artikli);
     $decodiraniPodatki = json_decode($berljiviPodatki, true);
-
     $berljiviPodatki_slike = json_encode($artikli_slike);
     $decodiraniPodatki_slike = json_decode($berljiviPodatki_slike, true);
     $podatki = $decodiraniPodatki_slike['body'];
@@ -45,19 +45,18 @@ class ArtikelController
       $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php' . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
       $berljiviPodatki_uporabnik = json_encode($uporabnik);
       $decodiraniPodatki_uporabnik = json_decode($berljiviPodatki_uporabnik, true);
+      $idUporabnika = $decodiraniPodatki_uporabnik['iduporabnika'];
 
       if ($artikli_ocene != null) {
         foreach ($podatki_ocene as $key => $value) {
           if ($value['iduporabnika'] == $decodiraniPodatki_uporabnik['iduporabnika'] && $id == $value['idartikla']) {
             $jeUporabnikZeOcenil = true;
             $ocena = $value['ocena'];
-            break;
           }
         }
       }
-
     }
 
-    echo ViewHelper::render("app/views/artikel/artikel.php", ["artikel" => $decodiraniPodatki, "artikel_slike" => $taPraveSlike, "jeZeDalOceno" => $jeUporabnikZeOcenil, "ocena" => $ocena]);
+    echo ViewHelper::render("app/views/artikel/artikel.php", ["artikel" => $decodiraniPodatki, "artikel_slike" => $taPraveSlike, "jeZeDalOceno" => $jeUporabnikZeOcenil, "ocena" => $ocena, "iduporabnika" => $idUporabnika]);
   }
 }
