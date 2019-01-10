@@ -28,6 +28,26 @@ class requestUtil
     }
   }
 
+  public static function sendRequestGET($url, $method,$body)
+  {
+    $ch = curl_init();
+
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, false);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json; charset=UTF-8'
+    ));
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $server_output = curl_exec($ch);
+
+    curl_close($ch);
+
+    return ($server_output);
+  }
+
   public static function sendRequestPOST($url, $method, $body)
   {
     $ch = curl_init();

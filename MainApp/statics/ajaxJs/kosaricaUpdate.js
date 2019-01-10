@@ -12,7 +12,32 @@ function updatePrice() {
     }
 }
 
-function removeKebab(idArticla) {
-    document.getElementById(idArticla).innerHTML = "";
+function removeKebab(idArticla, idnarocila_artikla) {
+    console.log(idnarocila_artikla);
+    var request = new XMLHttpRequest();
+
+    var body = {
+        "idnarocila_artikli" : idnarocila_artikla + ''
+    };
+
+    console.log(body);
+    body = JSON.stringify(body);
+    console.log(body);
+
+    request.open('DELETE',"http://localhost/api/v1/narocila_artikli/delete.php",true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(body);
+
+    request.addEventListener("load", function () {
+
+        document.getElementById(idArticla).innerHTML = "";
+
+    });
+    request.addEventListener("error", function () {
+        console.log("Ni uspelo zbrisat!!")
+
+    });
+
+
 }
 

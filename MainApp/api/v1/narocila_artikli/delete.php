@@ -20,11 +20,11 @@
 
   // delete the object
   if($object->delete()){
-    http_response_code(200);
+    http_response_code(204);
     echo json_encode(array("message" => "Object was deleted."));
   }
   else{
-    http_response_code(503);
+    http_response_code(404);
     echo json_encode(array("message" => "Unable to delete object."));
   }
 ?>

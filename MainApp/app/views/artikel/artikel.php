@@ -6,7 +6,12 @@
             $('.slider').bxSlider();
         });
     </script>
-
+    <div id="success" class="alert alert-success" hidden>
+        <strong>Success!</strong> Izdelek je bil dodan v vašo košarico!
+    </div>
+    <div id="error" class="alert alert-danger" hidden>
+        <strong>Error!</strong> Prišlo je do napake! Izdelek ni bil dodan v košarico!
+    </div>
     <div class="album py-5 bg-light">
         <div class="artikelPage-padd">
             <h1><?= $artikel['naziv'] ?></h1>
@@ -36,7 +41,7 @@
                   <?php
 
                   if (isset($_COOKIE['cookie']) && !$jeZeDalOceno) {
-                  echo "
+                    echo "
                         <p><span id=\"tekst\">Ocenite izdelek!</span>
                           <br>
                           <div class=\"stars\">
@@ -53,15 +58,10 @@
                                   <label class=\"star star-1\" for=\"star-1\"></label>
                               </form>
                           </div>
-                          <br><br>
-                         <div>
-                        <button class=\" btn btn-large btn-danger\" onclick=\"\">
-                            <i class=\"fa fa-shopping-cart\"></i> Dodaj v košarico
-                        </button>
-                        </div>    
-                        </p>          
+                          <br><br>   
                           
-                    ";}
+                    ";
+                  }
 
                   if (isset($_COOKIE['cookie']) && $jeZeDalOceno && $ocena) {
                     echo "
@@ -70,36 +70,36 @@
                           <div class=\"stars\">
                               <form action=\"\" >
                               ";
-                    if($ocena == 5) {
-                        echo "<input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" checked disabled = \"true\" \"/>
+                    if ($ocena == 5) {
+                      echo "<input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" checked disabled = \"true\" \"/>
                                   <label class=\"star star-5\" for=\"star-5\"> </label>";
                     } else {
-                        echo "<input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" disabled = \"true\" \"/>
+                      echo "<input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" disabled = \"true\" \"/>
                                   <label class=\"star star-5\" for=\"star-5\"> </label>";
                     }
 
-                    if($ocena == 4) {
+                    if ($ocena == 4) {
                       echo "<input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\" checked disabled = \"true\"  \"/>
                                   <label class=\"star star-4\" for=\"star-4\"> </label>";
                     } else {
                       echo "<input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\" disabled = \"true\"  \"/>
                                   <label class=\"star star-4\" for=\"star-4\"> </label>";
                     }
-                    if($ocena == 3) {
+                    if ($ocena == 3) {
                       echo "<input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\" disabled = \"true\"  checked \"/>
                                   <label class=\"star star-3\" for=\"star-3\"> </label>";
                     } else {
                       echo "<input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\" disabled = \"true\"  \"/>
                                   <label class=\"star star-3\" for=\"star-3\"> </label>";
                     }
-                    if($ocena == 2) {
+                    if ($ocena == 2) {
                       echo "<input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\" disabled = \"true\"  checked \"/>
                                   <label class=\"star star-2\" for=\"star-2\"> </label>";
                     } else {
                       echo "<input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\" disabled = \"true\"  \"/>
                                   <label class=\"star star-2\" for=\"star-2\"> </label>";
                     }
-                    if($ocena == 1) {
+                    if ($ocena == 1) {
                       echo "<input class=\"star star-1\" id=\"star-1\" type=\"radio\" name=\"star\" disabled = \"true\"  checked \"/>
                                   <label class=\"star star-1\" for=\"star-1\"> </label>";
                     } else {
@@ -107,17 +107,37 @@
                                   <label class=\"star star-1\" for=\"star-1\"> </label>";
                     }
 
-                     echo "
+                    echo "
                               </form>
                           </div>
                           <br><br>
-                         <div>
-                        <button class=\" btn btn-large btn-danger\" onclick=\"dodajVKosarico({$iduporabnika})\">
+                           
+                        ";
+                  }
+                  ?>
+
+                  <?php
+                  if (isset($_COOKIE['cookie'])) {
+                    if ($ocenil) {
+                      echo "
+                        <div>
+                        <button id='button' class=\" btn btn-large btn-danger\") disabled = \"true\"\">
+                            <i></i> Že v Košarici! 
+                        </button>
+                        </div>    
+                        </p>       
+                    ";
+
+                    } else {
+                      echo "
+                        <div>
+                        <button id='button' class=\" btn btn-large btn-danger\" onclick=\"dodajVKosarico({$iduporabnika},{$artikel['idartikla']})\">
                             <i class=\"fa fa-shopping-cart\"></i> Dodaj v košarico
                         </button>
                         </div>    
-                        </p>                              
-                        ";
+                        </p>       
+                    ";
+                    }
                   }
                   ?>
 
@@ -126,4 +146,4 @@
         </div>
     </div>
 
-  <?php include_once('app/views/layouts/footer.php'); ?>
+<?php include_once('app/views/layouts/footer.php'); ?>
