@@ -71,6 +71,9 @@ class Router
       "/^admin$/" => function() {
         AdminController::showAdminConsole();
       },
+      "/^admin\/seller\/add$/" => function() {
+        AdminController::showDodajProdajalca();
+      },
       "/^druga$/" => function() {
         echo "druga";
       }

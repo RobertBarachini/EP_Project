@@ -42,34 +42,34 @@
                     echo "<a class='navbar-brand' , href='/register'>Registracija</a>";
                     } else {
                         $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php'  . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
-                        $berljiviPodatki = json_encode($uporabnik);
-                        $decodiraniPodatki = json_decode($berljiviPodatki,true);
+                        if($uporabnik != null) {
+                            $berljiviPodatki = json_encode($uporabnik);
+                            $decodiraniPodatki = json_decode($berljiviPodatki,true);
 
-                        echo "
-                            <button id=\"myButton\" class=\" btn btn-large btn-warning\" href=\"/uporabniki/ajDi/kosarica\">
-                                <i class=\" fa fa-shopping-cart\"></i>
-                            </button>               
-                            <script type=\"text/javascript\">
-                                document.getElementById(\"myButton\").onclick = function () {
-                                    location.href = \"/uporabniki/{$decodiraniPodatki['iduporabnika']}/kosarica\";
-                                };
-                            </script>
-                        ";
+                            echo "<button id=\"myButton\" class=\" btn btn-large btn-warning\" href=\"/uporabniki/ajDi/kosarica\">
+                                    <i class=\" fa fa-shopping-cart\"></i>
+                                </button>               
+                                <script type=\"text/javascript\">
+                                    document.getElementById(\"myButton\").onclick = function () {
+                                        location.href = \"/uporabniki/{$decodiraniPodatki['iduporabnika']}/kosarica\";
+                                    };
+                                </script>";
 
-                        echo "<div class=\"dropdown\">
+                            echo "<div class=\"dropdown\">
                                 <button class=\"dropbtn\">";
-                        echo $decodiraniPodatki['ime'];
-                        echo"</button>
+                            echo $decodiraniPodatki['ime'];
+                            echo"</button>
                                 <div class=\"dropdown-content\">
                                     <a href=\"/profil\">Profil</a>";
 
-                        if($decodiraniPodatki['idvloge'] == 'A') {
-                            echo "<a href='/admin'>Admin</a>";
-                        }
+                            if($decodiraniPodatki['idvloge'] == 'A') {
+                                echo "<a href='/admin'>Admin</a>";
+                            }
 
-                        echo "      <a href=\"/logout\">Odjava</a>
+                            echo "      <a href=\"/logout\">Odjava</a>
                                 </div>
                             </div>";
+                        }
                     }
             ?>
         </div>

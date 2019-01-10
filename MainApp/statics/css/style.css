@@ -516,3 +516,68 @@ var {
     text-align: center;
     margin-left: -80px;
 }
+
+.adminHeader {
+    text-align: center;
+}
+
+.adminDiv {
+    background-color: #ededed;
+    width: 100%;
+    min-height: 400px;
+    padding: 15px;
+    margin-top: -10px;
+}
+
+.prodajalecCard {
+    border-radius: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    line-height: 50px;
+}
+
+.prodajalecCard:hover {
+    background-color: #989da1;
+}
+
+.btnP {
+    text-decoration: none !important;
+}
+
+.addSeller {
+    background-color: #343a40;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    position: relative;
+    float: right;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+
+.addSeller:hover {
+    background-color: black;
+}
+
+.sellerButtonShrani {
+    margin-right: 60px;
+    float: right !important;
+    width: 44% !important;
+}
+
+.sellerButtonNazaj {
+    margin-left: 0px;
+    float: left !important;
+    width: 44% !important;
+}
+
+.activate {
+
+}
+
+.deactivate {
+
+}
