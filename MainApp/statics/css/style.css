@@ -536,6 +536,7 @@ var {
     background-color: white;
     color: black;
     line-height: 50px;
+    cursor: pointer;
 }
 
 .prodajalecCard:hover {
@@ -544,6 +545,12 @@ var {
 
 .btnP {
     text-decoration: none !important;
+    color: black;
+    cursor: pointer;
+}
+
+.btnP:hover {
+    color: black;
 }
 
 .addSeller {
@@ -574,10 +581,20 @@ var {
     width: 44% !important;
 }
 
-.activate {
-
+.deactivate {
+    text-decoration: none !important;
+    color: #36e94a;
 }
 
-.deactivate {
+.deactivate:hover {
+    color: #36e94a;
+}
 
+.activate {
+    text-decoration: none !important;
+    color: #e90502;
+}
+
+.activate:hover {
+    color: #e90502;
 }

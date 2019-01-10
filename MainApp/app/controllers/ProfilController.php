@@ -66,10 +66,6 @@ class ProfilController {
             "status" => "$status",
         );
 
-        var_dump($uporabnik);
-
-        var_dump($uporabnik_arr);
-
         # Update user
         requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/uporabniki/update.php', "PUT", $uporabnik_arr);
         ViewHelper::redirect('/profil');

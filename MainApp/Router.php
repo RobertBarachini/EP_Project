@@ -74,6 +74,18 @@ class Router
       "/^admin\/seller\/add$/" => function() {
         AdminController::showDodajProdajalca();
       },
+      "/^admin\/seller\/(\d+)$/" => function($method, $id) {
+        AdminController::showPodrobnostiProdajalca($method, $id);
+      },
+      "/^admin\/seller\/(\d+)\/edit$/" => function($method, $id) {
+        AdminController::showEditProdajalca($method, $id);
+      },
+      "/^deactivate\/(\d+)$/" => function($method, $id) {
+        AdminController::deactivate($method, $id);
+      },
+      "/^activate\/(\d+)$/" => function($method, $id) {
+          AdminController::activate($method, $id);
+      },
       "/^druga$/" => function() {
         echo "druga";
       }
