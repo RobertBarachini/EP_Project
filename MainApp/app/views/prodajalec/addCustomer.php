@@ -39,19 +39,19 @@
                         </form>
                     </div>
                   </div>";
+
+            if(isset($_POST['submitStranka'])) {
+                ProdajalecController::addCustomer($_POST);
+            }
+
+            if(isset($_POST['submitBack'])) {
+                ViewHelper::redirect('/prodajalec');
+            }
         } else {
             echo "<h3 style='margin-left: 20px' >Za dostop do konzole prodajalca, je potrebna <a href='/login'>prijava</a> z računom prodajalca!</h3>";
         }
     } else {
         echo "<h3 style='margin-left: 20px' >Za dostop do konzole prodajalca, je potrebna <a href='/login'>prijava</a> z računom prodajalca!</h3>";
-    }
-
-    if(isset($_POST['submitStranka'])) {
-        ProdajalecController::addCustomer($_POST);
-    }
-
-    if(isset($_POST['submitBack'])) {
-        ViewHelper::redirect('/prodajalec');
     }
 ?>
 

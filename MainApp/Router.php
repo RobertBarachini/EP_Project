@@ -89,10 +89,10 @@ class Router
       "/^prodajalec$/" => function() {
         ProdajalecController::showProdajalecConsole();
       },
-      "/^deactivate\/seller\/(\d+)$/" => function($method, $id) {
+      "/^deactivate\/customer\/(\d+)$/" => function($method, $id) {
         ProdajalecController::deactivate($method, $id);
       },
-      "/^activate\/seller\/(\d+)$/" => function($method, $id) {
+      "/^activate\/customer\/(\d+)$/" => function($method, $id) {
         ProdajalecController::activate($method, $id);
       },
       "/^deactivate\/artikel\/(\d+)$/" => function($method, $id) {
@@ -104,8 +104,20 @@ class Router
       "/^prodajalec\/customer\/add$/" => function() {
         ProdajalecController::showAddCustomer();
       },
-      "/^prodajalec\/artikel\/add$/" => function($method, $id) {
+      "/^prodajalec\/artikel\/add$/" => function() {
         ProdajalecController::showAddArtikel();
+      },
+      "/prodajalec\/customer\/(\d+)$/" => function($method, $id) {
+        ProdajalecController::showCustomerDetails($method, $id);
+      },
+      "/^prodajalec\/customer\/(\d+)\/edit$/" => function($method, $id) {
+        ProdajalecController::showEditCustomerDetails($method, $id);
+      },
+      "/^prodajalec\/artikel\/(\d+)$/" => function($method, $id) {
+        ProdajalecController::showArtikelDetails($method, $id);
+      },
+      "/^prodajalec\/artikel\/(\d+)\/edit$/" => function($method, $id) {
+        ProdajalecController::showEditArtikelDetails($method, $id);
       },
       "/^druga$/" => function() {
         echo "druga";

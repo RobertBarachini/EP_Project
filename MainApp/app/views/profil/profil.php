@@ -1,4 +1,4 @@
-<?php include_once('app/views/layouts/he/profil/edit/passwordader.php'); ?>
+<?php include_once('app/views/layouts/header.php'); ?>
 <?php
     if(isset($_COOKIE['cookie'])) {
         $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php'  . '?piskotek=' . $_COOKIE['cookie'], "GET", "");

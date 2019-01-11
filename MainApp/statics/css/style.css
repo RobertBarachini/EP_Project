@@ -643,3 +643,8 @@ var {
 .prodajalecHeader {
     text-align: center;
 }
+
+.txtArea {
+    background-color: rgb(33, 37, 41);
+    color: white;
+}

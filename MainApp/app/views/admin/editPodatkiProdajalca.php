@@ -4,7 +4,8 @@
     if(isset($_COOKIE['cookie'])) {
         $uporabnikA = GetDataController::getUser();
         if($uporabnikA['idvloge'] == 'A') {
-            echo "<div class=\"container\">
+            if($uporab['idvloge'] == 'P') {
+                echo "<div class=\"container\">
                     <div class=\"nav-login\">
                         <form name=\"editForm\" class=\"registrationAndLoginForm\"
                               method=\"post\">
@@ -43,6 +44,10 @@
                 if(isset($_POST['submitProdajalecBack'])) {
                     ViewHelper::redirect('/admin/seller' . DS . $uporab['iduporabnika']);
                 }
+            } else {
+                echo "<h3 style='margin-left: 20px' >Urejanje podatkov tega uporabnika ni dovoljeno!</h3>";
+                echo "Nazaj na <a href=\""; echo ROOT_URL . 'admin'; echo"\">konzolo</ahref>";
+            }
         } else {
             # User is not logged in and wants to access page profil/edit
             echo "<h3 style='margin-left: 20px' >Za dostop do admin konzole, je potrebna <a href='/login'>prijava</a> z administratorskim računom!</h3>";

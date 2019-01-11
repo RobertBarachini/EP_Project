@@ -13,14 +13,14 @@ if(isset($_COOKIE['cookie'])) {
                             <div class=\"col-md-12\">";
                             foreach ($stranke as $key => $uporabnik):
                                 if($uporabnik['idvloge'] == 'S') {
-                                    echo "<a href=\""; echo ROOT_URL . 'prodajalec'; echo "\" class=\"btnP\">
+                                    echo "<a href=\""; echo ROOT_URL . 'prodajalec'. DS . 'customer' .DS . $uporabnik['iduporabnika']; echo "\" class=\"btnP\">
                                         <div class=\"prodajalecCard\">
                                             <p>"; echo $uporabnik['ime']; echo " "; echo $uporabnik['priimek']; echo " - ";
 
                                     if($uporabnik['status'] == '0') {
-                                        echo "<a class='deactivate' href=\""; echo ROOT_URL . 'deactivate'. DS . 'seller' . DS . $uporabnik['iduporabnika']; echo"\">Aktiviran</a>";
+                                        echo "<a class='deactivate' href=\""; echo ROOT_URL . 'deactivate'. DS . 'customer' . DS . $uporabnik['iduporabnika']; echo"\">Aktiviran</a>";
                                     } else if($uporabnik['status'] == '5') {
-                                        echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . 'seller' . DS . $uporabnik['iduporabnika']; echo"\">Deaktiviran</a>";
+                                        echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . 'customer' . DS . $uporabnik['iduporabnika']; echo"\">Deaktiviran</a>";
                                     } echo "</p>
                                     </div>
                                 </a>
@@ -32,7 +32,7 @@ if(isset($_COOKIE['cookie'])) {
                             <divclass=\"col-md-12\">";
                             foreach ($artikli as $key => $art):
 
-                                echo "<a href=\""; echo ROOT_URL . 'prodajalec'; echo "\" class=\"btnP\">
+                                echo "<a href=\""; echo ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $art['idartikla']; echo "\" class=\"btnP\">
                                                         <div class=\"prodajalecCard\">
                                                             <p>"; echo $art['naziv']; echo " - ";
 
@@ -61,11 +61,9 @@ if(isset($_COOKIE['cookie'])) {
                     </div>
                   </div>";
     } else {
-        # User is not logged in and wants to access page profil/edit
         echo "<h3 style='margin-left: 20px' >Za dostop do konzole prodajalca, je potrebna <a href='/login'>prijava</a> z računom prodajalca!</h3>";
     }
 } else {
-    # User is not logged in and wants to access page profil/edit
     echo "<h3 style='margin-left: 20px' >Za dostop do konzole prodajalca, je potrebna <a href='/login'>prijava</a> z računom prodajalca!</h3>";
 }
 ?>

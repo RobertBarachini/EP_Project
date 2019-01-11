@@ -4,7 +4,8 @@
     if(isset($_COOKIE['cookie'])) {
         $uporabnikAdmin = GetDataController::getUser();
         if($uporabnikAdmin['idvloge'] == 'A') {
-            echo "<div class=\"container\">
+            if($upor['idvloge'] == 'P') {
+                echo "<div class=\"container\">
                 <div class=\"album py-5 bg-light\">
                     <div class=\"artikelPage-padd\">
                         <h1>Profil prodajalca</h1>
@@ -35,7 +36,10 @@
                     </div>
                 </div>
               </div>";
-
+            } else {
+                echo "<h3 style='margin-left: 20px' >Vpogled v podatke tega uporabnika ni dovoljeno!</h3>";
+                echo "Nazaj na <a href=\""; echo ROOT_URL . 'admin'; echo"\">konzolo</ahref>";
+            }
         } else {
             # User is not logged in and wants to access page profil/edit
             echo "<h3 style='margin-left: 20px' >Za dostop do admin konzole, je potrebna <a href='/login'>prijava</a> z administratorskim računom!</h3>";
