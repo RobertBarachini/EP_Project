@@ -90,7 +90,7 @@ class ArtikelController
         foreach ($narocilaP as $key => $value) {
           if ($narocila_artikliP != null) {
             foreach($narocila_artikliP as $key_ar => $value_ar) {
-              if($value['idnarocila'] == $value_ar['idnarocila'] && $id == $value_ar['idartikla'] && $decodiraniPodatki_uporabnik['iduporabnika'] == $value['iduporabnika']) {
+              if($value['faza'] == 'K' && $value['idnarocila'] == $value_ar['idnarocila'] && $id == $value_ar['idartikla'] && $decodiraniPodatki_uporabnik['iduporabnika'] == $value['iduporabnika']) {
                 $jeZeVKosarici = true;
                 break;
               }

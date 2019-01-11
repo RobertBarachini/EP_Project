@@ -37,6 +37,7 @@ class KosaricaController
     $idArray = array();
     $podatkiArray = array();
     $podatkiNarocila = array();
+    $idNarocila = null;
     if ($narocilaP != null) {
       foreach ($narocilaP as $key => $value) {
         if ($narocila_artikliP != null) {
@@ -44,7 +45,7 @@ class KosaricaController
             if ($value['faza'] == 'K' && $value['idnarocila'] == $value_ar['idnarocila'] && $id == $value['iduporabnika']) {
               array_push($idArray, $value_ar['idartikla']);
               array_push($podatkiNarocila, $value_ar);
-
+              $idNarocila = $value['idnarocila'];
             }
           }
 
@@ -75,6 +76,20 @@ class KosaricaController
       }
     }
 
-    echo ViewHelper::render("app/views/kosarica/kosarica.php", ["artikli" => $podatkiArray, "slike" => $slikeArray, "podatkiZaNarocilo" => $podatkiNarocila]);
+    //sortiramo po artiklih za lazje updejtanje ocen
+    function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
+      $sort_col = array();
+      foreach ($arr as $key=> $row) {
+        $sort_col[$key] = $row[$col];
+      }
+
+      array_multisort($sort_col, $dir, $arr);
+    }
+
+
+    array_sort_by_column($podatkiNarocila, 'idartikla');
+
+
+    echo ViewHelper::render("app/views/kosarica/kosarica.php", ["artikli" => $podatkiArray, "slike" => $slikeArray, "podatkiZaNarocilo" => $podatkiNarocila, "uporab" => $id, "idNarocila" => $idNarocila]);
   }
 }
