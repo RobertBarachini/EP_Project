@@ -80,11 +80,32 @@ class Router
       "/^admin\/seller\/(\d+)\/edit$/" => function($method, $id) {
         AdminController::showEditProdajalca($method, $id);
       },
-      "/^deactivate\/(\d+)$/" => function($method, $id) {
+      "/^deactivate\/admin\/(\d+)$/" => function($method, $id) {
         AdminController::deactivate($method, $id);
       },
-      "/^activate\/(\d+)$/" => function($method, $id) {
-          AdminController::activate($method, $id);
+      "/^activate\/admin\/(\d+)$/" => function($method, $id) {
+        AdminController::activate($method, $id);
+      },
+      "/^prodajalec$/" => function() {
+        ProdajalecController::showProdajalecConsole();
+      },
+      "/^deactivate\/seller\/(\d+)$/" => function($method, $id) {
+        ProdajalecController::deactivate($method, $id);
+      },
+      "/^activate\/seller\/(\d+)$/" => function($method, $id) {
+        ProdajalecController::activate($method, $id);
+      },
+      "/^deactivate\/artikel\/(\d+)$/" => function($method, $id) {
+        ProdajalecController::deactivateArtikel($method, $id);
+      },
+      "/^activate\/artikel\/(\d+)$/" => function($method, $id) {
+        ProdajalecController::activateArtikel($method, $id);
+      },
+      "/^prodajalec\/customer\/add$/" => function() {
+        ProdajalecController::showAddCustomer();
+      },
+      "/^prodajalec\/artikel\/add$/" => function($method, $id) {
+        ProdajalecController::showAddArtikel();
       },
       "/^druga$/" => function() {
         echo "druga";

@@ -14,9 +14,16 @@ class RegisterController {
         echo ViewHelper::render("app/views/register/register.php", []);
     }
 
-    public static function preveriVnoseInIzvediRegistracijo($ime, $priimek, $ulica,
-                                        $kraj, $posta, $drzava,
-                                        $email, $geslo) {
+    public static function preveriVnoseInIzvediRegistracijo($POST) {
+
+        $ime = $POST['ime'];
+        $priimek = $POST['priimek'];
+        $ulica = $POST['ulica'];
+        $kraj = $POST['kraj'];
+        $posta = $POST['posta'];
+        $drzava = $POST['drzava'];
+        $email = $POST['email'];
+        $geslo = $POST['geslo'];
 
         # Check if there are empty fields
         if(empty($ime) || empty($priimek) || empty($ulica)

@@ -569,6 +569,39 @@ var {
     background-color: black;
 }
 
+.addCustomer {
+    background-color: #343a40;
+    width: 180px;
+    height: 50px;
+    border-radius: 3px;
+    position: relative;
+    float: right;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+
+.addCustomer:hover {
+    background-color: black;
+}
+
+.addArtikel {
+    background-color: #343a40;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    position: relative;
+    float: right;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 10px;
+}
+
+.addArtikel:hover {
+    background-color: black;
+}
+
 .sellerButtonShrani {
     margin-right: 60px;
     float: right !important;
@@ -597,4 +630,16 @@ var {
 
 .activate:hover {
     color: #e90502;
+}
+
+.prodajalecDiv {
+    background-color: #ededed;
+    width: 100%;
+    min-height: 400px;
+    padding: 15px;
+    margin-top: -10px;
+}
+
+.prodajalecHeader {
+    text-align: center;
 }

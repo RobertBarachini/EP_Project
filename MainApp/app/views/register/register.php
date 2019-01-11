@@ -1,17 +1,7 @@
 <?php include_once('app/views/layouts/header.php');?>
 <?php
     if(isset($_POST['submit'])) {
-        $ime = $_POST['ime'];
-        $priimek = $_POST['priimek'];
-        $ulica = $_POST['ulica'];
-        $kraj = $_POST['kraj'];
-        $posta = $_POST['posta'];
-        $drzava = $_POST['drzava'];
-        $email = $_POST['email'];
-        $geslo = $_POST['geslo'];
-        
-        RegisterController::preveriVnoseInIzvediRegistracijo($ime, $priimek, $ulica,
-            $kraj, $posta, $drzava, $email, $geslo);
+        RegisterController::preveriVnoseInIzvediRegistracijo($_POST);
     }
 ?>
 <div class="container" xmlns="http://www.w3.org/1999/html">

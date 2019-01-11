@@ -41,14 +41,5 @@
         # User is not logged in and wants to access page profil/edit
         echo "<h3 style='margin-left: 20px' >Za dostop do admin konzole, je potrebna <a href='/login'>prijava</a> z administratorskim računom!</h3>";
     }
-
 ?>
-<a href="">
-    <div>
-        <a>
-
-        </a>
-    </div>
-</a>l
-
 <?php include_once('app/views/layouts/footer.php'); ?>

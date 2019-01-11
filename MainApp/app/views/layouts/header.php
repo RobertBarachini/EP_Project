@@ -67,6 +67,10 @@
                                 echo "<a href='/admin'>Admin</a>";
                             }
 
+                            if($decodiraniPodatki['idvloge'] == 'P') {
+                                echo "<a href='/prodajalec'>Prodajalec</a>";
+                            }
+
                             echo "      <a href=\"/logout\">Odjava</a>
                                 </div>
                             </div>";
