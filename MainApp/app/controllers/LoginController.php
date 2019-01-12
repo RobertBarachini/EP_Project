@@ -24,13 +24,16 @@ class LoginController {
                                     </div>";
         } else {
             # Search for uporabnik by email
-            $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_email.php'  . '?email=' . $email, "GET", "");
-            $berljiviPodatki = json_encode($uporabnik);
-            $decodiraniPodatki = json_decode($berljiviPodatki,true);
+            $uporabnik = requestUtil::sendRequestGET('http://localhost/trgovina/api/v1/uporabniki/read_one_email.php'  . '?email=' . $email, "GET", "");
+            //$berljiviPodatki = json_encode($uporabnik);
+            $decodiraniPodatki = json_decode($uporabnik,true);
+
+           // var_dump(count($decodiraniPodatki)); die();
+
 
             # Check if uporabnik exists
-            if($uporabnik == null) {
-                echo "<div class=\"alert alert-danger errorImg\">
+            if(count($decodiraniPodatki)==1) {
+                echo "<div class=\"alert alert-danger errorImg\" style=\" position: relative; margin-left : auto; margin-right: auto\">
                                         <strong>Napaka!</strong> Uporabnik ne obstaja
                                     </div>";
             } else {
@@ -44,7 +47,7 @@ class LoginController {
                 $verifyPassword = ($expectedPassword == $hashedPassword) ? true : false;
 
                 if(!$verifyPassword) {
-                    echo "<div class=\"alert alert-danger errorImg\">
+                    echo "<div class=\"alert alert-danger errorImg \" style=\" position: relative; margin-left : auto; margin-right: auto\" >
                                         <strong>Napaka!</strong> Napačen elektronski naslov ali geslo
                                     </div>";
                 }
@@ -112,7 +115,9 @@ class LoginController {
                     # Logged in
                     ViewHelper::redirect('/');
                 } else {
-                  var_dump("NISTE POTRDILI MAILA!!");
+                  echo "<div class=\"alert alert-warning errorImg \" style=\" position: relative; margin-left : auto; margin-right: auto\" >
+                                        <strong>Napaka!</strong> Niste potrdili svojega maila!
+                                    </div>";
                 }
             }
         }
