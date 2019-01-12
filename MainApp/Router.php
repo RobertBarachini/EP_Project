@@ -11,6 +11,7 @@ require_once "app/controllers/ProfilController.php";
 require_once "app/controllers/LogoutController.php";
 require_once "app/controllers/AdminController.php";
 require_once "app/controllers/DeleteController.php";
+require_once "app/controllers/NarocilaController.php";
 
 
 class Router
@@ -128,6 +129,18 @@ class Router
       },
       "/^artikel\/(\d+)\/delete$/" => function($method, $id) {
         DeleteController::deleteArtikel($method, $id);
+      },
+      "/^prodajalec\/narocila$/" => function() {
+        NarocilaController::showNarocila();
+      },
+      "/^narocila\/(\d+)\/accept$/" => function($method, $id) {
+        NarocilaController::acceptNarocilo($method, $id);
+      },
+      "/^narocila\/(\d+)\/decline$/" => function($method, $id) {
+        NarocilaController::declineNarocilo($method, $id);
+      },
+      "/^prodajalec\/narocila\/(\d+)$/" => function($method, $id) {
+        NarocilaController::showNarociloDetails($method, $id);
       },
       "/^druga$/" => function() {
         echo "druga";

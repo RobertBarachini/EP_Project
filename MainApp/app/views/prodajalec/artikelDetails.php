@@ -17,11 +17,11 @@ if(isset($_COOKIE['cookie'])) {
                             <form action=\""; echo ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $art['idartikla'] . DS . 'edit'; echo"\">
                                 <button class=\"editProfil\">Uredi podatke</button>
                             </form>
-                            <form action=\""; echo ROOT_URL . 'prodajalec'; echo "\">
-                                <button class=\"editProfil\">Nazaj na konzolo</button>
-                            </form>
                             <form action=\""; echo ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $art['idartikla'] . DS . 'imageAdd'; echo "\">
                                 <button class=\"editProfil\"> Dodaj sliko </button>
+                            </form>
+                            <form action=\""; echo ROOT_URL . 'prodajalec'; echo "\">
+                                <button class=\"editProfil\" > Nazaj na konzolo </button>
                             </form>
                             <div class=\"row\">
                                 <div class=\"col-md-4\">
