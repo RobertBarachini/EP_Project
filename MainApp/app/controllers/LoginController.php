@@ -15,9 +15,13 @@ class LoginController {
     }
 
     public static function login($email, $geslo) {
+        error_reporting(E_ALL & ~E_DEPRECATED);
+
         # Check if there are empty fields
         if(empty($email) || empty($geslo)) {
-            ViewHelper::redirect('/login?login=empty');
+            echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Polje geslo ali elektronski naslov je prazno
+                                    </div>";
         } else {
             # Search for uporabnik by email
             $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_email.php'  . '?email=' . $email, "GET", "");
@@ -26,7 +30,9 @@ class LoginController {
 
             # Check if uporabnik exists
             if($uporabnik == null) {
-                ViewHelper::redirect('/login?login=unknownUser');
+                echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Uporabnik ne obstaja
+                                    </div>";
             } else {
                 # Check if password is correct
                 $salt = $decodiraniPodatki['sol'];
@@ -38,7 +44,9 @@ class LoginController {
                 $verifyPassword = ($expectedPassword == $hashedPassword) ? true : false;
 
                 if(!$verifyPassword) {
-                    ViewHelper::redirect('/login?login=wrongPasswordOrEmail');
+                    echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Napačen elektronski naslov ali geslo
+                                    </div>";
                 } elseif($verifyPassword) {
 
                     # Password for user is correct give him cookie

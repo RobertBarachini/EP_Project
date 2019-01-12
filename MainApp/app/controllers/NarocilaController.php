@@ -10,6 +10,8 @@ require_once "ViewHelper.php";
 require_once "requestUtil.php";
 require_once "app/controllers/GetDataController.php";
 
+error_reporting(E_ALL & ~E_WARNING);
+
 class NarocilaController {
 
     public static function showNarocila() {

@@ -10,35 +10,48 @@ if(isset($_COOKIE['cookie'])) {
                         <div class=\"adminDiv\">
                             <h1 class=\"prodajalecHeader\">Naročila</h1>
                             <div class=\"col-md-12\">";
-        foreach ($naroc as $key => $narocilo):
-            if($narocilo['faza'] != 'N') {
-                echo "<a href=\""; echo ROOT_URL . 'prodajalec'. DS . 'narocila'. DS . $narocilo['idnarocila']; echo "\" class=\"btnP\">
-                                        <div class=\"prodajalecCard\">
-                                            <p>"; echo "Narocilo "; echo $narocilo['idnarocila']; echo " ("; echo $narocilo['datzac_kosarice']; echo ")";
+        if($naroc != null) {
+            $bool = false;
+            foreach ($naroc as $key => $narocilo):
+                if($narocilo['faza'] != 'N') {
+                    $bool = true;
+                    echo "<a href=\""; echo ROOT_URL . 'prodajalec'. DS . 'narocila'. DS . $narocilo['idnarocila']; echo "\" class=\"btnP\">
+                                            <div class=\"prodajalecCard\">
+                                                <p>"; echo "Narocilo "; echo $narocilo['idnarocila']; echo " ("; echo $narocilo['datzac_kosarice']; echo ")";
 
-                if($narocilo['faza'] == 'P') {
-                    echo " <span style='color: green'>Potrjeno</span>";
-                    echo "<a href=\""; echo ROOT_URL . 'narocila' . DS . $narocilo['idnarocila']. DS . 'storniraj'; echo "\" class='storn'>
-                                            <i class='fa fa-undo trash'></i>
-                                       </a >
-                                    </p>    
-                                    </div>
-                                </a>";
-                } else if($narocilo['faza'] == 'S') {
-                    echo " <span style='color: orange'>Stornirano</span>";
-                    echo "
-                                    </p>    
-                                    </div>
-                                </a>";
-                } else if($narocilo['faza'] == 'Z') {
-                    echo " <span style='color: red'>Zavrnjeno</span>";
-                    echo "
-                                    </p>    
-                                    </div>
-                                </a>";
+                    if($narocilo['faza'] == 'P') {
+                        echo " <span style='color: green'>Potrjeno</span>";
+                        echo "<a href=\""; echo ROOT_URL . 'narocila' . DS . $narocilo['idnarocila']. DS . 'storniraj'; echo "\" class='storn'>
+                                                <i class='fa fa-undo trash'></i>
+                                           </a >
+                                        </p>    
+                                        </div>
+                                    </a>";
+                    } else if($narocilo['faza'] == 'S') {
+                        echo " <span style='color: orange'>Stornirano</span>";
+                        echo "
+                                        </p>    
+                                        </div>
+                                    </a>";
+                    } else if($narocilo['faza'] == 'Z') {
+                        echo " <span style='color: red'>Zavrnjeno</span>";
+                        echo "
+                                        </p>    
+                                        </div>
+                                    </a>";
+                    }
                 }
-            }
-        endforeach;
+            endforeach;
+                if(!$bool) {
+                    echo "<div class=\"alert alert-primary\">
+                                        <strong>Zgodovina naročil je prazna!</strong>
+                                    </div>";
+                }
+        } else {
+            echo "<div class=\"alert alert-primary\">
+                    <strong>Zgodovina naročil je prazna!</strong>
+                </div>";
+        }
         echo "</div>
                         </div>
                     </div>

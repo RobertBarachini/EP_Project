@@ -16,8 +16,8 @@ class RegisterController
     echo ViewHelper::render("app/views/register/register.php", []);
   }
 
-  public static function preveriVnoseInIzvediRegistracijo($POST)
-  {
+  public static function preveriVnoseInIzvediRegistracijo($POST) {
+      error_reporting(E_ALL & ~E_DEPRECATED);
 
     $ime = $POST['ime'];
     $priimek = $POST['priimek'];
@@ -39,16 +39,22 @@ class RegisterController
     $responseFromGoogle = json_decode($responseFromGoogle, true)['success'];
     # Check if there are empty fields
     if (empty($ime) || empty($priimek) || empty($ulica)
-      || empty($kraj) || empty($posta) || empty($drzava) || empty($geslo)) {
-      ViewHelper::redirect('/register?register=empty');
+      || empty($kraj) || empty($posta) || empty($drzava) || empty($geslo) || empty($email)) {
+        echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Izpolnite vsa polja!
+                                    </div>";
     } else {
       # Check if first and lastname are in correct form
       if (!preg_match("/^[a-zA-Z]*$/", $ime) || !preg_match("/^[a-zA-Z]*$/", $priimek)) {
-        ViewHelper::redirect('/register?register=invalid');
+          echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Ime in priimek lahko vsebujeta samo črke!
+                                    </div>";
       } else {
         #Check if email is valid
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-          ViewHelper::redirect('/register?register=email');
+            echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Elektronski naslov mora biti pravilne oblike (_@_._) 
+                                    </div>";
         } else if ($responseFromGoogle) {
           $salt = RegisterController::generateRandomString();
           $hpwd = password_hash($geslo, PASSWORD_DEFAULT, ['salt' => $salt]);
@@ -71,8 +77,18 @@ class RegisterController
             "idspr" => 0,
             "status" => 0,
           );
-          requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php", "POST", $uporabnik_arr);
-          ViewHelper::redirect('/login');
+          $temp = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php", "POST", $uporabnik_arr);
+
+            if($temp != "{\"id\":-1,\"message\":\"Unable to create object.\"}") {
+                echo "<div class=\"alert alert-success errorImg\">
+                                        <strong>Registracija uspešna!</strong> 
+                                        <a href='"; echo ROOT_URL . 'login'; echo "'>Prijavite se</a> 
+                                    </div>";
+            } else {
+                echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong>
+                                    </div>";
+            }
         } else {
           var_dump("Si robot!"); //treba malo olepšat stvari ma zaenkrat najj bo tako
         }
