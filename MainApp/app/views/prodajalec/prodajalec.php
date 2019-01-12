@@ -66,8 +66,13 @@ if(isset($_COOKIE['cookie'])) {
                                 </div>
                             </a>
                             <a href=\"/prodajalec/narocila\" class=\"btnP\">
-                                <div class=\"addArtikel\">
-                                    <b>Pregled naročil</b>
+                                <div class=\"addArtikel special\">
+                                    <b>Neobdelana naročila</b>
+                                </div>
+                            </a>
+                            <a href=\"/prodajalec/narocila/zgodovina\" class=\"btnP\">
+                                <div class=\"addArtikel special2\">
+                                    <b>Zgodovina naročil</b>
                                 </div>
                             </a>
                         </div>

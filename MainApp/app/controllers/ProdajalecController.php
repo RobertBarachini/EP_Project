@@ -219,7 +219,7 @@ class ProdajalecController {
         );
 
         requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/artikli/update.php', "PUT", $artikel_arr);
-        //ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $id);
+        ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $id);
     }
 
     public static function showImageAdd($method, $id) {

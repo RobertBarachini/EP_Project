@@ -139,7 +139,16 @@ class Router
       "/^narocila\/(\d+)\/decline$/" => function($method, $id) {
         NarocilaController::declineNarocilo($method, $id);
       },
+      "/^narocila\/(\d+)\/storniraj/" => function($method, $id) {
+        NarocilaController::stornirajNarocilo($method, $id);
+      },
       "/^prodajalec\/narocila\/(\d+)$/" => function($method, $id) {
+        NarocilaController::showNarociloDetails($method, $id);
+      },
+      "/^prodajalec\/narocila\/zgodovina$/" => function() {
+        NarocilaController::showZgo();
+      },
+      "/^prodajalec\/narocila\/zgodovina\/(\d+)$/" => function($method, $id) {
         NarocilaController::showNarociloDetails($method, $id);
       },
       "/^druga$/" => function() {

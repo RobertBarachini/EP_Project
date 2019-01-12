@@ -18,10 +18,9 @@ if(isset($_COOKIE['cookie'])) {
                                     <p><b>Kraj: </b>"; echo $uporabnik['kraj']; echo "</p>
                                     <p><b>Pošta: </b>"; echo $uporabnik['posta']; echo "</p>
                                     <p><b>Država: </b>"; echo $uporabnik['drzava']; echo "</p>
-
-                                    <a href=\"/prodajalec/narocila\" class=\"btnP\">
+                                    <a href=\""; echo $_SERVER['HTTP_REFERER']; echo "\" class=\"btnP\">
                                         <div class=\"addCustomer\">
-                                            <b>Nazaj na naročila</b>
+                                            <b>Nazaj</b>
                                         </div>
                                     </a>
                                 </div>
