@@ -649,6 +649,26 @@ var {
     color: white;
 }
 
+.delete {
+    float: right;
+    border: solid red;
+    height: 40px;
+    width: 40px;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.trash {
+    margin-left: 0px;
+    font-size: 30px;
+    height: 30px;
+    vertical-align: middle;
+    color: white;
+    margin-top: -2px;
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

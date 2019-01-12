@@ -6,6 +6,11 @@ if(isset($_COOKIE['cookie'])) {
 
     if($uporabnik['idvloge'] == 'P') {
             echo "<div class=\"container\">
+                    <script>
+                        $(document).ready(function () {
+                            $('.slider').bxSlider();
+                        });
+                    </script>
                     <div class=\"album py-5 bg-light\">
                         <div class=\"artikelPage-padd\">
                             <h1>Podrobni podatki artikla</h1>
@@ -15,20 +20,20 @@ if(isset($_COOKIE['cookie'])) {
                             <form action=\""; echo ROOT_URL . 'prodajalec'; echo "\">
                                 <button class=\"editProfil\">Nazaj na konzolo</button>
                             </form>
+                            <form action=\""; echo ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $art['idartikla'] . DS . 'imageAdd'; echo "\">
+                                <button class=\"editProfil\"> Dodaj sliko </button>
+                            </form>
                             <div class=\"row\">
                                 <div class=\"col-md-4\">
                                     <div class=\"card mb-6 shadow-sm \">
                                         <div class=\"slider\">";
-
                                             foreach ($slike as $key => $pic):
-                                                $length = sizeof($pic);
-                                                error_reporting(E_ALL & ~E_WARNING);
-                                                for ($i = 0; $i < $length; $i++) {
-                                                    if($pic[$i]['idartikla'] == $art['idartikla']) {
-                                                        echo "<div>
-                                                                <img class='card-img-top' src='../../images/"; echo $pic[$i]['link']; echo "' alt='Alt for picture'>
-                                                            </div></br>";
-                                                    }
+                                                if($pic['idartikla'] == $art['idartikla']) {
+                                                    echo "<div>
+                                                            <img class=\"card-img-top\"
+                                                            src=\"../../images/"; echo $pic['link']; echo "\"
+                                                            alt=\"Alt for picture\">
+                                                        </div>";
                                                 }
                                             endforeach;
                                         echo "</div>

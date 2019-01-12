@@ -8,16 +8,15 @@ if(isset($_COOKIE['cookie'])) {
         echo "<div class=\"container\">
                 <div class=\"nav-login\">
                     <form name=\"editForm\" class=\"registrationAndLoginForm\"
-                          method=\"post\">
-                        <h1 class=\"editHeader\">Spremeni podatke artikla</h1>
-                        <label>Naziv: </label></br>
-                        <input type=\"text\" name=\"naziv\" value=\""; echo $arti['naziv']; echo "\"></br>
+                          method=\"post\" enctype=\"multipart/form-data\">
+                        <h1 class=\"editHeader\">Dodaj sliko artiklu</h1>
+                        <label>Izberi sliko: </label></br>
+                        <input type=\"file\" name=\"image\"></br>
             
-                        <label>Opis: </label></br>
-                        <textarea type=\"text\" name=\"opis\" class='txtArea' rows='10' cols='56'>"; echo $arti['opis']; echo"</textarea></br>
+                        <label>Ime slike: </label></br>
+                        <input type=\"text\" name=\"ime\"></br >
             
-                        <label>Cena: </label></br>
-                        <input type=\"text\" name=\"cena\" value=\""; echo $arti['cena']; echo "\"></br>
+                        <input type=\"text\" name=\"id\" hidden='true' value='"; echo $artik['idartikla']; echo "'></br>
             
                         <button type=\"submit\" class=\"editButtonShrani\" name=\"submitArtikelEdit\">Shrani</button>
                         <button type=\"submit\" class=\"editButtonNazaj\" name=\"submitArtikelBack\">Nazaj</button>
@@ -26,11 +25,11 @@ if(isset($_COOKIE['cookie'])) {
               </div>";
 
         if(isset($_POST['submitArtikelEdit'])) {
-            ProdajalecController::editArtikelDetails($_POST, $arti['idartikla'], $_FILES);
+            ProdajalecController::addImage($_POST, $_FILES, $artik);
         }
 
         if(isset($_POST['submitArtikelBack'])) {
-            ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $arti['idartikla'] );
+            ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $artik['idartikla'] );
         }
     } else {
         echo "<h3 style='margin-left: 20px' >Za dostop do konzole prodajalca, je potrebna <a href='/login'>prijava</a> z računom prodajalca!</h3>";

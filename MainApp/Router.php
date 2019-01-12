@@ -10,6 +10,7 @@ require_once "app/controllers/ProdajalecController.php";
 require_once "app/controllers/ProfilController.php";
 require_once "app/controllers/LogoutController.php";
 require_once "app/controllers/AdminController.php";
+require_once "app/controllers/DeleteController.php";
 
 
 class Router
@@ -107,7 +108,10 @@ class Router
       "/^prodajalec\/artikel\/add$/" => function() {
         ProdajalecController::showAddArtikel();
       },
-      "/prodajalec\/customer\/(\d+)$/" => function($method, $id) {
+      "/^prodajalec\/artikel\/(\d+)\/imageAdd$/" => function($method, $id) {
+        ProdajalecController::showImageAdd($method, $id);
+      },
+      "/^prodajalec\/customer\/(\d+)$/" => function($method, $id) {
         ProdajalecController::showCustomerDetails($method, $id);
       },
       "/^prodajalec\/customer\/(\d+)\/edit$/" => function($method, $id) {
@@ -118,6 +122,12 @@ class Router
       },
       "/^prodajalec\/artikel\/(\d+)\/edit$/" => function($method, $id) {
         ProdajalecController::showEditArtikelDetails($method, $id);
+      },
+      "/^user\/(\d+)\/delete$/" => function($method, $id) {
+        DeleteController::deleteUser($method, $id);
+      },
+      "/^artikel\/(\d+)\/delete$/" => function($method, $id) {
+        DeleteController::deleteArtikel($method, $id);
       },
       "/^druga$/" => function() {
         echo "druga";
