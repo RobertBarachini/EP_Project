@@ -2,6 +2,9 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond $1 !(config|core|css|js|fonts|images|robots\.txt)
-
+RewriteCond $1 !(config|core|css|js|fonts|images)
 RewriteRule ^(.*) index.php/$1 [L,PT,QSA]
+
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} /(admin|prodajalec|login|register|profil)
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]

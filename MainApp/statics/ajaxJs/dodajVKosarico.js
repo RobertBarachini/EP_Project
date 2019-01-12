@@ -3,7 +3,7 @@ function dodajVKosarico(iduporabnika, idartikla) {
     console.log(iduporabnika, idartikla);
     var request = new XMLHttpRequest();
 
-    request.open('GET', "http://localhost/api/v1/narocila/read.php", true);
+    request.open('GET', "https://localhost/api/v1/narocila/read.php", true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send();
 
@@ -18,7 +18,7 @@ function dodajVKosarico(iduporabnika, idartikla) {
 
             telo = JSON.stringify(telo);
             var req = new XMLHttpRequest();
-            req.open("POST", "http://localhost/api/v1/narocila/create.php", true);
+            req.open("POST", "https://localhost/api/v1/narocila/create.php", true);
             req.setRequestHeader('Content-Type', 'application/json');
             req.send(telo);
 
@@ -33,7 +33,7 @@ function dodajVKosarico(iduporabnika, idartikla) {
                 };
                 telo_artikli = JSON.stringify(telo_artikli);
                 var reqq = new XMLHttpRequest();
-                reqq.open("POST", "http://localhost/api/v1/narocila_artikli/create.php", true);
+                reqq.open("POST", "https://localhost/api/v1/narocila_artikli/create.php", true);
                 reqq.setRequestHeader('Content-Type', 'application/json');
                 reqq.send(telo_artikli);
 
@@ -68,7 +68,7 @@ function dodajVKosarico(iduporabnika, idartikla) {
                     };
                     telo_artikli = JSON.stringify(telo_artikli);
                     var reqq = new XMLHttpRequest();
-                    reqq.open("POST", "http://localhost/api/v1/narocila_artikli/create.php", true);
+                    reqq.open("POST", "https://localhost/api/v1/narocila_artikli/create.php", true);
                     reqq.setRequestHeader('Content-Type', 'application/json');
                     reqq.send(telo_artikli);
 
@@ -96,7 +96,7 @@ function dodajVKosarico(iduporabnika, idartikla) {
 
                 telo = JSON.stringify(telo);
                 req = new XMLHttpRequest();
-                req.open("POST", "http://localhost/api/v1/narocila/create.php", true);
+                req.open("POST", "https://localhost/api/v1/narocila/create.php", true);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.send(telo);
 
@@ -111,7 +111,7 @@ function dodajVKosarico(iduporabnika, idartikla) {
                     };
                     telo_artikli = JSON.stringify(telo_artikli);
                     var reqq = new XMLHttpRequest();
-                    reqq.open("POST", "http://localhost/api/v1/narocila_artikli/create.php", true);
+                    reqq.open("POST", "https://localhost/api/v1/narocila_artikli/create.php", true);
                     reqq.setRequestHeader('Content-Type', 'application/json');
                     reqq.send(telo_artikli);
 

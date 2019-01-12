@@ -39,7 +39,8 @@ class LoginController {
 
                 if(!$verifyPassword) {
                     ViewHelper::redirect('/login?login=wrongPasswordOrEmail');
-                } elseif($verifyPassword) {
+                } elseif($verifyPassword)
+                if($decodiraniPodatki['indmailpotrjen'] == 0){
 
                     # Password for user is correct give him cookie
                     if($decodiraniPodatki['piskotek'] == null) {
@@ -101,6 +102,8 @@ class LoginController {
 
                     # Logged in
                     ViewHelper::redirect('/');
+                } else {
+                  var_dump("NISTE POTRDILI MAILA!!");
                 }
             }
         }

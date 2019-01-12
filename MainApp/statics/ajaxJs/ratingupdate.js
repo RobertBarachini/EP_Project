@@ -22,7 +22,7 @@ function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, st
 
     var b = JSON.stringify(body);
 
-    request.open('PUT',"http://localhost/api/v1/artikli/update.php",true);
+    request.open('PUT',"https://localhost/api/v1/artikli/update.php",true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(b);
 
@@ -41,7 +41,7 @@ function updateRating(novaOcena,idartikla, naziv, opis, cena, povprecnaOcena, st
             }
 
             var telo = JSON.stringify(telo);
-            req.open('POST',"http://localhost/api/v1/artikli_ocene/create.php",true)
+            req.open('POST',"https://localhost/api/v1/artikli_ocene/create.php",true)
             req.setRequestHeader('Content-Type', 'application/json');
             req.send(telo);
 

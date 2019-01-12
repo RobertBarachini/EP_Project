@@ -17,7 +17,7 @@ function checkout(idnarocila, iduporabnika) {
 
     body = JSON.stringify(body);
 
-    request.open('PUT', "http://localhost/api/v1/narocila/update.php", true);
+    request.open('PUT', "https://localhost/api/v1/narocila/update.php", true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(body);
 

@@ -5,8 +5,12 @@
  * Date: 4.1.2019
  * Time: 08:33
  */
+
 require_once "ViewHelper.php";
 require_once "requestUtil.php";
+require_once "emailService/PHPMailerAutoload.php";
+
+
 
 class RegisterController
 {
@@ -58,7 +62,7 @@ class RegisterController
             "idvloge" => "S",
             "idcert" => null,
             "email" => "$email",
-            "indmailpotrjen" => 0,
+            "indmailpotrjen" => 1,
             "geslo" => "$hashedPassword",
             "sol" => "$salt",
             "piskotek" => null,
@@ -71,7 +75,19 @@ class RegisterController
             "idspr" => 0,
             "status" => 0,
           );
-          requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php", "POST", $uporabnik_arr);
+          $uporabnikResponse = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php", "POST", $uporabnik_arr);
+          $uporabnikResponse = json_decode($uporabnikResponse,true)['id'];
+          // pripravi Podatke za posiljanje maila
+          $hashiranaVrednost = hash('sha256', $email);
+          $potrditevBody = array(
+              "iduporabnika" => $uporabnikResponse,
+	            "idspr" => $hashiranaVrednost
+          );
+
+          requestUtil::sendRequestPOST("http://localhost/api/v1/uporabniki_potrditve/create.php", "POST", $potrditevBody);
+          $urlString = "https://localhost/verify/$uporabnikResponse/$hashiranaVrednost";
+
+          self::emailUtil($email, $urlString);
           ViewHelper::redirect('/login');
         } else {
           var_dump("Si robot!"); //treba malo olepšat stvari ma zaenkrat najj bo tako
@@ -90,5 +106,45 @@ class RegisterController
       $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+  }
+
+  public static function emailUtil($sendToEmail, $urlZaBody){
+    // Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+
+
+    //Load Composer's autoloader
+
+
+    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+    try {
+      //Server settings
+      //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+      $mail->isSMTP();                                      // Set mailer to use SMTP
+      $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+      $mail->SMTPAuth = true;                               // Enable SMTP authentication
+      $mail->Username = 'eptrgovina18@gmail.com';                 // SMTP username
+      $mail->Password = 'EPtrgovina2018';                           // SMTP password
+      $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+      $mail->Port = 587;                                    // TCP port to connect to
+
+      //Recipients
+      $mail->setFrom('eptrgovina18@gmail.com', 'TopShopBrt');
+      $mail->addAddress($sendToEmail, 'Uporabnik');     // Add a recipient
+
+      $mail->addReplyTo('eptrgovina18@gmail.com');
+
+
+      //Content
+      $mail->isHTML(true);                                  // Set email format to HTML
+      $mail->Subject = 'Verificiraj svoj Email!';
+      $mail->Body    = 'Kliknite na link: ' . $urlZaBody . ' za aktivacijo racuna.';
+      $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+      $mail->send();
+      echo 'Message has been sent';
+    } catch (Exception $e) {
+      echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+    }
   }
 }

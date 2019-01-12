@@ -28,7 +28,7 @@ function updatePrice(naziv, idnarocila_artikli, idnarocila, idartikla) {
 
     body = JSON.stringify(body);
 
-    request.open('PUT',"http://localhost/api/v1/narocila_artikli/update.php",true);
+    request.open('PUT',"https://localhost/api/v1/narocila_artikli/update.php",true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(body);
 
@@ -57,7 +57,7 @@ function removeKebab(idArticla, idnarocila_artikla) {
     body = JSON.stringify(body);
     console.log(body);
 
-    request.open('DELETE',"http://localhost/api/v1/narocila_artikli/delete.php",true);
+    request.open('DELETE',"https://localhost/api/v1/narocila_artikli/delete.php",true);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(body);
 

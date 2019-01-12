@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS trgovina.uporabniki_potrditve (
 	datpotrditve timestamp DEFAULT 0 COMMENT 'datum potrditve uporabnika',
 	status TINYINT NOT NULL DEFAULT 0 COMMENT '0 - veljaven zapis, 9 - neveljaven zapis',
 	datspr timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'datum in ura zadnje spremembe  zapisa',
-	idspr INT COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
+	idspr VARCHAR(300) COMMENT 'id uporabnika, ki je naredil spremembo zapisa',
   PRIMARY KEY (idpotrditve)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;	 
 

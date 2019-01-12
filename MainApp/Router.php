@@ -12,6 +12,7 @@ require_once "app/controllers/LogoutController.php";
 require_once "app/controllers/AdminController.php";
 require_once "app/controllers/DeleteController.php";
 require_once "app/controllers/NarocilaController.php";
+require_once "app/controllers/VerifyController.php";
 
 
 class Router
@@ -153,6 +154,9 @@ class Router
       },
       "/^uporabniki\/(\d+)\/narocila$/" => function($method, $id) {
         ProfilController::narocilaPage($id);
+      },
+      "/^verify\/(\d+)\/(.+)$/" => function($method, $id1,$id2) {
+        VerifyController::verifyPage($id1,$id2);
       },
       "/^druga$/" => function() {
         echo "druga";
