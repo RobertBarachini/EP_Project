@@ -34,8 +34,11 @@
             <input type="password" name="geslo" placeholder="*******"></br>
 
             <button type="submit" name="submit">Registracija</button></br>
-            Že imate račun? <a href="/login">Prijavite se</a>
+            <div class="g-recaptcha" data-sitekey="6LfwGokUAAAAAMWoquYRZyMr_dB-UIKi08IJhxD9"></div>
         </form>
+        <br> <br>
+        Že imate račun? <a href="/login">Prijavite se</a>
     </div>
 </div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <?php include_once('app/views/layouts/footer.php'); ?>
