@@ -119,6 +119,9 @@ class Router
       "/^prodajalec\/artikel\/(\d+)\/edit$/" => function($method, $id) {
         ProdajalecController::showEditArtikelDetails($method, $id);
       },
+      "/^uporabniki\/(\d+)\/narocila$/" => function($method, $id) {
+        ProfilController::narocilaPage($id);
+      },
       "/^druga$/" => function() {
         echo "druga";
       }

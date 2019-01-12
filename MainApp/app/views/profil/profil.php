@@ -20,6 +20,9 @@
                         <form action=\""; echo ROOT_URL . 'profil' . DS . 'edit' . DS . 'password'; echo "\">
                             <button class=\"editProfil\">Spremeni geslo</button>
                         </form>
+                        <form action=\""; echo ROOT_URL . 'uporabniki' . DS . $decodiraniPodatki['iduporabnika'] . DS . 'narocila'; echo "\">
+                            <button class=\"editProfil\">Naročila!</button>
+                        </form>
                         <div class=\"row\">
                             <div class=\"col-md-4\">
                                 <div class=\"card mb-6 shadow-sm\">
