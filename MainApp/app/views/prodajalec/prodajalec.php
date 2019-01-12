@@ -21,7 +21,11 @@ if(isset($_COOKIE['cookie'])) {
                                         echo "<a class='deactivate' href=\""; echo ROOT_URL . 'deactivate'. DS . 'customer' . DS . $uporabnik['iduporabnika']; echo"\">Aktiviran</a>";
                                     } else if($uporabnik['status'] == '5') {
                                         echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . 'customer' . DS . $uporabnik['iduporabnika']; echo"\">Deaktiviran</a>";
-                                    } echo "</p>
+                                    } echo "
+                                       <a href=\""; echo ROOT_URL . 'user' . DS . $uporabnik['iduporabnika']. DS . 'delete'; echo "\" class='delete'>
+                                            <i class=\"fa fa-trash trash\"></i>
+                                       </a>
+                                    </p>    
                                     </div>
                                 </a>
                             ";}
@@ -40,7 +44,11 @@ if(isset($_COOKIE['cookie'])) {
                                     echo "<a class='deactivate' href=\""; echo ROOT_URL . 'deactivate'. DS . 'artikel' . DS . $art['idartikla']; echo"\">Aktiviran</a>";
                                 } else if($art['status'] == '5') {
                                     echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . 'artikel' . DS . $art['idartikla']; echo"\">Deaktiviran</a>";
-                                } echo "</p>
+                                } echo "
+                                    <a href=\""; echo ROOT_URL . 'artikel' . DS . $art['idartikla']. DS . 'delete'; echo "\" class='delete' >
+                                            <i class=\"fa fa-trash trash\" ></i>
+                                       </a>
+                                </p>
                                 </div>
                                 </a>
                             ";
@@ -55,6 +63,16 @@ if(isset($_COOKIE['cookie'])) {
                             <a href=\"/prodajalec/artikel/add\" class=\"btnP\">
                                 <div class=\"addArtikel\">
                                     <b>Dodaj nov artikel</b>
+                                </div>
+                            </a>
+                            <a href=\"/prodajalec/narocila\" class=\"btnP\">
+                                <div class=\"addArtikel special\">
+                                    <b>Neobdelana naročila</b>
+                                </div>
+                            </a>
+                            <a href=\"/prodajalec/narocila/zgodovina\" class=\"btnP\">
+                                <div class=\"addArtikel special2\">
+                                    <b>Zgodovina naročil</b>
                                 </div>
                             </a>
                         </div>

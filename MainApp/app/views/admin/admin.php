@@ -19,7 +19,11 @@
                                                         echo "<a class='deactivate' href=\""; echo ROOT_URL . 'deactivate'. DS . $uporabnik['iduporabnika']; echo"\">Aktiviran</a>";
                                                     } else if($uporabnik['status'] == '5') {
                                                         echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . $uporabnik['iduporabnika']; echo"\">Deaktiviran</a>";
-                                                    } echo "</p>
+                                                    } echo "
+                                                        <a href=\""; echo ROOT_URL . 'user' . DS . $uporabnik['iduporabnika']. DS . 'delete'; echo "\" class='delete'>
+                                                            <i class=\"fa fa-trash trash\" ></i>
+                                                       </a>
+                                                </p>
                                                 </div>
                                             </a>
                                       ";}

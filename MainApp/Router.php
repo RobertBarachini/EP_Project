@@ -10,6 +10,8 @@ require_once "app/controllers/ProdajalecController.php";
 require_once "app/controllers/ProfilController.php";
 require_once "app/controllers/LogoutController.php";
 require_once "app/controllers/AdminController.php";
+require_once "app/controllers/DeleteController.php";
+require_once "app/controllers/NarocilaController.php";
 
 
 class Router
@@ -107,7 +109,10 @@ class Router
       "/^prodajalec\/artikel\/add$/" => function() {
         ProdajalecController::showAddArtikel();
       },
-      "/prodajalec\/customer\/(\d+)$/" => function($method, $id) {
+      "/^prodajalec\/artikel\/(\d+)\/imageAdd$/" => function($method, $id) {
+        ProdajalecController::showImageAdd($method, $id);
+      },
+      "/^prodajalec\/customer\/(\d+)$/" => function($method, $id) {
         ProdajalecController::showCustomerDetails($method, $id);
       },
       "/^prodajalec\/customer\/(\d+)\/edit$/" => function($method, $id) {
@@ -118,6 +123,33 @@ class Router
       },
       "/^prodajalec\/artikel\/(\d+)\/edit$/" => function($method, $id) {
         ProdajalecController::showEditArtikelDetails($method, $id);
+      },
+      "/^user\/(\d+)\/delete$/" => function($method, $id) {
+        DeleteController::deleteUser($method, $id);
+      },
+      "/^artikel\/(\d+)\/delete$/" => function($method, $id) {
+        DeleteController::deleteArtikel($method, $id);
+      },
+      "/^prodajalec\/narocila$/" => function() {
+        NarocilaController::showNarocila();
+      },
+      "/^narocila\/(\d+)\/accept$/" => function($method, $id) {
+        NarocilaController::acceptNarocilo($method, $id);
+      },
+      "/^narocila\/(\d+)\/decline$/" => function($method, $id) {
+        NarocilaController::declineNarocilo($method, $id);
+      },
+      "/^narocila\/(\d+)\/storniraj/" => function($method, $id) {
+        NarocilaController::stornirajNarocilo($method, $id);
+      },
+      "/^prodajalec\/narocila\/(\d+)$/" => function($method, $id) {
+        NarocilaController::showNarociloDetails($method, $id);
+      },
+      "/^prodajalec\/narocila\/zgodovina$/" => function() {
+        NarocilaController::showZgo();
+      },
+      "/^prodajalec\/narocila\/zgodovina\/(\d+)$/" => function($method, $id) {
+        NarocilaController::showNarociloDetails($method, $id);
       },
       "/^uporabniki\/(\d+)\/narocila$/" => function($method, $id) {
         ProfilController::narocilaPage($id);

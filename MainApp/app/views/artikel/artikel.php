@@ -46,15 +46,15 @@
                           <br>
                           <div class=\"stars\">
                               <form action=\"\">
-                                  <input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" onchange=\"updateRating(5,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika}) \"/>
+                                  <input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" onchange=\"updateRating(5,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika}, {$artikel['status']}) \"/>
                                   <label class=\"star star-5\" for=\"star-5\"></label>
-                                  <input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\" onchange=\"updateRating(4,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika})\"/>
+                                  <input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\" onchange=\"updateRating(4,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika}, {$artikel['status']})\"/>
                                   <label class=\"star star-4\" for=\"star-4\"></label>
-                                  <input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\" onchange=\"updateRating(3,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika})\"/>
+                                  <input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\" onchange=\"updateRating(3,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika}, {$artikel['status']})\"/>
                                   <label class=\"star star-3\" for=\"star-3\"></label>
-                                  <input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\" onchange=\"updateRating(2,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika})\"/>
+                                  <input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\" onchange=\"updateRating(2,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika}, {$artikel['status']})\"/>
                                   <label class=\"star star-2\" for=\"star-2\"></label>
-                                  <input class=\"star star-1\" id=\"star-1\" type=\"radio\" name=\"star\" onchange=\"updateRating(1,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika})\"/>
+                                  <input class=\"star star-1\" id=\"star-1\" type=\"radio\" name=\"star\" onchange=\"updateRating(1,{$artikel['idartikla']},'{$artikel['naziv']}','{$artikel['opis']}', {$artikel['cena']}, {$artikel['povprecna_ocena']}, {$artikel['st_ocen']}, {$iduporabnika}, {$artikel['status']})\"/>
                                   <label class=\"star star-1\" for=\"star-1\"></label>
                               </form>
                           </div>
@@ -129,14 +129,26 @@
                     ";
 
                     } else {
-                      echo "
-                        <div>
-                        <button id='button' class=\" btn btn-large btn-danger\" onclick=\"dodajVKosarico({$iduporabnika},{$artikel['idartikla']})\">
-                            <i class=\"fa fa-shopping-cart\"></i> Dodaj v košarico
-                        </button>
-                        </div>    
-                        </p>       
-                    ";
+                        if($artikel['status'] == '5') {
+                            echo "
+                                <div>
+                                <button id='button' class=\" btn btn-large btn-danger\" disabled=\"true\" onclick=\"dodajVKosarico({$iduporabnika},{$artikel['idartikla']})\">
+                                    <i class=\"fa fa-shopping-cart\"></i> Dodaj v košarico
+                                </button>
+                                </div>    
+                                </p>       
+                            ";
+                        } else {
+                            echo "
+                                <div>
+                                <button id='button' class=\" btn btn-large btn-danger\"  onclick=\"dodajVKosarico({$iduporabnika},{$artikel['idartikla']})\">
+                                    <i class=\"fa fa-shopping-cart\"></i> Dodaj v košarico
+                                </button>
+                                </div>    
+                                </p>       
+                            ";
+                        }
+
                     }
                   }
                   ?>

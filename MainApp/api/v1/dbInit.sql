@@ -275,6 +275,7 @@ INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('K', 'Košarica
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('N', 'Naročilo');
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('P', 'Poslano naročilo');
 INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('S', 'Stornirano naročilo');
+INSERT INTO `trgovina`.`narocila_faza` (`faza`, `naziv`) VALUES ('Z', 'Zavrnjeno naročilo');
 
 DROP TABLE IF EXISTS trgovina.narocila;
 
