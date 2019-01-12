@@ -28,21 +28,56 @@
                         </figure>
                     </td>
                     <td>
-                        <select name="selectCena" onchange="updatePrice()" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+
+                        <select id="<?= $art["naziv"] ?>"
+                                onchange="updatePrice('<?= $art['naziv'] ?>', <?= $podatkiZaNarocilo[$key]["idnarocila_artikli"] ?>, <?= $podatkiZaNarocilo[$key]["idnarocila"] ?>,<?= $podatkiZaNarocilo[$key]["idartikla"] ?>)"
+                                class="form-control">
+                          <?php
+                          if ($podatkiZaNarocilo[$key]["kolicina"] == 1) {
+                            echo "
+                                        <option selected>1</option>
+                                    ";
+                          } else echo " 
+                                    <option>1</option>
+                                ";
+
+                          if ($podatkiZaNarocilo[$key]["kolicina"] == 2) {
+                            echo "
+                                            <option selected>2</option>
+                                        ";
+                          } else echo " 
+                                        <option>2</option>
+                                    ";
+
+                          if ($podatkiZaNarocilo[$key]["kolicina"] == 3) {
+                            echo "
+                                <option selected>3</option>
+                                ";
+                          } else echo "
+                                <option>3</option>
+                                ";
+                          if ($podatkiZaNarocilo[$key]["kolicina"] == 4) {
+                            echo "
+                                <option selected>4</option>
+                                ";
+                          } else echo "
+                                <option>4</option>
+                                ";
+
+                          ?>
+
                         </select>
                     </td>
                     <td>
                         <div class="price-wrap">
-                            <var name="cenaSkupna" class="price"><?= $art['cena'] ?> EUR</var>
-                            <small name="cena" class="text-muted">(<?= $art['cena'] ?> EUR each)</small>
+                            <var id="cenaSkupna/<?= $art["naziv"] ?>" class="price"><?= $art['cena']*$podatkiZaNarocilo[$key]["kolicina"]?> EUR</var>
+                            <small id="cena/<?= $art["naziv"] ?>" class="text-muted">(<?= $art['cena'] ?> EUR each)
+                            </small>
                         </div> <!-- price-wrap .// -->
                     </td>
                     <td class="text-right">
-                        <button onclick="removeKebab(<?= $art["idartikla"] ?>,<?= $podatkiZaNarocilo[$key]["idnarocila_artikli"] ?> )" class="btn btn-outline-danger"> ×
+                        <button onclick="removeKebab(<?= $art["idartikla"] ?>,<?= $podatkiZaNarocilo[$key]["idnarocila_artikli"] ?> )"
+                                class="btn btn-outline-danger"> ×
                             Remove
                         </button>
                     </td>
@@ -52,7 +87,8 @@
         </table>
     </div> <!-- card.// -->
     <div class="pull-right">
-        <a href="/uporabniki/1/checkout/1" class="btn btn-outline-success " style="margin-top: 2%"> Checkout</a>
+        <a href="/uporabniki/<?= $uporab ?>/checkout/<?= $idNarocila ?>" class="btn btn-outline-success "
+           style="margin-top: 2%"> Checkout</a>
     </div>
 
 </div>

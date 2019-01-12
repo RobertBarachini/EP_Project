@@ -173,11 +173,12 @@ class ProdajalecController {
         $artikel = json_decode($berljiviPodatki, true);
 
         $artikli_slikeT = requestUtil::sendRequest('http://localhost/api/v1/artikli_slike/read.php', "GET", "");
-        $berljiviPodatki = json_encode($artikli_slikeT);
-        $artikel_slika = json_decode($berljiviPodatki, true);
+        $berljiviPodatki_slike = json_encode($artikli_slikeT);
+        $decodiraniPodatki_slike = json_decode($berljiviPodatki_slike, true);
+        $podatki = $decodiraniPodatki_slike['body'];
 
 
-        echo ViewHelper::render("app/views/prodajalec/artikelDetails.php", ["art"=>$artikel, "slike"=>$artikel_slika]);
+        echo ViewHelper::render("app/views/prodajalec/artikelDetails.php", ["art"=>$artikel, "slike"=>$podatki]);
     }
 
     public static function showEditArtikelDetails($method, $id) {
@@ -192,9 +193,6 @@ class ProdajalecController {
         $artikelT = requestUtil::sendRequest('http://localhost/api/v1/artikli/read_one.php' . '?id=' . $id, "GET", "");
         $berljiviPodatki = json_encode($artikelT);
         $artikel = json_decode($berljiviPodatki, true);
-
-        var_dump($POST);
-        var_dump($POST);
 
 
         $id = $artikel['idartikla'];
@@ -221,7 +219,42 @@ class ProdajalecController {
         );
 
         requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/artikli/update.php', "PUT", $artikel_arr);
-        ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $id);
+        //ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $id);
+    }
+
+    public static function showImageAdd($method, $id) {
+        $artikelT = requestUtil::sendRequest('http://localhost/api/v1/artikli/read_one.php' . '?id=' . $id, "GET", "");
+        $berljiviPodatki = json_encode($artikelT);
+        $artikel = json_decode($berljiviPodatki, true);
+
+        echo ViewHelper::render("app/views/prodajalec/addImage.php", ["artik"=>$artikel]);
+    }
+
+    public static function addImage($POST, $FILES) {
+        $image = $FILES['image']['name'];
+        $image_naziv = $_POST['ime'];
+        $image_idartikla = $POST['id'];
+        $target = "images/".basename($image);
+
+        if($image == null) {
+            #handle error
+        } else {
+            $slika_arr = array(
+                "idartikla" => "$image_idartikla",
+                "naziv"=> "$image_naziv",
+                "link"=>"$image",
+                "status"=>"0",
+                "idspr"=>"1"
+            );
+
+            requestUtil::sendRequestPOST('http://localhost/trgovina/api/v1/artikli_slike/create.php', "PUT", $slika_arr);
+            if (move_uploaded_file($FILES['image']['tmp_name'], $target)) {
+                $msg = "Image uploaded successfully";
+            }else{
+                $msg = "Failed to upload image";
+            }
+            ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $image_idartikla);
+        }
     }
 
     public static function deactivate($method, $id) {
