@@ -78,6 +78,7 @@ class ProfilController
 
   public static function changePassword($POST)
   {
+    error_reporting(E_ALL & ~E_DEPRECATED);
     # Get uporabnik by cookie value
     $uporabnik = requestUtil::sendRequest('http://localhost/trgovina/api/v1/uporabniki/read_one_piskotek.php' . '?piskotek=' . $_COOKIE['cookie'], "GET", "");
 
@@ -98,17 +99,23 @@ class ProfilController
           $hashedPassword = password_hash($hpwd . $salt, PASSWORD_DEFAULT, ['salt' => $salt]);
 
           self::updatePassword($decodiraniPodatki, $hashedPassword);
-          ViewHelper::redirect('/profil');
+
+            echo "<div class=\"alert alert-success errorImg\">
+                                        <strong>Geslo uspešno posodobljeno!</strong> 
+                                        Nazaj na <a href='"; echo ROOT_URL . 'profil'; echo "'>urejanje profila</a> 
+                                    </div>";
 
         } else {
-          #Handle exception -> new password doesn't match
+            echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Nova gesla se ne ujemata
+                                    </div>";
         }
       } else {
-        # Handle exception -> wrong old password
+          echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Napačno geslo
+                                    </div>";
       }
-
     }
-
   }
 
   public static function checkOldPassword($uporabnik, $geslo)
@@ -177,7 +184,6 @@ class ProfilController
       "status" => "$status",
     );
     requestUtil::sendRequestPUT('http://localhost/trgovina/api/v1/uporabniki/update.php', "PUT", $uporabnik_arr);
-    ViewHelper::redirect('/profil');
   }
 
   public static function narocilaPage($id)
