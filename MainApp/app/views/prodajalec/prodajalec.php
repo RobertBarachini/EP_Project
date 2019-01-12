@@ -10,7 +10,7 @@ if(isset($_COOKIE['cookie'])) {
                         <div class=\"adminDiv\">
                             <h1 class=\"prodajalecHeader\">Konzola prodajalca</h1>
                             <h3 class=\"prodajalecHeader\">Stranke</h3>
-                            <div class=\"col-md-12\">";
+                            <div class=\"col-md-12\" style='padding: 0px;'>";
                             foreach ($stranke as $key => $uporabnik):
                                 if($uporabnik['idvloge'] == 'S') {
                                     echo "<a href=\""; echo ROOT_URL . 'prodajalec'. DS . 'customer' .DS . $uporabnik['iduporabnika']; echo "\" class=\"btnP\">
@@ -22,9 +22,6 @@ if(isset($_COOKIE['cookie'])) {
                                     } else if($uporabnik['status'] == '5') {
                                         echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . 'customer' . DS . $uporabnik['iduporabnika']; echo"\">Deaktiviran</a>";
                                     } echo "
-                                       <a href=\""; echo ROOT_URL . 'user' . DS . $uporabnik['iduporabnika']. DS . 'delete'; echo "\" class='delete'>
-                                            <i class=\"fa fa-trash trash\"></i>
-                                       </a>
                                     </p>    
                                     </div>
                                 </a>
@@ -35,7 +32,6 @@ if(isset($_COOKIE['cookie'])) {
                             <h3 class=\"prodajalecHeader\">Artikli</h3>
                             <divclass=\"col-md-12\">";
                             foreach ($artikli as $key => $art):
-
                                 echo "<a href=\""; echo ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $art['idartikla']; echo "\" class=\"btnP\">
                                                         <div class=\"prodajalecCard\">
                                                             <p>"; echo $art['naziv']; echo " - ";
@@ -45,11 +41,8 @@ if(isset($_COOKIE['cookie'])) {
                                 } else if($art['status'] == '5') {
                                     echo "<a class='activate' href=\""; echo ROOT_URL . 'activate'. DS . 'artikel' . DS . $art['idartikla']; echo"\">Deaktiviran</a>";
                                 } echo "
-                                    <a href=\""; echo ROOT_URL . 'artikel' . DS . $art['idartikla']. DS . 'delete'; echo "\" class='delete' >
-                                            <i class=\"fa fa-trash trash\" ></i>
-                                       </a>
-                                </p>
-                                </div>
+                                    </p>
+                                    </div>
                                 </a>
                             ";
                             endforeach;

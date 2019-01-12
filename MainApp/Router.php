@@ -10,7 +10,6 @@ require_once "app/controllers/ProdajalecController.php";
 require_once "app/controllers/ProfilController.php";
 require_once "app/controllers/LogoutController.php";
 require_once "app/controllers/AdminController.php";
-require_once "app/controllers/DeleteController.php";
 require_once "app/controllers/NarocilaController.php";
 require_once "app/controllers/VerifyController.php";
 
@@ -124,12 +123,6 @@ class Router
       },
       "/^prodajalec\/artikel\/(\d+)\/edit$/" => function($method, $id) {
         ProdajalecController::showEditArtikelDetails($method, $id);
-      },
-      "/^user\/(\d+)\/delete$/" => function($method, $id) {
-        DeleteController::deleteUser($method, $id);
-      },
-      "/^artikel\/(\d+)\/delete$/" => function($method, $id) {
-        DeleteController::deleteArtikel($method, $id);
       },
       "/^prodajalec\/narocila$/" => function() {
         NarocilaController::showNarocila();

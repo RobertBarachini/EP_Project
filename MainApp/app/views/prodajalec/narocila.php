@@ -10,23 +10,36 @@ if(isset($_COOKIE['cookie'])) {
                         <div class=\"adminDiv\">
                             <h1 class=\"prodajalecHeader\">Naročila</h1>
                             <div class=\"col-md-12\">";
-                    foreach ($narocila as $key => $narocilo):
-                        if($narocilo['faza'] == 'N') {
-                            echo "<a href=\""; echo ROOT_URL . 'prodajalec'. DS . 'narocila'. DS . $narocilo['idnarocila']; echo "\" class=\"btnP\">
-                                        <div class=\"prodajalecCard\">
-                                            <p>"; echo "Narocilo "; echo $narocilo['idnarocila']; echo " ("; echo $narocilo['datzac_kosarice']; echo ")";
+                    if($narocila != null) {
+                        $bool = false;
+                        foreach ($narocila as $key => $narocilo):
+                            if($narocilo['faza'] == 'N') {
+                                $bool = true;
+                                echo "<a href=\""; echo ROOT_URL . 'prodajalec'. DS . 'narocila'. DS . $narocilo['idnarocila']; echo "\" class=\"btnP\">
+                                            <div class=\"prodajalecCard\">
+                                                <p>"; echo "Narocilo "; echo $narocilo['idnarocila']; echo " ("; echo $narocilo['datzac_kosarice']; echo ")";
 
-                            echo "<a href=\""; echo ROOT_URL . 'narocila' . DS . $narocilo['idnarocila']. DS . 'decline'; echo "\" class='delete'>
-                                            <i class=\"fa fa-close trash\" ></i>
-                                       </a >
-                                        <a href=\""; echo ROOT_URL . 'narocila' . DS . $narocilo['idnarocila']. DS . 'accept'; echo "\" class='ok'>
-                                            <i class=\"fa fa-check trash\"></i>
-                                       </a>
-                                    </p>    
-                                    </div>
-                                </a>";
-                        }
-                       endforeach;
+                                echo "<a href=\""; echo ROOT_URL . 'narocila' . DS . $narocilo['idnarocila']. DS . 'decline'; echo "\" class='delete'>
+                                                <i class=\"fa fa-close trash\" ></i>
+                                           </a >
+                                            <a href=\""; echo ROOT_URL . 'narocila' . DS . $narocilo['idnarocila']. DS . 'accept'; echo "\" class='ok'>
+                                                <i class=\"fa fa-check trash\"></i>
+                                           </a>
+                                        </p>    
+                                        </div>
+                                    </a>";
+                            }
+                           endforeach;
+                            if(!$bool) {
+                                echo "<div class=\"alert alert-primary\">
+                                        <strong>Trenutno ni v obdelavi nobenega naročila!</strong>
+                                    </div>";
+                            }
+                    } else {
+                        echo "<div class=\"alert alert-primary\">
+                                        <strong>Trenutno ni v obdelavi nobenega naročila!</strong>
+                                    </div>";
+                    }
                     echo "</div>
                         </div>
                     </div>

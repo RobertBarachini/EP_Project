@@ -101,6 +101,8 @@ class ProdajalecController {
     }
 
     public static function addCustomer($post) {
+        error_reporting(E_ALL & ~E_DEPRECATED);
+
         $ime = $post['ime'];
         $priimek = $post['priimek'];
         $ulica = $post['ulica'];
@@ -112,16 +114,22 @@ class ProdajalecController {
 
         # Check if there are empty fields
         if(empty($ime) || empty($priimek) || empty($ulica)
-            || empty($kraj) || empty($posta) || empty($drzava) || empty($geslo)) {
-
+            || empty($kraj) || empty($posta) || empty($drzava) || empty($geslo) || empty($email)) {
+            echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Izpolnite vsa polja!
+                                    </div>";
         } else {
             # Check if first and lastname are in correct form
             if(!preg_match("/^[a-zA-Z]*$/", $ime) || !preg_match("/^[a-zA-Z]*$/", $priimek)) {
-
+                echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Ime in priimek lahko vsebujeta samo črke!
+                                    </div>";
             } else {
                 #Check if email is valid
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
+                    echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Elektronski naslov mora biti pravilne oblike (_@_._) 
+                                    </div>";
                 } else {
                     $salt = RegisterController::generateRandomString();
                     $hpwd = password_hash($geslo, PASSWORD_DEFAULT, ['salt' => $salt]);
@@ -142,10 +150,20 @@ class ProdajalecController {
                         "kraj" => "$kraj",
                         "drzava" => "$drzava",
                         "idspr" => 0,
-                        "status" => 0,
+                        "status" => 0
                     );
-                    requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
-                    ViewHelper::redirect('/prodajalec');
+                    $temp = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/uporabniki/create.php","POST",$uporabnik_arr);
+
+                    if($temp != "{\"id\":-1,\"message\":\"Unable to create object.\"}") {
+                        echo "<div class=\"alert alert-success errorImg\">
+                                        <strong>Stranka uspešno kreirana!</strong> 
+                                        Nazaj na <a href='"; echo ROOT_URL . 'prodajalec'; echo "'>konzolo prodajalca</a> 
+                                    </div>";
+                    } else {
+                        echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong>
+                                    </div>";
+                    }
                 }
             }
         }
@@ -164,7 +182,18 @@ class ProdajalecController {
         );
 
         $temp = requestUtil::sendRequestPOST("http://localhost/trgovina/api/v1/artikli/create.php","POST",$artikel_arr);
-        ViewHelper::redirect('/prodajalec');
+
+        if($temp == "{\"id\":-1,\"message\":\"Unable to create object.\"}") {
+            echo "<div class=\"alert alert-danger error\">
+                                        <strong>Napaka!</strong> Artikla ni bilo mogoče dodati!</br>
+                                        Polje naziv in cena sta obvezna! Polje cena mora biti numerična vrednost!
+                                    </div>";
+        } else {
+            echo "<div class=\"alert alert-success errorImg\">
+                                        <strong>Artikel uspešno kreirana!</strong> 
+                                        Nazaj na <a href='"; echo ROOT_URL . 'prodajalec'; echo "'>konzolo prodajalca</a> 
+                                    </div>";
+        }
     }
 
     public static function showArtikelDetails($method, $id) {
@@ -236,8 +265,11 @@ class ProdajalecController {
         $image_idartikla = $POST['id'];
         $target = "images/".basename($image);
 
+
         if($image == null) {
-            #handle error
+            echo "<div class=\"alert alert-danger errorImg\">
+                                        <strong>Napaka!</strong> Naložite sliko!</br>
+                                    </div>";
         } else {
             $slika_arr = array(
                 "idartikla" => "$image_idartikla",
