@@ -145,6 +145,9 @@ class Router
       "/^prodajalec\/narocila\/zgodovina\/(\d+)$/" => function($method, $id) {
         NarocilaController::showNarociloDetails($method, $id);
       },
+      "/^prodajalec\/artikel\/(\d+)\/deleteImg\/(\d+)$/" => function($method, $id, $id2) {
+        ProdajalecController::deleteImage($method, $id, $id2);
+      },
       "/^uporabniki\/(\d+)\/narocila$/" => function($method, $id) {
         ProfilController::narocilaPage($id);
       },

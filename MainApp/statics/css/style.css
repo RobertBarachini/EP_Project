@@ -512,6 +512,12 @@ var {
     width: 44% !important;
 }
 
+.editButtonZbrisi {
+    margin-left: 0px;
+    float: left !important;
+    width: 90% !important;
+}
+
 .editHeader {
     text-align: center;
     margin-left: -80px;
@@ -689,6 +695,15 @@ var {
     vertical-align: middle;
     color: white;
     margin-top: -2px;
+}
+
+.trash2 {
+    margin-left: 10px;
+    font-size: 30px;
+    height: 30px;
+    vertical-align: middle;
+    color: white;
+    margin-top: 10px;
 }
 
 .stornS {

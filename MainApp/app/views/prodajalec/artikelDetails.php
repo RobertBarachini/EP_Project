@@ -26,14 +26,18 @@ if(isset($_COOKIE['cookie'])) {
                             <div class=\"row\">
                                 <div class=\"col-md-4\">
                                     <div class=\"card mb-6 shadow-sm \">
-                                        <div class=\"slider\">";
+                                        <div>";
                                             foreach ($slike as $key => $pic):
                                                 if($pic['idartikla'] == $art['idartikla']) {
+
                                                     echo "<div>
                                                             <img class=\"card-img-top\"
-                                                            src=\"../../images/"; echo $pic['link']; echo "\"
+                                                            src=\""; echo $pic['link']; echo "\"
                                                             alt=\"Alt for picture\">
-                                                        </div>";
+                                                        </div>
+                                                            <a href=\""; echo ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $art['idartikla']. DS . 'deleteImg' . DS . $pic['idslike']; echo "\"class=\"delete\">
+                                                                <i class=\"fa fa-trash trash2\"></i>
+                                                            </a>";
                                                 }
                                             endforeach;
                                         echo "</div>

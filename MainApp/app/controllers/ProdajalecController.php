@@ -293,6 +293,16 @@ class ProdajalecController {
         }
     }
 
+    public static function deleteImage($method, $id, $id2) {
+
+        $slika_arr = array(
+            "idslike"=>"$id2"
+        );
+
+        requestUtil::sendRequestPOST('http://localhost/trgovina/api/v1/artikli_slike/delete.php', "PUT", $slika_arr);
+        ViewHelper::redirect(ROOT_URL . 'prodajalec' . DS . 'artikel' . DS . $id);
+    }
+
     public static function deactivate($method, $id) {
 
         if(isset($_COOKIE['cookie'])) {
