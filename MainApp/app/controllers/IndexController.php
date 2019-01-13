@@ -38,7 +38,9 @@ class IndexController
       $podatki_slike = $decodiraniPodatki_slike['body'];
 
     }
+    $prazno = false;
+    if($podatki == null) $prazno = true;
 
-    echo ViewHelper::render("app/views/index-page.php",["artikli"=>$podatki,"artikli_slike"=>$podatki_slike]);
+    echo ViewHelper::render("app/views/index-page.php",["artikli"=>$podatki,"artikli_slike"=>$podatki_slike, "prazno" => $prazno]);
   }
 }
