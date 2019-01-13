@@ -266,6 +266,10 @@ class ProdajalecController {
         $target = "images/".basename($image);
 
 
+        $image_link = '../../images/'. $image;
+        var_dump($image_link);
+        var_dump($image_link);
+        var_dump($image_link);
         if($image == null) {
             echo "<div class=\"alert alert-danger errorImg\">
                                         <strong>Napaka!</strong> Naložite sliko!</br>
@@ -274,7 +278,7 @@ class ProdajalecController {
             $slika_arr = array(
                 "idartikla" => "$image_idartikla",
                 "naziv"=> "$image_naziv",
-                "link"=>"$image",
+                "link"=>"$image_link",
                 "status"=>"0",
                 "idspr"=>"1"
             );

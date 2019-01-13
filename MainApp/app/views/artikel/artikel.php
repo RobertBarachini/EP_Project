@@ -22,7 +22,7 @@
                           <?php foreach ($artikel_slike as $key => $value): ?>
                               <div>
                                   <img class="card-img-top"
-                                       src="../../images/<?= $value['link'] ?>"
+                                       src="<?= $value['link'] ?>"
                                        alt="Alt for picture">
                               </div>
                           <?php endforeach; ?>
