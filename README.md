@@ -2,7 +2,7 @@
 E-commerce and web development project at FRI
 
 ## Uporabniška imena (email) in gesla:
-* Adminostrator : robert@gmail.com : robert
+* Administrator : robert@gmail.com : robert
 * Prodajalec : uros@gmail.com : uros
 * Stranka : stranka@gmail.com : stranka
 
