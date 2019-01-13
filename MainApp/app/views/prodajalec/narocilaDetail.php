@@ -37,7 +37,7 @@ if(isset($_COOKIE['cookie'])) {
                                         echo "<div class='card mb-6 shadow-sm'>
                                                 <div>
                                                     <img class=\"card-img-top\"
-                                                    src=\"../../images/"; echo $slika[0]['link']; echo "\"
+                                                    src=\""; echo $slika[0]['link']; echo "\"
                                                     alt=\"Alt for picture\">
                                                 </div>
                                                 <div class='card-body'>
