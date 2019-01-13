@@ -32,10 +32,11 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
 
-            <form action="search.php" method="GET" class="form-inline my-2 my-lg-0">
+            <form action="\" METHOD="GET" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" name = "query" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-light my-2 my-sm-0" >Search</button>
             </form>
+
         </ul>
 
         <div>

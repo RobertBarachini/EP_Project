@@ -16,7 +16,7 @@
                     <td>
                         <figure class="media">
 
-                            <div class="img-wrap"><img src="<?= $slike[$key]['link'] ?>"
+                            <div class="img-wrap"><img src= "../../images/<?= $slike[$key]['link'] ?>"
                                                        class="img-thumbnail img-sm"></div>
                             <figcaption class="media-body">
                                 <h6 class="title text-truncate"><?= $art['naziv'] ?> </h6>

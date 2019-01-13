@@ -24,7 +24,7 @@
                             <tr>
                                 <td>  {$temp} </td>
                                 <td><a href=\"/artikli/{$ke['idartikla']}\" target=\"_blank\"> {$ke['1']}</a></td>
-                                <td>{$value['datnarocila']}</td>
+                                <td>{$value['datzac_kosarice']}</td>
                                 <td>{$ke['kolicina']}</td>
                                 <td>{$ke['0']} € each</td>
                                 ";

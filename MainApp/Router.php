@@ -151,6 +151,7 @@ class Router
       "/^verify\/(\d+)\/(.+)$/" => function($method, $id1,$id2) {
         VerifyController::verifyPage($id1,$id2);
       },
+
       "/^druga$/" => function() {
         echo "druga";
       }

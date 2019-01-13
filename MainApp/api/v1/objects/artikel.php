@@ -14,6 +14,7 @@ class Artikel{
   public $status;
   public $datspr;
   public $idspr;
+  public $poizvedba;
 
   // constructor with $db as database connection
   public function __construct($db){
@@ -93,6 +94,26 @@ class Artikel{
     $this->datspr = $row['datspr'];
     $this->idspr = $row['idspr'];
   }
+    public function readQuery(){
+    // query to read single record
+    $query = "SELECT idartikla, naziv, opis, cena, st_ocen, povprecna_ocena, status, datspr, idspr FROM " .
+      $this->table_name .
+      " WHERE MATCH(naziv) AGAINST (:query IN BOOLEAN MODE)";
+
+    // prepare query statement
+    $statement = $this->connection->prepare( $query );
+    // bind id of object to be updated
+    $statement->bindParam("query", $this->poizvedba);
+    // execute query
+      $statement->execute();
+
+    return $statement;
+    // get retrieved row
+
+  }
+
+
+
 
   public function update(){
     $query = "UPDATE

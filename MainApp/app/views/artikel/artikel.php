@@ -17,7 +17,7 @@
             <h1><?= $artikel['naziv'] ?></h1>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card mb-6 shadow-sm ">
+                    <div class="card mb-6 shadow-sm " style="height: auto">
                         <div class="slider">
                           <?php foreach ($artikel_slike as $key => $value): ?>
                               <div>
